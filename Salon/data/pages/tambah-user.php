@@ -1,0 +1,76 @@
+<style type="text/css">
+  select.form-control option{
+    background-color: #4A5A6A;
+}
+</style>
+<script src="scripts/tambahUser.js"></script>
+<div class="padding">
+  <div class="row">
+    <div class="col-sm-12">
+      <form ui-jp="parsley" id="formTambahUser" action="prosses/prosses-tambah-user.php" method="POST">
+        <div class="box">
+          <div class="box-header">
+            <h2>Form Tambah User</h2>
+          </div>
+          <div class="box-body">
+            <p class="text-muted">Masukan data admin yang akan dibuat!</p>
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" name="nama" class="form-control" >                        
+            </div>
+            <div class="row m-b">
+              <div class="col-sm-6">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" >                        
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Jenis Kelamin</label>
+                    <select name="jenkel" class="form-control c-select">
+                      <option selected=""> - Pilih -</option>
+                      <option value="L">Pria</option>
+                      <option value="P">Wanita</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div class="row m-b">
+              <div class="col-sm-6">
+                <label>Enter password</label>
+                <input type="text" class="form-control" name="pass" id="pwd">   
+              </div>
+              <div class="col-sm-6">
+                <label>Confirm password</label>
+                <input type="text" class="form-control" name="pass-fix" >      
+              </div>   
+            </div>
+            <div class="row m-b">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="number" name="nohp" class="form-control" placeholder="XXX XXXX XXX" >
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Level</label>
+                    <select name="level" class="form-control">
+                      <option selected=""> - Pilih -</option>
+                      <option value="admin">Admin</option>
+                      <option value="member">Member</option>
+                    </select>
+                </div> 
+              </div>   
+            </div>
+          </div>
+          <div class="dker p-a text-right">
+            <button type="submit" name="submit" class="btn info">Tambahkan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
