@@ -75,12 +75,6 @@ if (isset($_SESSION['id_user'])) {
               <a class="nav-link" href data-toggle="tab" data-target="#tab_1">Activities</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href data-toggle="tab" data-target="#tab_2">....</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href data-toggle="tab" data-target="#tab_3">...</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href data-toggle="tab" data-target="#tab_4">Profile</a>
             </li>
           </ul>

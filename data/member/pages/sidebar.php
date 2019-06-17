@@ -1,9 +1,5 @@
 <?php 
 include '../../assets/config/koneksi.php';
-session_start(); 
-  if (!isset($_COOKIE['nama']) AND !isset($_SESSION['nama'])) {
-    header("location:../../");
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,9 +45,9 @@ session_start();
     <div class="left navside indigo-900 dk" layout="column">
       <div class="navbar navbar-md no-radius">
         <!-- brand -->
-        <a class="navbar-brand">
-          <div ui-include="'../../assets/images/logo.svg'"></div>
-          <img src="../../assets/images/logo.png" alt="." class="hide">
+        <a class="navbar-brand" href="../../">
+          <!-- <div ui-include="'../../assets/images/logo.svg'"></div> -->
+          <img src="../../assets/images/newlogo.png" alt=".">
           <span class="hidden-folded inline">KPK Barber</span>
         </a>
         <!-- / brand -->
@@ -98,79 +94,6 @@ session_start();
                   <li>
                     <a href="dashboard.php?page=list-order" >
                       <span class="nav-text">List Order</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="calendar.html" >
-                      <span class="nav-text">Hapus Harga</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-label">
-                    <b class="label rounded label-sm primary">5</b>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe5c3;
-                      <span ui-include="'../../assets/images/i_1.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Pesanan</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="inbox.html" >
-                      <span class="nav-text">Input Data Manual</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="contact.html" >
-                      <span class="nav-text">Data Boking Online</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=list-pesanan" >
-                      <span class="nav-text">List Pesanan</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="asides.html" >
-                      <span class="nav-text">Atur Diskon</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe8f0;
-                      <span ui-include="'../../assets/images/i_2.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Data User</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="dashboard.php?page=tambah-user" >
-                      <span class="nav-text">Tambah User</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-admin" >
-                      <span class="nav-text">List Admin</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-member" >
-                      <span class="nav-text">List Member</span>
                     </a>
                   </li>
                 </ul>
@@ -333,26 +256,6 @@ session_start();
       <div flex-no-shrink>
       <nav ui-nav>
         <ul class="nav">
-          <li><div class="b-b b m-v-sm"></div></li>
-          <li class="no-bg">
-            <a class="auto">
-              <span class="nav-icon">
-                <i class="material-icons inline">&#xe835;</i>
-                <i class="material-icons text-warn none">&#xe834;</i>
-              </span>
-              <span class="nav-text">Filter</span>
-            </a>
-          </li>
-          <li class="no-bg">
-            <a>
-              <span class="nav-icon">
-                <i class="material-icons">&#xe83a;</i>
-              </span>
-              <span class="nav-text">
-                Star<small class="block text-muted">Border</small>
-              </span>
-            </a>
-          </li>
           <li><div class="b-b b m-t-sm"></div></li>
           <li class="no-bg">
             <a href="../../data/logout.php">
@@ -397,24 +300,28 @@ session_start();
               <!-- / -->
             </div>
             <!-- / navbar collapse -->
-        
+            <?php
+              if (isset($_SESSION['id_user'])) {
+              $id_user = $_SESSION['id_user'];
+              } else if (isset($_COOKIE['ID'])) {
+                $id_user = $_COOKIE['ID'];
+              }
+              $q = mysqli_query($conn,"SELECT foto FROM data_user WHERE id_user = '$id_user' ");
+              $res = mysqli_fetch_assoc($q);
+            ?>
             <!-- navbar right -->
             <ul class="nav navbar-nav ml-auto flex-row">
               <li class="nav-item dropdown pos-stc-xs">
                 <a class="nav-link mr-2" href data-toggle="dropdown">
-                  <i class="material-icons">&#xe7f5;</i>
-                  <span class="label label-sm up warn">3</span>
                 </a>
-                <div ui-include="'../../views/blocks/dropdown.notification.html'"></div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link p-0 clear" href="#" data-toggle="dropdown">
                   <span class="avatar w-32">
-                    <img src="../../assets/images/a0.jpg" alt="...">
+                    <img src="../assets/images/photo-user/<?= $res['foto'] ?>" alt="...">
                     <i class="on b-white bottom"></i>
                   </span>
                 </a>
-                <div ui-include="'../../views/blocks/dropdown.user.html'"></div>
               </li>
               <li class="nav-item hidden-md-up">
                 <a class="nav-link pl-2" data-toggle="collapse" data-target="#collapse">

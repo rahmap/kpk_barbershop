@@ -3,70 +3,28 @@
 <?php
   include '../assets/config/koneksi.php';
 
-  $pending = mysqli_query($conn, "SELECT COUNT(id_boking) AS pen FROM boking WHERE status = 'pending'   ");
-  $res1 = mysqli_fetch_assoc($pending);
-  $gagal = mysqli_query($conn, "SELECT COUNT(id_boking) AS gagal FROM boking WHERE status = 'expired'   ");
-  $res2 = mysqli_fetch_assoc($gagal);
-    $success = mysqli_query($conn, "SELECT COUNT(id_boking) AS oke FROM boking WHERE status = 'success'   ");
+  $success = mysqli_query($conn, "SELECT COUNT(id_manual) AS oke FROM boking_manual 
+    WHERE status = 'success'   ");
   $res3 = mysqli_fetch_assoc($success);
-  $all = mysqli_query($conn, "SELECT COUNT(id_boking) AS jml FROM boking  ");
+  $all = mysqli_query($conn, "SELECT COUNT(id_manual) AS jml FROM boking_manual  ");
   $resAll = mysqli_fetch_assoc($all);
 
 ?>
 <div class="padding">
   <div class="row">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box p-a">
-          <div class="pull-left m-r">
-            <span class="w-40 warn text-center rounded">
-              <i class="material-icons">shopping_basket</i>
-            </span>
-          </div>
-          <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $resAll['jml'] ?> <span class="text-sm">Transaksi</span></a></h4>
-            <small class="text-muted">Jumlah seluruh transaksi.</small>
-          </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="box p-a">
+        <div class="pull-left m-r">
+          <span class="w-40 warn text-center rounded">
+            <i class="material-icons">shopping_basket</i>
+          </span>
+        </div>
+        <div class="clear">
+          <h4 class="m-0 text-md"><a href><?= $resAll['jml'] ?> <span class="text-sm">Transaksi</span></a></h4>
+          <small class="text-muted">Jumlah seluruh transaksi.</small>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box-color p-a primary">
-          <div class="pull-right m-l">
-            <span class="w-40 dker text-center rounded">
-              <i class="material-icons">local_shipping</i>
-            </span>
-          </div>
-          <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res1['pen'] ?> <span class="text-sm">Pending Orders</span></a></h4>
-            <small class="text-muted"><?= $res1['pen'] ?> Menunggu pembayaran.</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box p-a">
-          <div class="pull-right m-l">
-            <span class="w-40 accent text-center rounded">
-              <i class="material-icons">people</i>
-            </span>
-          </div>
-          <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res2['gagal'] ?> <span class="text-sm">Expired Orders</span></a></h4>
-            <small class="text-muted"><?= $res2['gagal'] ?> Orderan dibatalkan.</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box-color p-a accent">
-          <div class="pull-left m-r">
-            <span class="w-40 dker text-center rounded">
-              <i class="material-icons">comment</i>
-            </span>
-          </div>
-          <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res3['oke'] ?> <span class="text-sm">Success Orders</span></a></h4>
-            <small class="text-muted"><?= $res3['oke'] ?> Berhasil.</small>
-          </div>
-        </div>
-      </div>
+    </div>
   </div>
   <div class="box">
     <div class="box-header">
@@ -122,7 +80,7 @@
         <h5 class="modal-title">Peringatan!</h5>
       </div>
       <div class="modal-body text-center p-lg">
-        <p>Apakah anda ingin menghapus Pesanan ini?</p>
+        <p>Apakah anda ingin menghapus Transaksi ini?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button>
@@ -142,10 +100,7 @@
       </div>
       <div class="modal-body text-center p-lg">
         <p>Kode Unik : <h5><div id="unik"></div></h5></p>
-        <p>Silahkan lakukan pembayaran sebesar <br><h4 id="harga"></h4><div id="bank"></div></p>
-        <p>Waktu Tersisa Untuk Melakukan Pembayaran</p>
       </div>
-      <div id="loadStatus" class="modal-body text-center p-lg">
 
       </div>
       <div class="modal-footer">
@@ -160,29 +115,21 @@
 
 
   $(document).on('click', '#btnDetail', function(){
-    var bank = $(this).data('bank');
     var unik = $(this).data('unik');
     var id = $(this).data('id');
-    var harga = $(this).data('harga');
-    harga = 'Rp.'+harga;
-    $('#m-a-a #bank').html(bank);
     $('#m-a-a #unik').html(unik);
-    $('#m-a-a #harga').html(harga);
     $.ajax({
         type: 'POST',
         url: 'member/getIDBoking.php',
         data: { idbo: id },
         success: function() {
-          $.get('member/getStatusBoking.php',function(data){
-            $('#loadStatus').html(data);
-          })
         }
     });
   });
 
 function loadData(){
   $(document).ready(function(){
-    $.get('prosses/loadListPesanan.php',function(data){
+    $.get('prosses/loadListManual.php',function(data){
     $('#loadDataPesanan').html(data);
 
     $('.btnHapus').on('click', function(e) {

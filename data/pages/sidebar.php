@@ -42,9 +42,9 @@
     <div class="left navside indigo-900 dk" layout="column">
       <div class="navbar navbar-md no-radius">
         <!-- brand -->
-        <a class="navbar-brand">
-          <div ui-include="'../assets/images/logo.svg'"></div>
-          <img src="../assets/images/logo.png" alt="." class="hide">
+        <a class="navbar-brand" href="../">
+          <!-- <div ui-include="'../assets/images/logo.svg'"></div> -->
+          <img src="../assets/images/newlogo.png" alt=".">
           <span class="hidden-folded inline">KPK Barber</span>
         </a>
         <!-- / brand -->
@@ -117,23 +117,18 @@
                 </a>
                 <ul class="nav-sub">
                   <li>
-                    <a href="inbox.html" >
+                    <a href="dashboard.php?page=input-data-manual" >
                       <span class="nav-text">Input Data Manual</span>
                     </a>
                   </li>
                   <li>
-                    <a href="contact.html" >
-                      <span class="nav-text">Data Boking Online</span>
+                    <a href="dashboard.php?page=list-pesanan-manual" >
+                      <span class="nav-text">List Booking Offline</span>
                     </a>
                   </li>
                   <li>
                     <a href="dashboard.php?page=list-pesanan" >
-                      <span class="nav-text">List Pesanan</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="asides.html" >
-                      <span class="nav-text">Atur Diskon</span>
+                      <span class="nav-text">List Booking Online</span>
                     </a>
                   </li>
                 </ul>
@@ -326,26 +321,6 @@
       <div flex-no-shrink>
       <nav ui-nav>
         <ul class="nav">
-          <li><div class="b-b b m-v-sm"></div></li>
-          <li class="no-bg">
-            <a class="auto">
-              <span class="nav-icon">
-                <i class="material-icons inline">&#xe835;</i>
-                <i class="material-icons text-warn none">&#xe834;</i>
-              </span>
-              <span class="nav-text">Filter</span>
-            </a>
-          </li>
-          <li class="no-bg">
-            <a>
-              <span class="nav-icon">
-                <i class="material-icons">&#xe83a;</i>
-              </span>
-              <span class="nav-text">
-                Star<small class="block text-muted">Border</small>
-              </span>
-            </a>
-          </li>
           <li><div class="b-b b m-t-sm"></div></li>
           <li class="no-bg">
             <a href="../data/logout.php">
@@ -379,37 +354,34 @@
             <div class="collapse navbar-collapse" id="collapse">
               <!-- link and dropdown -->
               <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href data-toggle="dropdown">
-                    <i class="fa fa-fw fa-plus text-muted"></i>
-                    <span>New</span>
-                  </a>
-                  <div ui-include="'../views/blocks/dropdown.new.html'"></div>
-                </li>
               </ul>
         
               <div ui-include="'../views/blocks/navbar.form.html'"></div>
               <!-- / -->
             </div>
             <!-- / navbar collapse -->
-        
+          <?php
+              if (isset($_SESSION['id_user'])) {
+              $id_user = $_SESSION['id_user'];
+              } else if (isset($_COOKIE['ID'])) {
+                $id_user = $_COOKIE['ID'];
+              }
+              $q = mysqli_query($conn,"SELECT foto FROM data_user WHERE id_user = '$id_user' ");
+              $res = mysqli_fetch_assoc($q);
+            ?>
             <!-- navbar right -->
             <ul class="nav navbar-nav ml-auto flex-row">
               <li class="nav-item dropdown pos-stc-xs">
                 <a class="nav-link mr-2" href data-toggle="dropdown">
-                  <i class="material-icons">&#xe7f5;</i>
-                  <span class="label label-sm up warn">3</span>
                 </a>
-                <div ui-include="'../views/blocks/dropdown.notification.html'"></div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link p-0 clear" href="#" data-toggle="dropdown">
                   <span class="avatar w-32">
-                    <img src="../assets/images/a0.jpg" alt="...">
+                    <img src="assets/images/photo-user/<?= $res['foto'] ?>" alt="...">
                     <i class="on b-white bottom"></i>
                   </span>
                 </a>
-                <div ui-include="'../views/blocks/dropdown.user.html'"></div>
               </li>
               <li class="nav-item hidden-md-up">
                 <a class="nav-link pl-2" data-toggle="collapse" data-target="#collapse">

@@ -3,14 +3,18 @@
   include 'myFunMember.php';
   session_start();
 
-  $query = mysqli_query($conn, "SELECT * FROM boking WHERE id_boking = '".$_SESSION['IDBO']."' ");
+  $query = mysqli_query($conn, "SELECT waktu_order FROM boking WHERE id_boking = '".$_SESSION['IDBO']."' ");
   $res = mysqli_fetch_assoc($query);
 
   $dt = new DateTime($res['waktu_order'], new DateTimeZone("Asia/Jakarta"));
   $dt->format("F j, Y H:i:s");
   $dt->modify("+1 day");
   $dt->format("F j, Y H:i:s");
-  $trigger = false;
+
+  date_default_timezone_set('Asia/Jakarta'); 
+  if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
+    mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' ");
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,12 +45,5 @@
   }, 1000);
 
 </script>
-
-<?php
-date_default_timezone_set('Asia/Jakarta'); 
-if ($dt->format("F j, Y H:i:s") < date('F j, Y H:i:s')) {
-  mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' ");
-}
-?>
 </body>
 </html>

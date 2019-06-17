@@ -11,6 +11,22 @@ function getAlert($title ="",$text ="",$type="",$href = ""){
 		</script>";
 }
 
+function generateRandomString($length = 4) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function getIdOrder()  
+{   
+	$angka = sprintf("%03s",rand(999,1));
+	return 'KPK-'.generateRandomString(4).'-'.$angka;
+} 
+
 function daftar($conn){
 	if (isset($_POST['submit'])) {
 		$fnama = $_POST['fnama'];
@@ -55,9 +71,11 @@ function login($conn){
 			session_start();
 			$_SESSION['nama'] = $res['fullname'];
 			$_SESSION['id_user'] = $res['id_user'];
+			$_SESSION['level'] = $res['level'];
 			if (isset($_POST['ingat'])) {
-				setcookie('nama',hash('sha512', $res['fullname']),time() + (60 * 120), '/');
-				setcookie('ID',hash('sha512', $res['id_user']),time() + (60 * 120), '/');
+				setcookie('nama',hash('sha512', $res['fullname']), time() + (60 * 120), '/');
+				setcookie('ID',hash('sha512', $res['id_user']), time() + (60 * 120), '/');
+				setcookie('level', $res['level'], time() + (60 * 120), '/');
 			}
 			cekExpireBoking($conn);
 			getAlert("Berhasil Login","Nikmati Fitur Kami!","success","../index.php");
@@ -82,6 +100,7 @@ function logout(){
 		if (isset($_COOKIE['nama'])) {
 			setcookie('nama','',time() - (60 * 120),'/');
 			setcookie('ID','',time() - (60 * 120),'/');
+			setcookie('level','',time() - (60 * 120),'/');
 		}
 		getAlert("Berhasil Logout","Terima Kasih!","success","../index.php");
 	}else{
@@ -101,20 +120,28 @@ function switchPages(){
 			case 'data-member':
 				include "pages/data-member.php";
 				break;
-			case 'data-admin':
-				include "pages/data-admin.php";
-				break;
 			case 'list-pesanan':
 				include "pages/data-pesanan.php";
 				break;
 			case 'tambah-user':
 				include "pages/tambah-user.php";
 				break;
+			case 'input-data-manual':
+				include "pages/input-manual.php";
+				break;				
+			case 'list-pesanan-manual':
+				include "pages/data-pesanan-manual.php";
+				break;
 			case 'data-paket':
-				include "pages/tambah-paket.php";
+				if (getIdUser() == '1') { include "pages/tambah-paket.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
+				break;
+			case 'data-admin':
+				if (getIdUser() == '1') { include "pages/data-admin.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
 				break;		
 			default:
-				echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
+				
 				break;
 		}
 	}else{
@@ -156,6 +183,8 @@ function tambahUser($conn){
 				die(header("HTTP/1.0 422 Error"));
 			}
 		}
+	} else {
+		header("location:../../");
 	}
 }
 
@@ -208,16 +237,144 @@ function getIdUser(){
 }
 
 function cekExpireBoking($conn){
-	$query = mysqli_query($conn, "SELECT * FROM boking WHERE id_user = '".getIdUser()."' ");
+	$query = mysqli_query($conn, "SELECT waktu_order,id_boking FROM boking 
+			 WHERE id_user = '".getIdUser()."' ");
 	foreach ($query as $key) {
 		$dt = new DateTime($key['waktu_order'], new DateTimeZone("Asia/Jakarta"));
 		$dt->format("F j, Y H:i:s");
 		$dt->modify("+1 day");
 		$dt->format("F j, Y H:i:s");
 		date_default_timezone_set('Asia/Jakarta'); 
-		if ($dt->format("F j, Y H:i:s") < date('F j, Y H:i:s')) {
-  			mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE 
-  			id_user = '".getIdUser()."' ");
+  		if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
+  			mysqli_query($conn, "UPDATE boking SET status = 'expired'
+  			WHERE id_user = '".getIdUser()."'
+  			AND id_boking = '".$key['id_boking']."' ");
 		}
+	}
+}
+
+function money_format($format, $number) 
+{ 
+    $regex  = '/%((?:[\^!\-]|\+|\(|\=.)*)([0-9]+)?'. 
+              '(?:#([0-9]+))?(?:\.([0-9]+))?([in%])/'; 
+    if (setlocale(LC_MONETARY, 0) == 'C') { 
+        setlocale(LC_MONETARY, ''); 
+    } 
+    $locale = localeconv(); 
+    preg_match_all($regex, $format, $matches, PREG_SET_ORDER); 
+    foreach ($matches as $fmatch) { 
+        $value = floatval($number); 
+        $flags = array( 
+            'fillchar'  => preg_match('/\=(.)/', $fmatch[1], $match) ? 
+                           $match[1] : ' ', 
+            'nogroup'   => preg_match('/\^/', $fmatch[1]) > 0, 
+            'usesignal' => preg_match('/\+|\(/', $fmatch[1], $match) ? 
+                           $match[0] : '+', 
+            'nosimbol'  => preg_match('/\!/', $fmatch[1]) > 0, 
+            'isleft'    => preg_match('/\-/', $fmatch[1]) > 0 
+        ); 
+        $width      = trim($fmatch[2]) ? (int)$fmatch[2] : 0; 
+        $left       = trim($fmatch[3]) ? (int)$fmatch[3] : 0; 
+        $right      = trim($fmatch[4]) ? (int)$fmatch[4] : $locale['int_frac_digits']; 
+        $conversion = $fmatch[5]; 
+
+        $positive = true; 
+        if ($value < 0) { 
+            $positive = false; 
+            $value  *= -1; 
+        } 
+        $letter = $positive ? 'p' : 'n'; 
+
+        $prefix = $suffix = $cprefix = $csuffix = $signal = ''; 
+
+        $signal = $positive ? $locale['positive_sign'] : $locale['negative_sign']; 
+        switch (true) { 
+            case $locale["{$letter}_sign_posn"] == 1 && $flags['usesignal'] == '+': 
+                $prefix = $signal; 
+                break; 
+            case $locale["{$letter}_sign_posn"] == 2 && $flags['usesignal'] == '+': 
+                $suffix = $signal; 
+                break; 
+            case $locale["{$letter}_sign_posn"] == 3 && $flags['usesignal'] == '+': 
+                $cprefix = $signal; 
+                break; 
+            case $locale["{$letter}_sign_posn"] == 4 && $flags['usesignal'] == '+': 
+                $csuffix = $signal; 
+                break; 
+            case $flags['usesignal'] == '(': 
+            case $locale["{$letter}_sign_posn"] == 0: 
+                $prefix = '('; 
+                $suffix = ')'; 
+                break; 
+        } 
+        if (!$flags['nosimbol']) { 
+            $currency = $cprefix . 
+                        $csuffix; 
+        } else { 
+            $currency = ''; 
+        } 
+        $space  = $locale["{$letter}_sep_by_space"] ? ' ' : ''; 
+
+        $value = number_format($value, $right, $locale['mon_decimal_point'], 
+                 $flags['nogroup'] ? '' : $locale['mon_thousands_sep']); 
+        $value = @explode($locale['mon_decimal_point'], $value); 
+
+        $n = strlen($prefix) + strlen($currency) + strlen($value[0]); 
+        if ($left > 0 && $left > $n) { 
+            $value[0] = str_repeat($flags['fillchar'], $left - $n) . $value[0]; 
+        } 
+        $value = implode($locale['mon_decimal_point'], $value); 
+        if ($locale["{$letter}_cs_precedes"]) { 
+            $value = $prefix . $currency . $space . $value . $suffix; 
+        } else { 
+            $value = $prefix . $value . $space . $currency . $suffix; 
+        } 
+        if ($width > 0) { 
+            $value = str_pad($value, $width, $flags['fillchar'], $flags['isleft'] ? 
+                     STR_PAD_RIGHT : STR_PAD_LEFT); 
+        } 
+
+        $format = str_replace($fmatch[0], $value, $format); 
+    } 
+    return $format; 
+}
+
+function hapusPesanan($conn){
+	$query = mysqli_query($conn, "DELETE FROM boking WHERE id_boking = '".$_GET['id_boking']."' ");
+	if ($query) {
+		header("HTTP/1.0 200 Berhasil");
+	} else {
+		header("HTTP/1.0 422 Error");
+	}
+}
+
+function hapusManual($conn){
+	$query = mysqli_query($conn, "DELETE FROM boking_manual WHERE id_manual = '".$_GET['id_manual']."' ");
+	if ($query) {
+		header("HTTP/1.0 200 Berhasil");
+	} else {
+		header("HTTP/1.0 422 Error");
+	}
+}
+
+function inputManual($conn){
+	if (isset($_POST['nama_pelanggan'])) {
+		$nama = $_POST['nama_pelanggan'];
+		$id_paket = $_POST['paket'];
+		$barberman = $_POST['barberman'];
+		$bayar = $_POST['pembayaran'];
+		date_default_timezone_set('Asia/Jakarta'); 
+		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES('','".getIdOrder()."',
+			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success') ");
+		if ($insert) {
+			// getAlert("Berhasil Input Data Transaksi!","",
+			// 	"success","../dashboard.php?page=input-data-manual");
+			header("HTTP/1.0 200 Berhasil");
+		} else {
+			// getAlert("Maaf terjadi kesalahan!","","error","../dashboard.php?page=input-data-manual");
+			header("HTTP/1.0 422 Error");
+		}
+	} else {
+		header("location:../../");
 	}
 }

@@ -4,7 +4,7 @@
     JOIN boking b ON b.id_paket = ph.id_paket 
     JOIN barberman bar ON bar.id_barberman = b.id_barberman
     JOIN waktu_boking wb ON wb.id_waktu = b.id_waktu 
-    WHERE b.id_user = '".getIdUser()."' ");
+    WHERE b.id_user = '".getIdUser()."'  ORDER BY b.id_boking ASC ");
 
   $pending = mysqli_query($conn, "SELECT COUNT(id_boking) AS pen FROM boking WHERE status = 'pending' AND id_user = '".getIdUser()."'  ");
   $res1 = mysqli_fetch_assoc($pending);
@@ -86,10 +86,10 @@
               <th>
                   Nama Paket
               </th>
-              <th data-hide="phone,tablet">
+              <th>
                   Waktu Boking
               </th>
-              <th data-hide="phone,tablet" data-name="Date Of Birth">
+              <th data-hide="phone,tablet" data-name="Barberman">
                   Barberman
               </th>
               <th data-toggle="true">
@@ -98,7 +98,7 @@
               <th>
                 Pembayaran
               </th>
-              <th data-hide="phone">
+              <th>
                   Status
               </th>
               <th>
@@ -143,7 +143,6 @@
     </div>
   </div>
 </div>
-
 <!-- modal -->
 <div id="m-a-a" class="modal fade animate" data-backdrop="true">
   <div class="modal-dialog" id="animate">

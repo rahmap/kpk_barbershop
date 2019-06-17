@@ -29,7 +29,7 @@
         <h5 class="modal-title">Peringatan!</h5>
       </div>
       <div class="modal-body text-center p-lg">
-        <p>Apakah anda ingin menghapus data member ini?</p>
+        <p>Apakah anda ingin menghapus Paket ini?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button>

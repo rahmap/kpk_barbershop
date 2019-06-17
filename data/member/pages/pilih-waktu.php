@@ -6,7 +6,8 @@ if (isset($_SESSION['cart'])) {
   $data = mysqli_fetch_assoc($que);
   $qwaktu = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 0,7");
   $qwaktu1 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 7,7");
-  $qwaktu2 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 14,6");
+  $qwaktu2 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 14,7");
+  $barberman = mysqli_query($conn, "SELECT * FROM barberman");
 } else {
   echo "<script> Swal.fire('Pilih paket dulu!','','').then(function(){
     window.location = '../../index.php#boking'
@@ -70,7 +71,7 @@ if (isset($_SESSION['cart'])) {
             <?php foreach ($qwaktu as $key) { ?>
               <p>
                 <label class="md-switch">
-                  <input type="radio" required="" name='waktu' value="<?= $key['jam'] ?>" >
+                  <input type="radio" required="" name='waktu' value="<?= $key['id_waktu'] ?>" >
                   <i class="green"></i>
                   <?= $key['jam'] ?>
                 </label>
@@ -81,7 +82,7 @@ if (isset($_SESSION['cart'])) {
             <?php foreach ($qwaktu1 as $key) { ?>
               <p>
                 <label class="md-switch">
-                  <input type="radio" required="" name='waktu' value="<?= $key['jam'] ?>" >
+                  <input type="radio" required="" name='waktu' value="<?= $key['id_waktu'] ?>" >
                   <i class="orange"></i>
                   <?= $key['jam'] ?>
                 </label>
@@ -92,7 +93,7 @@ if (isset($_SESSION['cart'])) {
             <?php foreach ($qwaktu2 as $key) { ?>
               <p>
                 <label class="md-switch">
-                  <input type="radio" required="" name='waktu' value="<?= $key['jam'] ?>" >
+                  <input type="radio" required="" name='waktu' value="<?= $key['id_waktu'] ?>" >
                   <i class="blue"></i>
                   <?= $key['jam'] ?>
                 </label>
@@ -107,8 +108,9 @@ if (isset($_SESSION['cart'])) {
             <h6>Pilih Barberman</h6>
             <select required="" name="barberman" id="barberman" class="form-control">
               <option value=""> -</option>
-              <option value="1">A</option>
-              <option value="2">B</option>
+              <?php foreach ($barberman as $key) { ?>
+                <option value="<?= $key['id_barberman'] ?>"><?= $key['nama_barberman'] ?></option>
+              <?php } ?>
             </select>
           </div>
         </div>
@@ -119,7 +121,7 @@ if (isset($_SESSION['cart'])) {
               <option value=""> -</option>
               <option value="BRI">BRI</option>
               <option value="BCA">BCA</option>
-              <option value="MANDIRI">BRI</option>
+              <option value="MANDIRI">MANDIRI</option>
               <option value="Uang Cash">Bayar Cash</option>
             </select>
           </div>
@@ -141,7 +143,7 @@ if (isset($_SESSION['cart'])) {
                     close: 'fa fa-remove'
                   }
                 }">
-                <input type='text' required="" name="hari" class="form-control" />
+                <input type='text' required="" autocomplete="off" name="hari" class="form-control" />
                 <span class="input-group-addon">
                     <span class="fa fa-calendar"></span>
                 </span>
