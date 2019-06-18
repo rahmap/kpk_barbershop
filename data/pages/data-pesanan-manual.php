@@ -8,6 +8,9 @@
   $res3 = mysqli_fetch_assoc($success);
   $all = mysqli_query($conn, "SELECT COUNT(id_manual) AS jml FROM boking_manual  ");
   $resAll = mysqli_fetch_assoc($all);
+  $profit = mysqli_query($conn, "SELECT SUM(ph.harga_paket) AS uang FROM paket_harga ph 
+                                 JOIN boking_manual bm ON bm.id_paket = ph.id_paket");
+  $resProfit = mysqli_fetch_assoc($profit);
 
 ?>
 <div class="padding">
@@ -22,6 +25,19 @@
         <div class="clear">
           <h4 class="m-0 text-md"><a href><?= $resAll['jml'] ?> <span class="text-sm">Transaksi</span></a></h4>
           <small class="text-muted">Jumlah seluruh transaksi.</small>
+        </div>
+      </div>
+    </div>    
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="box p-a">
+        <div class="pull-left m-r">
+          <span class="w-40 green text-center rounded">
+            <i class="fa fa-money"></i>
+          </span>
+        </div>
+        <div class="clear">
+          <h4 class="m-0 text-md"><a href>Rp <?= money_format('%i',$resProfit['uang']) ?> <span class="text-sm"></span></a></h4>
+          <small class="text-muted">Total Penghasilan.</small>
         </div>
       </div>
     </div>
