@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Flatkit - HTML Version | Bootstrap 4 Web App Kit with AngularJS</title>
+  <link rel="icon" href="../assets/img/favicon.ico">
+  <title>Beranda Admin - KPK BarberShop</title>
   <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,7 +55,7 @@
           
             <ul class="nav" ui-nav>
               <li class="nav-header hidden-folded">
-                <small class="text-muted">Admin</small>
+                <small class="text-muted"><hr></small>
               </li>
               
               <li>
@@ -64,7 +65,7 @@
                       <span ui-include="'../assets/images/i_0.svg'"></span>
                     </i>
                   </span>
-                  <span class="nav-text">Dashboard</span>
+                  <span class="nav-text">Dasbor</span>
                 </a>
               </li>
               <li>
@@ -73,22 +74,27 @@
                     <i class="fa fa-caret-down"></i>
                   </span>
                   <span class="nav-label">
-                    <b class="label rounded label-sm primary">5</b>
+                    <b class="label rounded label-sm primary">1</b>
                   </span>
                   <span class="nav-icon">
                     <i class="material-icons">&#xe5c3;
                       <span ui-include="'../assets/images/i_1.svg'"></span>
                     </i>
                   </span>
-                  <span class="nav-text">Services</span>
+                  <span class="nav-text">Layanan</span>
                 </a>
                 <ul class="nav-sub">
                   <li>
                     <a href="dashboard.php?page=data-paket" >
-                      <span class="nav-text">Data Paket</span>
+                      <span class="nav-text">Data Paket Harga</span>
                     </a>
                   </li>
                   <li>
+                    <a href="dashboard.php?page=data-barberman" >
+                      <span class="nav-text">Data Barberman</span>
+                    </a>
+                  </li>
+                  <!-- <li>
                     <a href="contact.html" >
                       <span class="nav-text">Update Harga</span>
                     </a>
@@ -97,7 +103,7 @@
                     <a href="calendar.html" >
                       <span class="nav-text">Hapus Harga</span>
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </li>
               <li>
@@ -106,7 +112,7 @@
                     <i class="fa fa-caret-down"></i>
                   </span>
                   <span class="nav-label">
-                    <b class="label rounded label-sm primary">5</b>
+                    <b class="label rounded label-sm primary">3</b>
                   </span>
                   <span class="nav-icon">
                     <i class="material-icons">&#xe5c3;
@@ -118,204 +124,84 @@
                 <ul class="nav-sub">
                   <li>
                     <a href="dashboard.php?page=input-data-manual" >
-                      <span class="nav-text">Input Data Manual</span>
+                      <span class="nav-text">Masukan Data Transaksi Manual</span>
                     </a>
                   </li>
                   <li>
                     <a href="dashboard.php?page=list-pesanan-manual" >
-                      <span class="nav-text">List Booking Offline</span>
+                      <span class="nav-text">Daftar Transaksi Offline</span>
                     </a>
                   </li>
                   <li>
                     <a href="dashboard.php?page=list-pesanan" >
-                      <span class="nav-text">List Booking Online</span>
+                      <span class="nav-text">Daftar Pemesanan Online</span>
                     </a>
                   </li>
                 </ul>
               </li>
               <li>
                 <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
+                  <span class="nav-label">
+                    <b class="label rounded label-sm primary">3</b>
                   </span>
                   <span class="nav-icon">
                     <i class="material-icons">&#xe8f0;
                       <span ui-include="'../assets/images/i_2.svg'"></span>
                     </i>
                   </span>
-                  <span class="nav-text">Data User</span>
+                  <span class="nav-text">Data Pengguna</span>
                 </a>
-                <ul class="nav-sub">
+                <ul class="nav">
                   <li>
                     <a href="dashboard.php?page=tambah-user" >
-                      <span class="nav-text">Tambah User</span>
+                      <span class="nav-text">Tambah Pengguna</span>
                     </a>
                   </li>
                   <li>
                     <a href="dashboard.php?page=data-admin" >
-                      <span class="nav-text">List Admin</span>
+                      <span class="nav-text">Daftar Admin</span>
                     </a>
                   </li>
                   <li>
                     <a href="dashboard.php?page=data-member" >
-                      <span class="nav-text">List Member</span>
+                      <span class="nav-text">Daftar Member</span>
                     </a>
                   </li>
                 </ul>
               </li>
-          
-              <li>
-                <a href="widget.html" >
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe8d2;
-                      <span ui-include="'../assets/images/i_3.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Katalog</span>
-                </a>
-              </li>
               <li>
                 <a>
                   <span class="nav-caret">
                     <i class="fa fa-caret-down"></i>
                   </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe8f0;
-                      <span ui-include="'../assets/images/i_2.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Other</span>
-                </a>
-                <ul class="nav-sub">
-                  <!-- <li>
-                    <a href="dashboard.php?page=tambah-user" >
-                      <span class="nav-text">Tambah User</span>
-                    </a>
-                  </li> -->
-                </ul>
-              </li>
-          
-              <li class="nav-header hidden-folded">
-                <small class="text-muted">Components</small>
-              </li>          
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-label"><b class="label no-bg">9</b></span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe3e8;
-                      <span ui-include="'../assets/images/i_5.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Pages</span>
-                </a>
-                <ul class="nav-sub nav-mega">
-                  <li>
-                    <a href="profile.html" >
-                      <span class="nav-text">Profile</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-          
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
+                  <span class="nav-label">
+                    <b class="label rounded label-sm primary">3</b>
                   </span>
                   <span class="nav-icon">
-                    <i class="material-icons">&#xe39e;
-                      <span ui-include="'../assets/images/i_6.svg'"></span>
+                    <i class="material-icons">&#xe5c3;
+                      <span ui-include="'../assets/images/i_1.svg'"></span>
                     </i>
                   </span>
-                  <span class="nav-text">Form</span>
+                  <span class="nav-text">Laporan</span>
                 </a>
                 <ul class="nav-sub">
                   <li>
-                    <a href="form.layout.html" >
-                      <span class="nav-text">Form Layout</span>
+                    <a href="dashboard.php?page=laporan-pendapatan" >
+                      <span class="nav-text">Pendapatan</span>
                     </a>
                   </li>
                   <li>
-                    <a href="form.dropzone.html" class="no-ajax" >
-                      <span class="nav-text">File Upload</span>
+                    <a href="dashboard.php?page=laporan-transaksi" >
+                      <span class="nav-text">Transaksi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="dashboard.php?page=data-transaksi" >
+                      <span class="nav-text">Data Transaksi</span>
                     </a>
                   </li>
                 </ul>
               </li>
-          
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe896;
-                      <span ui-include="'../assets/images/i_7.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Tables</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="static.html" >
-                      <span class="nav-text">Static table</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-label hidden-folded">
-                    <b class="label label-sm info">N</b>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe1b8;
-                      <span ui-include="'../assets/images/i_8.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Charts</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="chart.html" >
-                      <span class="nav-text">Chart</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="nav-caret">
-                        <i class="fa fa-caret-down"></i>
-                      </span>
-                      <span class="nav-text">Echarts</span>
-                    </a>
-                    <ul class="nav-sub">
-                      <li>
-                        <a href="echarts-map.html" >
-                          <span class="nav-text">Map</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-          
-              <li class="nav-header hidden-folded">
-                <small class="text-muted">Help</small>
-              </li>
-              
-              <li class="hidden-folded" >
-                <a href="docs.html" >
-                  <span class="nav-text">Documents</span>
-                </a>
-              </li>
-          
-            </ul>
         </nav>
       </div>
       <div flex-no-shrink>
@@ -327,7 +213,7 @@
               <span class="nav-icon">
                <i class="material-icons">&#xe8ac;</i>
               </span>
-              <span class="nav-text">Logout</span>
+              <span class="nav-text">Keluar</span>
             </a>
           </li>
         </ul>
@@ -355,8 +241,6 @@
               <!-- link and dropdown -->
               <ul class="nav navbar-nav mr-auto">
               </ul>
-        
-              <div ui-include="'../views/blocks/navbar.form.html'"></div>
               <!-- / -->
             </div>
             <!-- / navbar collapse -->
@@ -399,8 +283,8 @@
           <a ui-scroll-to="content"><i class="fa fa-long-arrow-up p-x-sm"></i></a>
         </div>
         <div class="nav">
-          <a class="nav-link" href="../">About</a>
-          <a class="nav-link" href="">Get it</a>
+<!--           <a class="nav-link" href="../">About</a>
+          <a class="nav-link" href="">Get it</a> -->
         </div>
       </div>
     </div>

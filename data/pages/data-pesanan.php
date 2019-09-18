@@ -1,4 +1,3 @@
-<!-- ############ PAGE START-->
 
 <?php
   include '../assets/config/koneksi.php';
@@ -17,7 +16,7 @@
   <div class="row">
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="box p-a">
-          <div class="pull-left m-r">
+          <div class="pull-right m-r">
             <span class="w-40 warn text-center rounded">
               <i class="material-icons">shopping_basket</i>
             </span>
@@ -36,33 +35,33 @@
             </span>
           </div>
           <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res1['pen'] ?> <span class="text-sm">Pending Orders</span></a></h4>
+            <h4 class="m-0 text-md"><a href><?= $res1['pen'] ?> <span class="text-sm">Menunggu pembayaran</span></a></h4>
             <small class="text-muted"><?= $res1['pen'] ?> Menunggu pembayaran.</small>
           </div>
         </div>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box p-a">
+        <div class="box p-a box-color danger">
           <div class="pull-right m-l">
-            <span class="w-40 accent text-center rounded">
-              <i class="material-icons">people</i>
+            <span class="w-40 danger text-center rounded">
+              <i class="material-icons">close</i>
             </span>
           </div>
           <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res2['gagal'] ?> <span class="text-sm">Expired Orders</span></a></h4>
-            <small class="text-muted"><?= $res2['gagal'] ?> Orderan dibatalkan.</small>
+            <h4 class="m-0 text-md"><a href><?= $res2['gagal'] ?> <span class="text-sm">Pesanan Dibatalkan</span></a></h4>
+            <small class="text-muted"><?= $res2['gagal'] ?> Pesanan dibatalkan.</small>
           </div>
         </div>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="box-color p-a accent">
-          <div class="pull-left m-r">
+          <div class="pull-right m-r">
             <span class="w-40 dker text-center rounded">
               <i class="material-icons">comment</i>
             </span>
           </div>
           <div class="clear">
-            <h4 class="m-0 text-md"><a href><?= $res3['oke'] ?> <span class="text-sm">Success Orders</span></a></h4>
+            <h4 class="m-0 text-md"><a href><?= $res3['oke'] ?> <span class="text-sm">Pesanan Berhasil</span></a></h4>
             <small class="text-muted"><?= $res3['oke'] ?> Berhasil.</small>
           </div>
         </div>
@@ -71,19 +70,22 @@
   <div class="box">
     <div class="box-header">
       <h2>Data Pesanan</h2>
-      <small>Anda dapat melihat detail pembayaran dan mencetak nota di sini</small>
+      <small>Admin dapat mengelola pesanan online dari member lewat halaman ini.</small>
     </div>
     <div class="table-responsive">
-      <table ui-jp="dataTable" class="table table-striped b-t b-b">
+      <table ui-jp="dataTable" id="dTables" class="table table-striped b-t b-b">
         <thead>
           <tr>
+              <th>
+                  ID  
+              </th>
               <th>
                   Nama Paket
               </th>
               <th>
-                  Waktu Boking
+                  Waktu Pemesanan
               </th>
-              <th data-hide="phone,tablet" data-name="Barberman">
+              <th>
                   Barberman
               </th>
               <th data-toggle="true">
@@ -95,8 +97,8 @@
               <th>
                   Status
               </th>
-              <th>
-                  Action
+              <th class="text-center"> 
+                  Aksi
               </th>
           </tr>
         </thead>
@@ -138,7 +140,7 @@
   <div class="modal-dialog" id="animate">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Detail Order</h5>
+        <h5 class="modal-title">Detail Pesanan</h5>
       </div>
       <div class="modal-body text-center p-lg">
         <p>Kode Unik : <h5><div id="unik"></div></h5></p>
@@ -164,7 +166,7 @@
     var unik = $(this).data('unik');
     var id = $(this).data('id');
     var harga = $(this).data('harga');
-    harga = 'Rp.'+harga;
+    harga = 'Rp '+harga;
     $('#m-a-a #bank').html(bank);
     $('#m-a-a #unik').html(unik);
     $('#m-a-a #harga').html(harga);
@@ -205,6 +207,7 @@ function loadData(){
     })
   })
 }
+
 loadData();
 </script>
-<!-- ############ PAGE END-->
+<!-- ############ PAGE END

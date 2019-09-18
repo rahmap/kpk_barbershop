@@ -5,4 +5,4 @@ include '../function.php';
      $q = mysqli_query($conn,"SELECT * FROM paket_harga WHERE id_paket = '".$valOp."' ");
      $res = mysqli_fetch_assoc($q);
      echo '<strong class="block">'.$res['nama_paket'].'</strong>
-           <span class="block">Rp '.money_format('%i', $res['harga_paket']).'</span>';
+           <span class="block">Rp '.str_replace('+', '', money_format('%i', $res['harga_paket'])).'</span>';

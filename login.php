@@ -44,12 +44,12 @@
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-6 col-10 p-5" style="background: #D1D1D1;">
-          <h1 class="mb-4">Log in</h1>
+          <h4 class="mb-3 justify-content-end">Silahkan masuk menggunakan akun yang telah anda daftarkan.</h4>
           <form action="data/prosses-login.php" method="POST">
-            <div class="form-group"> <input type="email" name="email" class="form-control" placeholder="Enter email" id="form9"> </div>
-            <div class="form-group mb-3"> <input type="password" class="form-control" placeholder="Password" id="form10" name="password"> <small class="form-text text-muted text-right"></small> </div>
+            <div class="form-group"> <input type="email" name="email" class="form-control" placeholder="Email" id="form9"> </div>
+            <div class="form-group mb-3"> <input type="password" class="form-control" placeholder="Kata Sandi" id="form10" name="password"> <small class="form-text text-muted text-right"></small> </div>
             <div class="form-check my-3 text-dark text-md-left"> <input class="form-check-input" type="checkbox" id="form21" name="ingat" value="ingat"> <label class="form-check-label" for="form21" contenteditable="true" > Ingat Saya </label> </div>
-            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="submit" class="btn btn-primary">Masuk</button>
           </form>
         </div>
       </div>

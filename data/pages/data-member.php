@@ -22,7 +22,7 @@
             <th  style="width:10%">Password</th>
             <th  style="width:5%">Jenkel</th>
             <th  style="width:15%">No Telp</th>
-            <th  style="width:15%">Action</th>
+            <th  style="width:15%">Aksi</th>
           </tr>
         </thead>
         <tbody id="loadDataMember">

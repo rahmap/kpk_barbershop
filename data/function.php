@@ -40,9 +40,9 @@ function daftar($conn){
 		$cek_data = mysqli_query($conn,"SELECT email FROM data_user WHERE email = '$email' ");
 		$cek_row = mysqli_num_rows($cek_data);
 		if ($pass != $_POST['pass-fix']) {
-			getAlert("Gagal!","Password Konfirmasi Tidak Sama","error","../index.php#regis");
+			getAlert("Gagal!","Kata sandi Konfirmasi Tidak Sama","error","../index.php#regis");
 		} else if (strlen($pass) < 6) {
-			getAlert("Gagal!","Password Harus Lebih Dari 6 Karakter","error","../index.php#regis");
+			getAlert("Gagal!","Kata sandi Harus Lebih Dari 6 Karakter","error","../index.php#regis");
 		} else if (!preg_match ("/^[a-zA-Z\s]+$/",$nama)) {
 			getAlert("Gagal!","Nama Hanya Boleh Alphabet","error","../index.php#regis");
 		} else if ($cek_row) {
@@ -51,7 +51,7 @@ function daftar($conn){
 			$insert = "INSERT INTO data_user SET fullname = '$nama', email = '$email', no_hp = '$nohp', jenkel = '$jenkel', password = '$pass', level = 'member' ";
 				mysqli_query($conn, $insert);
 			if ($insert) {
-				getAlert("Registrasi Berhasil!","Silahkan Login!","success","../login.php");
+				getAlert("Pendaftaran Berhasil!","Silahkan Masuk!","success","../login.php");
 			} else {
 				getAlert("Gagal!","Error Tidak Terduga!","error","../index.php#regis");
 			}
@@ -78,9 +78,9 @@ function login($conn){
 				setcookie('level', $res['level'], time() + (60 * 120), '/');
 			}
 			cekExpireBoking($conn);
-			getAlert("Berhasil Login","Nikmati Fitur Kami!","success","../index.php");
+			getAlert("Berhasil Masuk!","Nikmati Fitur Kami!","success","../index.php");
 		} else {
-			getAlert("Login Gagal!","Email Atau Password Salah!","error","../login.php");
+			getAlert("Gagal Masuk!","Email Atau Kata sandi Salah!","error","../login.php");
 		}
 	} else {
 		header('location:../');
@@ -88,8 +88,8 @@ function login($conn){
 }
 
 function cekLogin(){
-	if (isset($_SESSION['nama'])) {
-		die(getAlert('Upps..','Anda sudah login','error','index.php'));
+	if (isset($_SESSION['nama']) OR isset($_COOKIE['nama'])) {
+		die(getAlert('Upps..','Anda sudah masuk','error','index.php'));
 	}
 }
 
@@ -102,7 +102,7 @@ function logout(){
 			setcookie('ID','',time() - (60 * 120),'/');
 			setcookie('level','',time() - (60 * 120),'/');
 		}
-		getAlert("Berhasil Logout","Terima Kasih!","success","../index.php");
+		getAlert("Berhasil Keluar","Terima Kasih!","success","../index.php");
 	}else{
 		header("location:../index.php");
 	}
@@ -119,6 +119,9 @@ function switchPages(){
 				break;
 			case 'data-member':
 				include "pages/data-member.php";
+				break;			
+			case 'update-status':
+				include "pages/update-status-order.php";
 				break;
 			case 'list-pesanan':
 				include "pages/data-pesanan.php";
@@ -136,10 +139,26 @@ function switchPages(){
 				if (getIdUser() == '1') { include "pages/tambah-paket.php"; }
 				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
 				break;
+			case 'data-barberman':
+				if (getIdUser() == '1') { include "pages/data-barberman.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
+				break;
 			case 'data-admin':
 				if (getIdUser() == '1') { include "pages/data-admin.php"; }
 				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
-				break;		
+				break;				
+			case 'laporan-pendapatan':
+				if (getIdUser() == '1') { include "pages/cetak-laporan-pendapatan.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
+				break;
+			case 'laporan-transaksi':
+				if (getIdUser() == '1') { include "pages/cetak-laporan-transaksi.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
+				break;
+			case 'data-transaksi':
+				if (getIdUser() == '1') { include "pages/data-transaksi.php"; }
+				else { echo "<center><h3>Maaf. Halaman hanya bisa di akses Owner !</h3></center>"; }
+				break;			
 			default:
 				
 				break;
@@ -167,9 +186,9 @@ function tambahUser($conn){
 		if (empty($nama) OR empty($email) OR empty($jenkel) OR empty($nohp) OR empty($pass) OR empty($level)) {
 			die(header("HTTP/1.0 422 Semua Field Harus Di Isi"));
 		} else if ($pass != $_POST['pass-fix']) {
-			die(header("HTTP/1.0 422 Password Konfirmasi Tidak Sama"));
+			die(header("HTTP/1.0 422 Kata sandi Konfirmasi Tidak Sama"));
 		} else if (strlen($pass) < 6) {
-			die(header("HTTP/1.0 422 Password Harus Lebih Dari 6 Karakter"));
+			die(header("HTTP/1.0 422 Kata sandi Harus Lebih Dari 6 Karakter"));
 		} else if (!preg_match ("/^[a-zA-Z\s]+$/",$nama)) {
 			die(header("HTTP/1.0 422 Nama Hanya Boleh Alphabet"));
 		} else if ($cek_row) {
@@ -236,6 +255,16 @@ function getIdUser(){
   	return $id_user;
 }
 
+function getNamaAdmin(){
+	$id_user = '';
+	if (isset($_SESSION['id_user'])) {
+		$id_user = $_SESSION['nama'];
+  	} else if (isset($_COOKIE['ID'])) {
+  		$id_user = $_COOKIE['nama'];
+  	}
+  	return $id_user;
+}
+
 function cekExpireBoking($conn){
 	$query = mysqli_query($conn, "SELECT waktu_order,id_boking FROM boking 
 			 WHERE id_user = '".getIdUser()."' ");
@@ -248,7 +277,7 @@ function cekExpireBoking($conn){
   		if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
   			mysqli_query($conn, "UPDATE boking SET status = 'expired'
   			WHERE id_user = '".getIdUser()."'
-  			AND id_boking = '".$key['id_boking']."' ");
+  			AND id_boking = '".$key['id_boking']."' AND status = 'pending' ");
 		}
 	}
 }
@@ -359,16 +388,23 @@ function hapusManual($conn){
 
 function inputManual($conn){
 	if (isset($_POST['nama_pelanggan'])) {
+		$hargaFinal = 0;
 		$nama = $_POST['nama_pelanggan'];
 		$id_paket = $_POST['paket'];
 		$barberman = $_POST['barberman'];
 		$bayar = $_POST['pembayaran'];
-		date_default_timezone_set('Asia/Jakarta'); 
-		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES('','".getIdOrder()."',
+		$id_pesan = getIdOrder();
+		date_default_timezone_set('Asia/Jakarta');
+		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
+		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100);  
+		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES('','".$id_pesan."',
 			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success') ");
 		if ($insert) {
 			// getAlert("Berhasil Input Data Transaksi!","",
 			// 	"success","../dashboard.php?page=input-data-manual");
+			session_start();
+			mysqli_query($conn,"INSERT INTO laporan VALUES('".$id_pesan."','Offline',
+			'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."') ");
 			header("HTTP/1.0 200 Berhasil");
 		} else {
 			// getAlert("Maaf terjadi kesalahan!","","error","../dashboard.php?page=input-data-manual");
@@ -376,5 +412,50 @@ function inputManual($conn){
 		}
 	} else {
 		header("location:../../");
+	}
+}
+
+function updatePesanan($conn){
+	date_default_timezone_set('Asia/Jakarta');
+	if (isset($_POST['update'])) {
+		$hargaFinal = 0;
+		$new = $_POST['pilihUpdate'];
+		$id = $_POST['id_pesan'];
+		$getPaket = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id_paket FROM boking 
+			WHERE id_pesan = '".$id ."' "));
+		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga 
+			WHERE id_paket = '".$getPaket['id_paket']."' "));
+		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100); 
+		if (mysqli_query($conn, "UPDATE boking SET status = '$new' WHERE id_pesan = '$id' ")) {
+			if (mysqli_affected_rows($conn)) {
+				if ($new == 'success') {
+					session_start();
+					mysqli_query($conn,"INSERT INTO laporan VALUES('".$id."','Online',
+					'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."') ");
+				}
+				getAlert("Berhasil Memperbaruai Status Pesanan","","success","../dashboard.php?page=list-pesanan");
+			}else {
+				getAlert("Gagal Memperbaruai Status Pesanan","","error","../dashboard.php?page=list-pesanan");
+			}
+		} else {
+			getAlert("Gagal Memperbaruai","","error","../dashboard.php?page=list-pesanan");
+		}
+	} else {
+		header('location:../../');
+	}
+	mysqli_close($conn);
+}
+
+function tambahBarberman($conn){
+	if (isset($_POST['submit'])) {
+		$nama = $_POST['nama'];
+		$q = mysqli_query($conn, "INSERT INTO barberman VALUES('','".$nama."') ");
+		if ($q) {
+			getAlert("Berhasil Menambahkan Barberman","","success","../dashboard.php?page=data-barberman");
+		} else {
+			getAlert("Gagal Menambahkan Barberman","","error","../dashboard.php?page=data-barberman");
+		}
+	} else {
+		getAlert("Upsss","","","../dashboard.php?page=data-barberman");
 	}
 }

@@ -8,9 +8,7 @@
   $res3 = mysqli_fetch_assoc($success);
   $all = mysqli_query($conn, "SELECT COUNT(id_manual) AS jml FROM boking_manual  ");
   $resAll = mysqli_fetch_assoc($all);
-  $profit = mysqli_query($conn, "SELECT SUM(ph.harga_paket) AS uang FROM paket_harga ph 
-                                 JOIN boking_manual bm ON bm.id_paket = ph.id_paket");
-  $resProfit = mysqli_fetch_assoc($profit);
+  $resProfit = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(pendapatan) as jml FROM laporan WHERE jenis_transaksi = 'Offline'"));
 
 ?>
 <div class="padding">
@@ -36,7 +34,7 @@
           </span>
         </div>
         <div class="clear">
-          <h4 class="m-0 text-md"><a href>Rp <?= money_format('%i',$resProfit['uang']) ?> <span class="text-sm"></span></a></h4>
+          <h4 class="m-0 text-md"><a href>Rp <?= str_replace('+', '', money_format('%i',$resProfit['jml'])) ?> <span class="text-sm"></span></a></h4>
           <small class="text-muted">Total Penghasilan.</small>
         </div>
       </div>
@@ -52,10 +50,13 @@
         <thead>
           <tr>
               <th>
+                  Waktu Transaksi
+              </th>              
+              <th>
                   Nama Paket
               </th>
               <th>
-                  Waktu Boking
+                  Waktu Cukur
               </th>
               <th data-hide="phone,tablet" data-name="Barberman">
                   Barberman
@@ -69,8 +70,8 @@
               <th>
                   Status
               </th>
-              <th>
-                  Action
+              <th class="text-center">
+                  Aksi
               </th>
           </tr>
         </thead>
@@ -112,7 +113,7 @@
   <div class="modal-dialog" id="animate">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Detail Order</h5>
+        <h5 class="modal-title">Detail Pesanan</h5>
       </div>
       <div class="modal-body text-center p-lg">
         <p>Kode Unik : <h5><div id="unik"></div></h5></p>

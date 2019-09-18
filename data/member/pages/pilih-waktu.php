@@ -2,8 +2,10 @@
 include '../../assets/config/koneksi.php';
 
 if (isset($_SESSION['cart'])) {
+  
   $que = mysqli_query($conn, "SELECT * FROM paket_harga WHERE id_paket = '".$_SESSION['cart']."' ");
   $data = mysqli_fetch_assoc($que);
+  $diskon = $data['harga_paket']*$data['diskon_harga'] /100;
   $qwaktu = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 0,7");
   $qwaktu1 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 7,7");
   $qwaktu2 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 14,7");
@@ -39,20 +41,9 @@ if (isset($_SESSION['cart'])) {
       <div class="row row-col no-gutter b-t warn">
       <div class="col-xs-4 b-r">
         <a class="p-y block text-center" ui-toggle-class>
-          <strong class="block">796</strong>
-          <span class="block">Friends</span>
-        </a>
-      </div>
-      <div class="col-xs-4 b-r">
-        <a class="p-y block text-center" ui-toggle-class>
-          <strong class="block">342</strong>
-            <span class="block">Videos</span>
-        </a>
-      </div>
-      <div class="col-xs-4">
-        <a class="p-y block text-center" ui-toggle-class>
-          <strong class="block">20</strong>
-            <span class="block">Photos</span>
+          <?php if (isset($_SESSION['cart'])): ?>
+            <h5 class="block"><?= 'Rp '.str_replace('+', '', money_format('%i', $data['harga_paket'] -= $diskon))?></h5>
+          <?php endif ?>
         </a>
       </div>
      </div>
@@ -156,7 +147,7 @@ if (isset($_SESSION['cart'])) {
     <div class="form-group row m-t-lg text-center">
       <div class="col-sm-12 col-sm-offset-2">
         <button type="submit" class="btn red"><a href="prosses/hapus-cart.php">Batal</a></button>
-        <button type="submit" name="bokingNow" class="btn btn-primary">Boking Sekarang</button>
+        <button type="submit" name="bokingNow" class="btn btn-primary">Pesan Sekarang</button>
       </div>
     </div>
   </form>

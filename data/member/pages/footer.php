@@ -47,7 +47,7 @@
   <div class="modal-dialog modal-lg" id="animate">
     <div class="modal-content dark">
       <div class="modal-header">
-        <h5 class="modal-title">Uplaod Foto Anda!</h5>
+        <h5 class="modal-title">Unggah Foto Anda!</h5>
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -64,7 +64,7 @@
              </div> 
           </div>
           <div class="modal-footer">
-            <button type="submit" name="submit" class="btn info p-x-md">Upload</button>
+            <button type="submit" name="submit" class="btn info p-x-md">Unggah</button>
         </div>
         </div></div>
       </form></div></div></div></div></div>

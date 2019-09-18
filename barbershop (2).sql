@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Jun 2019 pada 18.55
+-- Generation Time: 08 Jul 2019 pada 19.11
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -65,25 +65,8 @@ CREATE TABLE `boking` (
 --
 
 INSERT INTO `boking` (`id_boking`, `id_pesan`, `id_paket`, `id_waktu`, `hari`, `id_barberman`, `id_user`, `waktu_order`, `pembayaran`, `status`) VALUES
-(24, 'KPK-1GbA-188', 27, 1, 'May 31, 2019', 1, 143, 'June 3, 2019 07:01:36', 'BRI', 'expired'),
-(25, 'KPK-FuQe-985', 27, 1, 'Jan 27, 0004', 1, 143, 'June 3, 2019 07:05:07', 'BRI', 'expired'),
-(28, 'KPK-Aear-643', 27, 2, 'Jun 13, 2019', 1, 110, 'June 4, 2019 09:45:10', 'BRI', 'expired'),
-(29, 'KPK-fi2Z-563', 44, 1, 'Jun 22, 2019', 1, 110, 'June 4, 2019 10:51:30', 'BCA', 'expired'),
-(30, 'KPK-Cvfm-722', 24, 19, 'Jan 16, 2019', 1, 110, 'June 4, 2019 10:53:20', 'BRI', 'pending'),
-(31, 'KPK-Nk3y-018', 27, 12, 'Jun 29, 2019', 1, 104, 'June 4, 2019 12:55:59', 'BRI', 'expired'),
-(32, 'KPK-S26t-472', 44, 19, 'Jun 29, 2019', 1, 143, 'June 4, 2019 14:57:05', 'BRI', 'expired'),
-(33, 'KPK-NUSU-054', 27, 17, 'Jun 10, 2019', 2, 143, 'June 9, 2019 00:14:17', 'BRI', 'expired'),
-(36, 'KPK-nYWb-392', 24, 17, 'Jan 16, 0005', 2, 143, 'June 9, 2019 02:13:33', 'BRI', 'expired'),
-(38, 'KPK-KQ4Z-573', 28, 19, 'Jan 03, 0005', 1, 143, 'June 9, 2019 02:22:03', 'BRI', 'expired'),
-(43, 'KPK-zV1Q-763', 44, 19, 'Jun 29, 2019', 2, 143, 'June 9, 2019 02:24:50', 'MANDIRI', 'expired'),
-(45, 'KPK-D0x5-130', 28, 20, 'Jun 29, 2019', 2, 143, 'June 9, 2019 02:27:01', 'MANDIRI', 'expired'),
-(47, 'KPK-bqyo-371', 44, 12, 'Jun 29, 2019', 1, 143, 'June 9, 2019 02:28:30', 'BCA', 'expired'),
-(50, 'KPK-88nC-045', 27, 20, 'Jun 29, 2019', 1, 143, 'June 9, 2019 02:29:06', 'MANDIRI', 'expired'),
-(51, 'KPK-XIPX-564', 24, 22, 'Jun 29, 2019', 2, 143, 'June 9, 2019 02:32:07', 'MANDIRI', 'expired'),
-(52, 'KPK-lq2s-296', 28, 5, 'Jul 17, 2019', 1, 143, 'June 9, 2019 02:33:27', 'BCA', 'expired'),
-(53, 'KPK-CMrv-515', 27, 22, 'Jun 29, 2019', 1, 143, 'June 12, 2019 19:10:07', 'MANDIRI', 'expired'),
-(54, 'KPK-hkW9-970', 27, 7, 'Jun 13, 2019', 2, 1, 'June 12, 2019 19:45:46', 'MANDIRI', 'expired'),
-(55, 'KPK-pOXS-209', 27, 6, 'Jul 11, 2019', 1, 143, 'June 13, 2019 19:01:38', 'BCA', 'expired');
+(67, 'KPK-vXCG-377', 27, 12, 'Jul 09, 2019', 1, 143, 'July 8, 2019 21:29:49', 'MANDIRI', 'success'),
+(68, 'KPK-1UZT-821', 45, 21, 'Jul 24, 2019', 2, 143, 'July 8, 2019 21:30:17', 'MANDIRI', 'success');
 
 -- --------------------------------------------------------
 
@@ -107,12 +90,10 @@ CREATE TABLE `boking_manual` (
 --
 
 INSERT INTO `boking_manual` (`id_manual`, `id_pesan`, `id_paket`, `waktu_transaksi`, `id_barberman`, `nama_pelanggan`, `pembayaran`, `status`) VALUES
-(3, 'KPK-i9Tm-641', 24, 'Jun 16, 2019 21:43', 1, 'Rahma', 'BRI', 'success'),
-(4, 'KPK-D9UF-753', 28, 'Jun 16, 2019 21:44', 1, 'Rahma Ap', 'Uang Cash', 'success'),
-(5, 'KPK-Hf62-808', 28, 'Jun 16, 2019 22:35', 2, 'hoho', 'Uang Cash', 'success'),
-(12, 'KPK-qAOV-311', 24, 'Jun 17, 2019 22:52', 2, 'fdsf', 'MANDIRI', 'success'),
-(13, 'KPK-3KgH-331', 24, 'Jun 17, 2019 22:58', 2, 'wkwk', 'BCA', 'success'),
-(14, 'KPK-k5LM-291', 44, 'Jun 17, 2019 23:08', 1, 'alhamdulillah', 'Uang Cash', 'success');
+(26, 'KPK-KhdB-219', 28, 'Jul 8, 2019 21:31', 1, 'Wana', 'MANDIRI', 'success'),
+(27, 'KPK-BP0v-935', 27, 'Jul 8, 2019 23:22', 1, 'Waskn', 'BRI', 'success'),
+(28, 'KPK-QkXx-836', 47, 'Jul 8, 2019 23:24', 1, 'Yuanita', 'BCA', 'success'),
+(29, 'KPK-4mBd-323', 24, 'Jul 8, 2019 23:50', 1, 'Rizti', 'Uang Cash', 'success');
 
 -- --------------------------------------------------------
 
@@ -136,14 +117,36 @@ CREATE TABLE `data_user` (
 --
 
 INSERT INTO `data_user` (`id_user`, `fullname`, `email`, `password`, `jenkel`, `no_hp`, `level`, `foto`) VALUES
-(1, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'abc', 'L', '089669413260', 'owner', '5cff29c370079.jpg'),
-(104, 'Kimmi Himme', 'cobavoba17@gmail.com', 'abc', 'P', '2147483647', 'admin', '5cf607dfcf30c.jpg'),
-(110, 'Suhono Hono', 'cobavoba17@gmail.comXX', '123xvxcv', 'L', '2147483647', 'member', '5cf5dae20b147.jpg'),
-(125, 'RahmaX Sangar', 'yahuu@gmail.com', '123456', 'L', '089669413260', 'member', '5caf7c8fcc3f2.jpg'),
+(1, 'Rahma Purnama', 'owner@owner', 'abc', 'L', '089669413260', 'owner', '5cff29c370079.jpg'),
+(104, 'Kimmi Himme', 'admin@admin', 'abc', 'P', '2147483647', 'admin', '5cf607dfcf30c.jpg'),
 (143, 'Rahma Purnama', 'tes@tes', 'tes', 'L', '089669413260', 'member', '5cf375e3b82ce.jpg'),
-(146, 'Riski Sudian', 'riski@gmail.com', 'abc123456', 'L', '', 'member', '5cb98eb38e0a7.docx'),
-(147, 'Rahma Purnama', 'purwantiibukcxcu@gmail.com', 'asd111', 'P', '089669413260', 'member', '5cacc9fc52e66.jpg'),
-(148, 'Yogi Darma', 'yogidarma@gmail.com', 'abc123', 'L', '', 'member', '5d00ed0a3af2c.jpg');
+(149, 'Aku Siap', 'member@member', 'abc12345', 'L', '', 'member', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `laporan`
+--
+
+CREATE TABLE `laporan` (
+  `id_pesan` varchar(20) NOT NULL,
+  `jenis_transaksi` varchar(50) NOT NULL,
+  `admin` varchar(50) NOT NULL,
+  `tgl_acc` varchar(50) NOT NULL,
+  `pendapatan` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `laporan`
+--
+
+INSERT INTO `laporan` (`id_pesan`, `jenis_transaksi`, `admin`, `tgl_acc`, `pendapatan`) VALUES
+('KPK-1UZT-821', 'Online', 'Rahma Purnama', '08 July, 2019', 20000),
+('KPK-4mBd-323', 'Offline', 'Rahma Purnama', '08 July, 2019', 11400),
+('KPK-BP0v-935', 'Offline', 'Rahma Purnama', '08 July, 2019', 9000),
+('KPK-KhdB-219', 'Offline', 'Rahma Purnama', '08 July, 2019', 12000),
+('KPK-QkXx-836', 'Offline', 'Rahma Purnama', '08 July, 2019', 13000),
+('KPK-vXCG-377', 'Online', 'Rahma Purnama', '08 July, 2019', 8100);
 
 -- --------------------------------------------------------
 
@@ -165,10 +168,13 @@ CREATE TABLE `paket_harga` (
 --
 
 INSERT INTO `paket_harga` (`id_paket`, `nama_paket`, `harga_paket`, `ket_paket`, `detail_paket`, `diskon_harga`) VALUES
-(24, 'Paket MAX', 12000, 'Ini dapat menambah kegantengan anda menjadi maxsimal', 'AK,CA', 0),
-(27, 'Paket Hemat', 9000, 'Harga Untuk Mahasiswa', 'AK,AZ,DE', 0),
-(28, 'Paket Ganteng', 12000, 'Ini dapat menambah kegantengan anda menjadi maxsimal', 'AK,CA', 0),
-(44, 'Paket Axis (HOT)', 15000, 'Paket terkini untuk rambut anda', 'AK', 5);
+(24, 'Max', 12000, 'Ini dapat menambah kegantengan anda menjadi maxsimal', 'Cukur, Keramas', 5),
+(27, 'Hemat', 9000, 'Harga Untuk Mahasiswa', 'Cukur', 10),
+(28, 'Ganteng', 12000, 'Ini dapat menambah kegantengan anda menjadi maxsimal', 'Hair Tatto, Cukur', 10),
+(44, 'Axis (HOT)', 15000, 'Paket terkini untuk rambut buluk anda', 'Semir,Semir Special, Cukur', 0),
+(45, 'Final', 20000, 'Paket Baru KPK Barbershop', 'Pijat,Semir Special,Styling Pomade', 0),
+(46, 'Baru', 6000, 'Paket ini adalah paket super baru', 'Cukur,Semir', 0),
+(47, 'Paket Ansi', 13000, 'Paket ini di buat untuk FP ansi minggu depan.', 'Semir,Styling Pomade,Hair Tatto,Perawatan Jenggot', 20);
 
 -- --------------------------------------------------------
 
@@ -231,14 +237,20 @@ ALTER TABLE `boking`
 --
 ALTER TABLE `boking_manual`
   ADD PRIMARY KEY (`id_manual`),
-  ADD KEY `id_barberman` (`id_barberman`),
-  ADD KEY `id_paket` (`id_paket`);
+  ADD KEY `boking_manual_ibfk_1` (`id_barberman`),
+  ADD KEY `boking_manual_ibfk_2` (`id_paket`);
 
 --
 -- Indexes for table `data_user`
 --
 ALTER TABLE `data_user`
   ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indexes for table `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`id_pesan`);
 
 --
 -- Indexes for table `paket_harga`
@@ -266,25 +278,25 @@ ALTER TABLE `barberman`
 -- AUTO_INCREMENT for table `boking`
 --
 ALTER TABLE `boking`
-  MODIFY `id_boking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_boking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `boking_manual`
 --
 ALTER TABLE `boking_manual`
-  MODIFY `id_manual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_manual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `data_user`
 --
 ALTER TABLE `data_user`
-  MODIFY `id_user` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id_user` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `paket_harga`
 --
 ALTER TABLE `paket_harga`
-  MODIFY `id_paket` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_paket` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `waktu_boking`
@@ -301,7 +313,6 @@ ALTER TABLE `waktu_boking`
 --
 ALTER TABLE `boking`
   ADD CONSTRAINT `boking_ibfk_1` FOREIGN KEY (`id_barberman`) REFERENCES `barberman` (`id_barberman`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `boking_ibfk_2` FOREIGN KEY (`id_paket`) REFERENCES `paket_harga` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `boking_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `data_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `boking_ibfk_4` FOREIGN KEY (`id_waktu`) REFERENCES `waktu_boking` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -309,8 +320,8 @@ ALTER TABLE `boking`
 -- Ketidakleluasaan untuk tabel `boking_manual`
 --
 ALTER TABLE `boking_manual`
-  ADD CONSTRAINT `boking_manual_ibfk_1` FOREIGN KEY (`id_barberman`) REFERENCES `barberman` (`id_barberman`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `boking_manual_ibfk_2` FOREIGN KEY (`id_paket`) REFERENCES `paket_harga` (`id_paket`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `boking_manual_ibfk_1` FOREIGN KEY (`id_barberman`) REFERENCES `barberman` (`id_barberman`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `boking_manual_ibfk_2` FOREIGN KEY (`id_paket`) REFERENCES `paket_harga` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

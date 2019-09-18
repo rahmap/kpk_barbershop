@@ -1,7 +1,4 @@
-<style type="text/css">
-  select.form-control option{
-    background-color: #4A5A6A;
-}
+
 </style>
 <script src="scripts/tambahUser.js"></script>
 <div class="padding">
@@ -10,7 +7,7 @@
       <form ui-jp="parsley" id="formTambahUser" action="prosses/prosses-tambah-user.php" method="POST">
         <div class="box">
           <div class="box-header">
-            <h2>Form Tambah User</h2>
+            <h2>Formulir Tambah User</h2>
           </div>
           <div class="box-body">
             <p class="text-muted">Masukan data admin yang akan dibuat!</p>
@@ -47,7 +44,7 @@
             <div class="row m-b">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Phone</label>
+                  <label>No HP</label>
                   <input type="number" name="nohp" class="form-control" placeholder="XXX XXXX XXX" >
                 </div>
               </div>
@@ -56,7 +53,11 @@
                   <label>Level</label>
                     <select name="level" class="form-control">
                       <option selected=""> - Pilih -</option>
-                      <option value="admin">Admin</option>
+                      <?php 
+                        if (getIdUser() == 1) {
+                          echo '<option value="admin">Admin</option>';
+                        } 
+                      ?>
                       <option value="member">Member</option>
                     </select>
                 </div> 

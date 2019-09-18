@@ -12,13 +12,13 @@ include '../../assets/config/koneksi.php';
 <div class="col-sm-9 col-lg-10 light lt">
     <div class="tab-content pos-rlt">
       <div class="tab-pane active" id="tab-1">
-        <div class="p-a-md dker _600">Data Anda</div>
+        <div class="p-a-md dker _600">Data Diri Anda</div>
         <form enctype="multipart/form-data" role="form" class="p-a-md col-md-6" action="prosses/profile/update-profile-umum.php" method="POST">
           <div class="form-group">
-            <label>Foto Profile</label>
+            <label>Foto Profil</label>
             <div class="form-file">
               <input type="file" id="filePhoto" name="foto">
-              <button class="btn danger" id="newPhoto">Upload Foto Baru</button>
+              <button class="btn danger" id="newPhoto">Unggah Foto Baru</button>
             </div>
           </div>
           <div class="form-group">
@@ -45,23 +45,23 @@ include '../../assets/config/koneksi.php';
         </form>
       </div>
       <div class="tab-pane" id="tab-5">
-        <div class="p-a-md dker _600">Security</div>
+        <div class="p-a-md dker _600">Keamanan</div>
         <div class="p-a-md">
           <div class="clearfix m-b-lg">
             <form role="form" action="prosses/profile/update-password.php" method="POST" class="col-md-6 p-a-0">
               <div class="form-group">
-                <label>Old Password</label>
+                <label>Kata Sandi Lama</label>
                 <input required="" type="password" name="oldPass" class="form-control">
               </div>
               <div class="form-group">
-                <label>New Password</label>
+                <label>Kata Sandi Baru</label>
                 <input required="" type="password" name="newPass" class="form-control">
               </div>
               <div class="form-group">
-                <label>New Password Again</label>
+                <label>Konfirmasi Kata Sandi Baru</label>
                 <input required="" type="password" name="newPassFix" class="form-control">
               </div>
-              <button type="submit" name="updatePassword" class="btn btn-info m-t" >Update</button>
+              <button type="submit" name="updatePassword" class="btn btn-info m-t" >Perbarui</button>
             </form>
           </div>
         </div>

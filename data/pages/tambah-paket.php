@@ -3,8 +3,8 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header">
-          <h2>Form Tambah Paket</h2>
-          <small>Anda dapat menambahkan paket(services) untuk mempermudah member atau pelanggan dalam memilih paket mereka.</small>
+          <h2>Formulir Tambah Paket Harga</h2>
+          <small>Anda dapat menambahkan paket(layanan) untuk mempermudah member atau pelanggan dalam memilih paket mereka.</small>
         </div>
         <div class="box-divider m-0"></div>
         <div class="box-body">
@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 form-control-label">Diskon Harga</label>
+              <label for="inputPassword3" class="col-sm-2 form-control-label">Potongan Harga</label>
               <div class="col-sm-10">
                 <input type="number" name="diskon" class="form-control" id="inputPassword3" required placeholder="Diskon Paket">
               </div>
@@ -31,25 +31,23 @@
               <label for="inputPassword3" class="col-sm-2 form-control-label">Detail Paket</label>
               <div class="col-sm-10">
                 <select id="multiple" name="detail-paket[]" class="form-control select2-multiple" required multiple ui-jp="select2" multiple="multiple" ui-options="{theme: 'bootstrap'}">
-                  <optgroup label="Alaskan/Hawaiian Time Zone">
-                    <option value="AK">Alaska</option>
-                    <option value="HI" disabled="disabled">Hawaii</option>
+                  <optgroup label="Basic">
+                    <option value="Cukur">Cukur</option>
+                    <option value="Gundul" disabled="disabled">Gundul</option>
                   </optgroup>
-                  <optgroup label="Pacific Time Zone">
-                    <option value="CA">California</option>
-                    <option value="NV">Nevada</option>
+                  <optgroup label="Stylish">
+                    <option value="Semir">Semir</option>
+                    <option value="Semir Special">Semir Special</option>
                   </optgroup>
-                  <optgroup label="Mountain Time Zone">
-                    <option value="AZ">Arizona</option>
-                    <option value="CO">Colorado</option>
+                  <optgroup label="Manjakan Kepala">
+                    <option value="Vitamin">Vitamin</option>
+                    <option value="Pijat">Pijat</option>
+                    <option value="Keramas">Keramas</option>
                   </optgroup>
-                  <optgroup label="Central Time Zone">
-                    <option value="AL">Alabama</option>
-                    <option value="AR">Arkansas</option>
-                  </optgroup>
-                  <optgroup label="Eastern Time Zone">
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
+                  <optgroup label="Lain - lain">
+                    <option value="Styling Pomade">Styling Pomade</option>
+                    <option value="Hair Tatto">Hair Tatto</option>
+                    <option value="Perawatan Jenggot">Perawatan Jenggot</option>
                   </optgroup>
               </select>
               </div>

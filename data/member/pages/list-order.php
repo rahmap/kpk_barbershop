@@ -5,19 +5,9 @@
     JOIN barberman bar ON bar.id_barberman = b.id_barberman
     JOIN waktu_boking wb ON wb.id_waktu = b.id_waktu 
     WHERE b.id_user = '".getIdUser()."'  ORDER BY b.id_boking ASC ");
-
-  $pending = mysqli_query($conn, "SELECT COUNT(id_boking) AS pen FROM boking WHERE status = 'pending' AND id_user = '".getIdUser()."'  ");
-  $res1 = mysqli_fetch_assoc($pending);
-  $gagal = mysqli_query($conn, "SELECT COUNT(id_boking) AS gagal FROM boking WHERE status = 'expired' AND id_user = '".getIdUser()."'  ");
-  $res2 = mysqli_fetch_assoc($gagal);
-    $success = mysqli_query($conn, "SELECT COUNT(id_boking) AS oke FROM boking WHERE status = 'success' AND id_user = '".getIdUser()."'  ");
-  $res3 = mysqli_fetch_assoc($success);
-  $all = mysqli_query($conn, "SELECT COUNT(id_boking) AS jml FROM boking WHERE id_user = '".getIdUser()."' ");
-  $resAll = mysqli_fetch_assoc($all);
-
 ?>
 <div class="padding">
-  <div class="row">
+<!--   <div class="row">
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="box p-a">
           <div class="pull-left m-r">
@@ -32,7 +22,7 @@
         </div>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box-color p-a primary">
+        <div class="box-color p-a info">
           <div class="pull-right m-l">
             <span class="w-40 dker text-center rounded">
               <i class="material-icons">local_shipping</i>
@@ -47,8 +37,8 @@
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="box p-a">
           <div class="pull-right m-l">
-            <span class="w-40 accent text-center rounded">
-              <i class="material-icons">people</i>
+            <span class="w-40 dker text-center rounded danger">
+              <i class="material-icons">snooze</i>
             </span>
           </div>
           <div class="clear">
@@ -58,10 +48,10 @@
         </div>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box-color p-a accent">
+        <div class="box-color p-a success">
           <div class="pull-left m-r">
             <span class="w-40 dker text-center rounded">
-              <i class="material-icons">comment</i>
+              <i class="material-icons">check_box</i>
             </span>
           </div>
           <div class="clear">
@@ -70,11 +60,11 @@
           </div>
         </div>
       </div>
-  </div>
+  </div> -->
   <div class="box">
     <div class="box-header">
-      <h2>List Boking</h2>
-      <small>Anda dapat melihat detail pembayaran dan mencetak nota di sini</small>
+      <h2>Daftar Booking Anda</h2>
+      <small>Anda dapat melihat detail pembayaran dan status pesanan anda.</small>
     </div>
     <div class="box-body">
       Search: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
@@ -87,7 +77,7 @@
                   Nama Paket
               </th>
               <th>
-                  Waktu Boking
+                  Waktu Pemesanan
               </th>
               <th data-hide="phone,tablet" data-name="Barberman">
                   Barberman
@@ -101,8 +91,8 @@
               <th>
                   Status
               </th>
-              <th>
-                  Action
+              <th class="text-center">
+                  Aksi
               </th>
           </tr>
         </thead>
@@ -110,9 +100,14 @@
         <?php
           $statusLbl; 
           foreach ($q as $key) {
+            if ($key['diskon_harga'] != 0) {
+              $diskon = $key['harga_paket']*$key['diskon_harga'] /100;
+            } else {
+              $diskon = 0;
+            }
             $fullUnik = explode('-', $key['id_pesan']);
             $fullUnik = end($fullUnik);
-            $fullUnik = $fullUnik + $key['harga_paket'];
+            $fullUnik = $fullUnik + $key['harga_paket']-$diskon;
             if ($key['status'] == 'success') {
               $statusLbl = "success";
             } else if ($key['status'] == 'pending') {
@@ -124,10 +119,12 @@
                     <td>'.$key["nama_paket"].'</td>
                     <td><b>'.$key["jam"].' - '.$key["hari"].'<b></td>
                     <td>'.$key["nama_barberman"].'</td>
-                    <td data-value="'.$key["harga_paket"].'">Rp. '.money_format('%i', $key["harga_paket"]).'</td>
+                    <td>Rp '.str_replace('+', '', money_format('%i', $key["harga_paket"]-$diskon)).'</td>
                     <td>'.$key["pembayaran"].'</td>
                     <td><span class="label '.$statusLbl.' " title="Active">'.$key['status'].'</span></td>
-                    <td><button id="btnDetail" class="md-btn md-raised m-b-sm w-xs blue" data-toggle="modal" data-target="#m-a-a" ui-toggle-class="flip-y" ui-target="#animate" data-harga="'.money_format('%i',$fullUnik).'" data-id="'.$key['id_boking'].'" data-unik="'.$key['id_pesan'].'" data-bank="'.$key['pembayaran'].'">Detail</button>   <button class="md-btn md-raised m-b-sm w-xs pink">Print</button></td>
+                    <td class="text-center"><button id="btnDetail" class="md-btn md-raised m-b-sm w-xs blue" data-toggle="modal" data-target="#m-a-a" ui-toggle-class="flip-y" ui-target="#animate" data-harga="'.str_replace('+', '', money_format('%i',$fullUnik)).'" data-id="'.$key['id_boking'].'" data-unik="'.$key['id_pesan'].'" data-bank="'.$key['pembayaran'].'">Detail</button>
+                      <a href="dashboard.php?page=cetak-nota&id_pesanan='.password_hash($key['id_pesan'], PASSWORD_DEFAULT).'&cvsx='.str_replace('KPK-', '', $key['id_pesan']).' " target="_blank"><button id="btnDetail" class="md-btn md-raised pink">Cetak Nota</button></a> 
+                    </td>
                   </tr>';
           } 
         ?>
@@ -148,7 +145,7 @@
   <div class="modal-dialog" id="animate">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Detail Order</h5>
+        <h5 class="modal-title">Detail Pesanan</h5>
       </div>
       <div class="modal-body text-center p-lg">
         <p>Kode Unik : <h5><div id="unik"></div></h5></p>
@@ -174,7 +171,7 @@
     var unik = $(this).data('unik');
     var id = $(this).data('id');
     var harga = $(this).data('harga');
-    harga = 'Rp.'+harga;
+    harga = 'Rp '+harga;
     $('#m-a-a #bank').html(bank);
     $('#m-a-a #unik').html(unik);
     $('#m-a-a #harga').html(harga);

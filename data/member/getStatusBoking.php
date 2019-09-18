@@ -10,10 +10,11 @@
   $dt->format("F j, Y H:i:s");
   $dt->modify("+1 day");
   $dt->format("F j, Y H:i:s");
-
+  $triger = false;
   date_default_timezone_set('Asia/Jakarta'); 
   if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
-    mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' ");
+    mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' AND status = 'pending' ");
+    $triger = true;
   }
 ?>
 <!DOCTYPE html>
@@ -27,6 +28,7 @@
 <script>
   var countDownDate = new Date("<?= $dt->format("F j, Y H:i:s") ?>").getTime();
   var now;
+  var tes = "<?= $triger ?>";
   setInterval(function() {
 
     now = new Date().getTime();
@@ -40,10 +42,9 @@
     document.getElementById("demo").innerHTML = days + "d " + hours + "h "
     + minutes + "m " + seconds + "s ";
     if (distance < 0) {
-      document.getElementById("demo").innerHTML = "EXPIRED";
+      document.getElementById("demo").innerHTML = "";
     }
   }, 1000);
-
 </script>
 </body>
 </html>

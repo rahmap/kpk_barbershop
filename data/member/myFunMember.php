@@ -54,7 +54,10 @@ function switchPages(){
 				break;
 			case 'list-order':
 				include "pages/list-order.php";
-				break;				
+				break;
+			case 'cetak-nota':
+				include "pages/cetak-nota.php";
+				break;					
 			default:
 				echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
 				break;
@@ -90,14 +93,14 @@ function uploadFotoProfile($conn){
 	            if (isset($_SESSION['id_user'])) {
 	                $q = mysqli_query($conn, "UPDATE data_user SET foto = '$namaFileBaru' WHERE id_user = '".$_SESSION['id_user']."' ");
 	                if ($q) {
-	                   getAlert("Berhasil!","Sekarang anda bisa mengakses halaman dashboard","success","../dashboard.php");
+	                   getAlert("Berhasil!","Sekarang anda bisa mengakses halaman dasbor","success","../dashboard.php");
 	                } else {
 	                    getAlert("Gagal!","Query Error","error","../dashboard.php");
 	                }
 	            } else if (isset($_COOKIE['ID'])) {
 	                $q = mysqli_query($conn, "UPDATE data_user SET foto = '$namaFileBaru' WHERE id_user = '".$_COOKIE['ID']."' ");
 	                if ($q) {
-	                    getAlert("Berhasil!","Sekarang anda bisa mengakses halaman dashboard","success","../dashboard.php");
+	                    getAlert("Berhasil!","Sekarang anda bisa mengakses halaman dasbor","success","../dashboard.php");
 	                } else {
 	                    getAlert("Gagal!","Query Error","error","../dashboard.php");
 	                }
@@ -140,11 +143,11 @@ function updateProfileUmum($conn){
 		    $namaFileBaru .= '.';
 		    $namaFileBaru .= $extensiGambar;
 		    if (!in_array($extensiGambar, $extensiGambarValid)) {
-		    	getAlert("Gagal!","Bukan Gambar","error","../../dashboard.php");
+		    	getAlert("Gagal!","Bukan Format Gambar yang benar","error","../../dashboard.php");
 		    } else if (move_uploaded_file($tmpName, '../../../assets/images/photo-user/'. $namaFileBaru)) {
 				$update = mysqli_query($conn,"UPDATE data_user SET fullname = '$fullname', no_hp = '$hp', foto = '$namaFileBaru'  WHERE id_user = '$id_user' ");
 				if ($update) {
-					getAlert("Berhasil!","Profile anda berhasil di update","success","../../dashboard.php");
+					getAlert("Berhasil!","Profile anda berhasil di perbarui","success","../../dashboard.php");
 				} else {
 					getAlert("Gagal!","Query Error","error","../../dashboard.php");
 				}
@@ -153,11 +156,11 @@ function updateProfileUmum($conn){
 			}
 
 		} else if ($cek_row) {
-			getAlert("OK! Data Tidak Berubah","","","../../dashboard.php");
+			getAlert("OK! Data Profil Tidak Berubah","","","../../dashboard.php");
 		} else {
 			$update = mysqli_query($conn,"UPDATE data_user SET fullname = '$fullname', no_hp = '$hp' WHERE id_user = '$id_user' ");
 			if ($update) {
-				getAlert("Berhasil!","Profile anda berhasil di update","success","../../dashboard.php");
+				getAlert("Berhasil!","Profil anda berhasil di update","success","../../dashboard.php");
 			} else {
 				getAlert("Gagal!","Query Error","error","../../dashboard.php");
 			}
@@ -180,17 +183,16 @@ function updatePassword($conn){
 		$old = $_POST['oldPass'];
 		$new = $_POST['newPass'];
 		if ($new != $_POST['newPassFix']) {
-			getAlert("Gagal!","Konfirmasi Password Berbeda","error","../../dashboard.php");
+			getAlert("Gagal!","Konfirmasi kata sandi berbeda","error","../../dashboard.php");
 		} else if ($old != getOldPassword($conn)) {
-			getAlert("Gagal!","Password lama salah","error","../../dashboard.php");
+			getAlert("Gagal!","Kata sandi lama salah","error","../../dashboard.php");
 		} else if (strlen($new) < 6) {
-			getAlert("Gagal!","Password harus lebih dari 6 karakter","error","../../dashboard.php");
+			getAlert("Gagal!","Kata sandi harus lebih dari 6 karakter","error","../../dashboard.php");
 		} else if($old == $new){
-			getAlert("Gagal!","Password baru harus berdeda dengan password lama","error","../../dashboard.php");
+			getAlert("Gagal!","Kata sandi baru harus berdeda dengan kata sadni lama","error","../../dashboard.php");
 		} else {
 			$update = mysqli_query($conn, "UPDATE data_user SET password = '$new' WHERE id_user = '".getIdUser()."' ");
 			if ($update) {
-				getAlert("Berhasil!","Password telah di ubah! Silahkan Login lagi.","success","../../../../login.php");
 				if (isset($_SESSION['nama']) OR isset($_COOKIE['nama'])) {
 					session_destroy();
 					if (isset($_COOKIE['nama'])) {
@@ -198,6 +200,8 @@ function updatePassword($conn){
 						setcookie('ID','',time() - (60 * 120),'/');
 					}
 				}
+				getAlert("Berhasil!","Kata sandi telah di ubah! Silahkan Login lagi.",
+					"success","../../../../login.php");
 			} else {
 				getAlert("Gagal!","Query Error","error","../../dashboard.php");
 			}
@@ -218,7 +222,7 @@ function boking($conn){
 		$insert = mysqli_query($conn,"INSERT INTO boking VALUES('','".getIdOrder()."',
 			'$id_paket','$waktu','$hari','$barberman','".getIdUser()."','".date('F j, Y H:i:s')."', '".$bayar."' ,'pending') ");
 		if ($insert) {
-			getAlert("Berhasil Boking Tempat!","Silahkan lanjutkan untuk pembayaran","success","../dashboard.php?page=list-order");
+			getAlert("Berhasil Memesan Tempat!","Silahkan lanjutkan untuk pembayaran","success","../dashboard.php?page=list-order");
 			unset($_SESSION['cart']);
 		} else {
 			getAlert("Maaf terjadi kesalahan!","","error","../dashboard.php?page=pilih-waktu");

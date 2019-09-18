@@ -5,19 +5,19 @@ function hideForm(){
 	    success: function(result) {
 	        if (result == 'member'){
 				$('#regis').hide();
-				$('#getRegis').html('Boking Sekarang!');
+				$('#getRegis').html('Pesan Sekarang!');
 				$('#getRegis').attr('href','#boking');
 				$('#btnLogin').html('Member Area').attr('href','data/member/');
 	        } else if (result == 'admin'){
 				$('#regis').hide();
-				$('#getRegis').html('Boking Sekarang!');
+				$('#getRegis').html('Pesan Sekarang!');
 				$('#getRegis').attr('href','#boking');
-				$('#btnLogin').html('Dashboard').attr('href','data/');
+				$('#btnLogin').html('Dasbor').attr('href','data/');
 	        } else if (result == 'owner'){
 				$('#regis').hide();
-				$('#getRegis').html('Boking Sekarang!');
+				$('#getRegis').html('Pesan Sekarang!');
 				$('#getRegis').attr('href','#boking');
-				$('#btnLogin').html('Dashboard').attr('href','data/');
+				$('#btnLogin').html('Dasbor').attr('href','data/');
 	        } else {
 	        	$('#btnLogout').hide();
 	        }

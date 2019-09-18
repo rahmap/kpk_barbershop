@@ -2,7 +2,7 @@
 
   <div class="box">
     <div class="box-header">
-      <h2>List Data Paket</h2>
+      <h2>Daftar Data Paket Harga</h2>
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" class="table table-striped b-t b-b">
@@ -43,7 +43,7 @@
   <div class="modal-dialog modal-lg" id="animate">
     <div class="modal-content dark">
       <div class="modal-header">
-        <h5 class="modal-title">Update Data Paket</h5>
+        <h5 class="modal-title">Perbaruhi Data Paket Harga</h5>
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -71,7 +71,7 @@
                   </div>
                 </div>
                 <div class="col-sm-6">
-                  <label>Diskon</label>
+                  <label>Potongan Harga</label>
                   <input type="number" placeholder="XX %" name="diskon" id="diskon" class="form-control" required>
                 </div>   
               </div>

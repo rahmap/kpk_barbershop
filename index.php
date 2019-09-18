@@ -25,10 +25,10 @@
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar3SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" id="btnLogin" href="login.php">Login</a>
+            <a class="nav-link" id="btnLogin" href="login.php">Masuk</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="btnLogout" href="data/logout.php">Logout</a>
+            <a class="nav-link" id="btnLogout" href="data/logout.php">Keluar</a>
           </li>
         </ul>
         <a class="btn navbar-btn btn-outline-light" href="#homekpk">Home</a>
@@ -41,6 +41,7 @@
         <div class="mx-auto col-lg-6 col-md-8">
           <h1 class="display-1 mb-0 mt-5 big-title">KPK</h1>
           <h3 class="mb-4"><b>Kulo Pengen Keren BarberShop</b></h3>
+          <!-- <h4> "Enak Tur Keras" </h4> -->
           <p>“Heroes don’t always wear capes, badges, or uniforms. Ganteng itu pilihan.”</p><br><br>
           <div class="col-md-12">
             <a class="btn btn-outline-secondary" id="getRegis" href="#regis"> Jadi Member Sekarang!</a>
@@ -130,18 +131,18 @@
           <p> <a href="#">info@smvll.com</a> </p>
         </div>
         <div class="col-md-7 p-4">
-          <h3 class="mb-3">Form Registrasi</h3>
+          <h3 class="mb-3">Formulir Pendaftaran</h3>
           <form action="data/prosses-daftar.php" method="POST">
             <div class="form-row">
-              <div class="form-group col-md-6"> <input required="" name="fnama" type="text" class="form-control" id="form36" placeholder="First Name"> </div>
-              <div class="form-group col-md-6"> <input  required="" name="lnama" type="text" class="form-control" id="form37" placeholder="Last Name"> </div>
+              <div class="form-group col-md-6"> <input required="" name="fnama" type="text" class="form-control" id="form36" placeholder="Nama Depan"> </div>
+              <div class="form-group col-md-6"> <input  required="" name="lnama" type="text" class="form-control" id="form37" placeholder="Nama Belakang"> </div>
             </div>
             <div class="form-group">
               <input required="" type="email" name="email" class="form-control" id="form39" placeholder="Email">
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input name="nohp" type="number" class="form-control" id="form40" placeholder="Phone (optional)">
+                <input name="nohp" type="number" class="form-control" id="form40" placeholder="No HP (tidak wajib)">
               </div>
               <div class="form-group col-md-6">
                 <select required="" name="jenkel" id="inputState" class="form-control">
@@ -151,8 +152,8 @@
                 </select>
               </div>
             </div>
-            <div class="form-group"> <input required="" type="password" name="pass" class="form-control mb-2"  placeholder="Password"> </div>
-            <div class="form-group"> <input required="" type="password" name="pass-fix" class="form-control mb-2" placeholder="Konfirmasi Password"> </div>
+            <div class="form-group"> <input required="" type="password" name="pass" class="form-control mb-2"  placeholder="Kata Sandi"> </div>
+            <div class="form-group"> <input required="" type="password" name="pass-fix" class="form-control mb-2" placeholder="Konfirmasi Kata Sandi"> </div>
             <button type="submit" name="submit" class="btn btn-primary">Daftar!</button>
           </form>
         </div>
@@ -162,7 +163,7 @@
   <div class="text-white bg-dark">
     <div class="container">
       <div class="row">
-        <div class="p-5 col-md-6">
+        <!-- <div class="p-5 col-md-6">
           <h3><b>KPK Barber</b></h3>
           <p class="">
             <a href="#" target="_blank">Jalan Turi - Pakem <br>Km 3 Sleman DIY</a>
@@ -186,7 +187,7 @@
             <div class="form-group"><textarea class="form-control p-1 form-control-sm" id="exampleTextarea" rows="3" placeholder="Tulis pesanmu" name="message"></textarea></div>
             <button type="submit" class="btn btn-outline-light btn-sm">SUBMIT</button>
           </form>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-md-12 mt-3">
@@ -206,8 +207,8 @@
             <a class="text-info" href="#regis" data-dismiss="modal" > Daftar</a> sekarang. Gratis!</p>
         </div>
         <div class="modal-footer"> 
-          <a href="login.php"><button type="button" class="btn btn-primary">Login</button></a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+          <a href="login.php"><button type="button" class="btn btn-primary">Masuk</button></a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> </div>
       </div>
     </div>
   </div>

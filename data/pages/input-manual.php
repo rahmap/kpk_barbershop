@@ -13,8 +13,8 @@ include '../assets/config/koneksi.php';
 <div class="padding">
   <div class="p-y-lg clearfix">
     <div class="text-center">
-      <h2 class="_700 m-b">Input Data Manual</h2>
-      <h5 class="m-b-md">Input data pelanggan secara manual.</h5>
+      <h2 class="_700 m-b">Masukkan Data Transaksi</h2>
+      <h5 class="m-b-md">Masukkan data pelanggan secara manual, ketika pelanggan datang langsung ke toko.</h5>
     </div>
   </div>
     <div class="col-xs-6 col-sm-12 col-md-12">
@@ -94,7 +94,7 @@ include '../assets/config/koneksi.php';
     </div>
     <div class="form-group row m-t-lg text-center">
       <div class="col-sm-12 col-sm-offset-2">
-        <button type="submit" name="inputNow" id="inputNow" class="btn btn-primary inputNow">Input Transaksi</button>
+        <button type="submit" name="inputNow" id="inputNow" class="btn btn-primary inputNow">Masukkan Transaksi</button>
       </div>
     </div>
   </form>
@@ -150,6 +150,9 @@ $('#form-input').submit(function (e) {
         },
         complete: function(){
           resetForm();
+          setTimeout(function(){
+            location.reload();
+          }, 3000);
         }
       });
     }
