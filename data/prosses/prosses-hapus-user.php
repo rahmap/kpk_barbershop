@@ -5,7 +5,7 @@
 
 <?php 
 
-hapusUser($conn); 
+hapusUser($conn, $_GET['id_user']);
 
 ?>
 

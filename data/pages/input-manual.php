@@ -3,11 +3,11 @@ include '../assets/config/koneksi.php';
   $barberman = mysqli_query($conn, "SELECT * FROM barberman");
   $paket = mysqli_query($conn, "SELECT * FROM paket_harga");
 ?>
-<style type="text/css">
-  select.form-control option{
-    background-color: #4A5A6A;
-}
-</style>
+<!--<style type="text/css">-->
+<!--  select.form-control option{-->
+<!--    background-color: #4A5A6A;-->
+<!--}-->
+<!--</style>-->
 
 <div id="resForm"></div>
 <div class="padding">

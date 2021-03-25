@@ -1,10 +1,12 @@
-<?php 
-include '../assets/config/koneksi.php'; 
+<?php error_reporting(0);
+include '../assets/config/koneksi.php';
 if (isset($_SESSION['id_user'])) {
-    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = '".$_SESSION['id_user']."'");
+		$id_user_ini = $_SESSION['id_user'];
+    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = $id_user_ini");
     $res = mysqli_fetch_assoc($q);
-} else if (isset($_COOKIE['ID'])) {
-    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = '".$_COOKIE['ID']."' ");
+} else if (isset($_COOKIE['ID_USER'])) {
+		$id_user_ini = $_COOKIE['ID_USER'];
+    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = $id_user_ini");
     $res = mysqli_fetch_assoc($q);
 }
 
@@ -35,7 +37,7 @@ $aktifitasOn = mysqli_query($conn,"SELECT * FROM boking b
 				JOIN data_user du ON du.id_user = b.id_user 
 				ORDER BY b.id_boking DESC LIMIT 0,5");
 
-$paket1 = mysqli_query($conn,"SELECT *,COUNT(id_paket) AS jml FROM paket_harga ORDER by id_paket DESC LIMIT 0,4");
+$paket1 = mysqli_query($conn,"SELECT *, COUNT(id_paket) AS jml FROM paket_harga ORDER by id_paket DESC LIMIT 0,4");
 $paket = mysqli_query($conn,"SELECT * FROM paket_harga ORDER by id_paket DESC LIMIT 0,4");
 $resPaket = mysqli_fetch_assoc($paket1);
 

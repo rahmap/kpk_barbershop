@@ -73,8 +73,8 @@ function login($conn){
 			$_SESSION['id_user'] = $res['id_user'];
 			$_SESSION['level'] = $res['level'];
 			if (isset($_POST['ingat'])) {
-				setcookie('nama',hash('sha512', $res['fullname']), time() + (60 * 120), '/');
-				setcookie('ID',hash('sha512', $res['id_user']), time() + (60 * 120), '/');
+				setcookie('nama',$res['fullname'], time() + (60 * 120), '/');
+				setcookie('ID_USER',$res['id_user'], time() + (60 * 120), '/');
 				setcookie('level', $res['level'], time() + (60 * 120), '/');
 			}
 			cekExpireBoking($conn);
@@ -99,7 +99,7 @@ function logout(){
 		session_destroy();
 		if (isset($_COOKIE['nama'])) {
 			setcookie('nama','',time() - (60 * 120),'/');
-			setcookie('ID','',time() - (60 * 120),'/');
+			setcookie('ID_USER','',time() - (60 * 120),'/');
 			setcookie('level','',time() - (60 * 120),'/');
 		}
 		getAlert("Berhasil Keluar","Terima Kasih!","success","../index.php");
@@ -207,8 +207,8 @@ function tambahUser($conn){
 	}
 }
 
-function hapusUser($conn){
-	$query = mysqli_query($conn, "DELETE FROM data_user WHERE id_user = '".getIdUser()."' ");
+function hapusUser($conn, $ID_USER){
+	$query = mysqli_query($conn, "DELETE FROM data_user WHERE id_user = '".$ID_USER."' ");
 	if ($query) {
 		header("HTTP/1.0 200 Berhasil");
 		header('location:../dashboard.php?page=data-member');
@@ -227,7 +227,7 @@ function tambahPaket($conn){
 		if (isset($detail)) {
 			$detail = implode(',', $detail);
 		}
-		$query = mysqli_query($conn,"INSERT INTO paket_harga VALUES('','$nama','$harga','$ket','$detail','$diskon')");
+		$query = mysqli_query($conn,"INSERT INTO paket_harga VALUES(NULL,'$nama','$harga','$ket','$detail','$diskon')");
 		if($query){
 			getAlert("Berhasil Menambahkan Paket","","","../dashboard.php?page=data-paket");
 		} else {
@@ -247,19 +247,19 @@ function hapusPaket($conn){
 
 function getIdUser(){
 	$id_user = '';
-	if (isset($_SESSION['id_user'])) {
-		$id_user = $_SESSION['id_user'];
-  	} else if (isset($_COOKIE['ID'])) {
-  		$id_user = $_COOKIE['ID'];
-  	}
-  	return $id_user;
+  if (isset($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
+  } else if (isset($_COOKIE['ID_USER'])) {
+    $id_user = $_COOKIE['ID_USER'];
+  }
+  return $id_user;
 }
 
 function getNamaAdmin(){
 	$id_user = '';
 	if (isset($_SESSION['id_user'])) {
 		$id_user = $_SESSION['nama'];
-  	} else if (isset($_COOKIE['ID'])) {
+  	} else if (isset($_COOKIE['ID_USER'])) {
   		$id_user = $_COOKIE['nama'];
   	}
   	return $id_user;
@@ -397,7 +397,7 @@ function inputManual($conn){
 		date_default_timezone_set('Asia/Jakarta');
 		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
 		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100);  
-		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES('','".$id_pesan."',
+		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES(NULL,'".$id_pesan."',
 			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success') ");
 		if ($insert) {
 			// getAlert("Berhasil Input Data Transaksi!","",
@@ -449,7 +449,7 @@ function updatePesanan($conn){
 function tambahBarberman($conn){
 	if (isset($_POST['submit'])) {
 		$nama = $_POST['nama'];
-		$q = mysqli_query($conn, "INSERT INTO barberman VALUES('','".$nama."') ");
+		$q = mysqli_query($conn, "INSERT INTO barberman VALUES(NULL,'".$nama."') ");
 		if ($q) {
 			getAlert("Berhasil Menambahkan Barberman","","success","../dashboard.php?page=data-barberman");
 		} else {

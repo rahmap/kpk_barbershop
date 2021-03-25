@@ -5,8 +5,8 @@ include '../../assets/config/koneksi.php';
 if (isset($_SESSION['id_user'])) {
     $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = '".$_SESSION['id_user']."'");
     $res = mysqli_fetch_assoc($q);
-} else if (isset($_COOKIE['ID'])) {
-    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = '".$_COOKIE['ID']."' ");
+} else if (isset($_COOKIE['ID_USER'])) {
+    $q = mysqli_query($conn,"SELECT * FROM data_user WHERE id_user = '".$_COOKIE['ID_USER']."' ");
     $res = mysqli_fetch_assoc($q);
 }
 

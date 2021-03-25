@@ -17,11 +17,11 @@ if (isset($_SESSION['cart'])) {
 }
 
 ?>
-<style type="text/css">
-  select.form-control option{
-    background-color: #4A5A6A;
-}
-</style>
+<!--<style type="text/css">-->
+<!--  select.form-control option{-->
+<!--    background-color: #4A5A6A;-->
+<!--}-->
+<!--</style>-->
 
 
 <div class="padding">
@@ -50,7 +50,7 @@ if (isset($_SESSION['cart'])) {
     </div>
   </div>
   <form class="p-x-xs" method="post" action="prosses/prosses-boking.php">
-    <input type="text" hidden="" name="id_paket" value="<?= $_SESSION['cart'] ?>"> <!-- ID PAKET -->
+    <input type="text" hidden="" name="id_paket" value="<?= (isset($_SESSION['cart']))? $_SESSION['cart'] : '' ?>"> <!-- ID PAKET -->
     <div class="p-y-lg clearfix">
       <!-- <h4 class="_700 m-b text-center">Pilih Waktu Anda</h4> -->
     </div>

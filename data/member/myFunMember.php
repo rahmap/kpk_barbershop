@@ -4,8 +4,8 @@ function getIdUser(){
 	$id_user = '';
 	if (isset($_SESSION['id_user'])) {
 		$id_user = $_SESSION['id_user'];
-  	} else if (isset($_COOKIE['ID'])) {
-  		$id_user = $_COOKIE['ID'];
+  	} else if (isset($_COOKIE['ID_USER'])) {
+  		$id_user = $_COOKIE['ID_USER'];
   	}
   	return $id_user;
 }
@@ -97,8 +97,8 @@ function uploadFotoProfile($conn){
 	                } else {
 	                    getAlert("Gagal!","Query Error","error","../dashboard.php");
 	                }
-	            } else if (isset($_COOKIE['ID'])) {
-	                $q = mysqli_query($conn, "UPDATE data_user SET foto = '$namaFileBaru' WHERE id_user = '".$_COOKIE['ID']."' ");
+	            } else if (isset($_COOKIE['ID_USER'])) {
+	                $q = mysqli_query($conn, "UPDATE data_user SET foto = '$namaFileBaru' WHERE id_user = '".$_COOKIE['ID_USER']."' ");
 	                if ($q) {
 	                    getAlert("Berhasil!","Sekarang anda bisa mengakses halaman dasbor","success","../dashboard.php");
 	                } else {
@@ -121,8 +121,8 @@ function updateProfileUmum($conn){
 	$id_user = '';
 	if (isset($_SESSION['id_user'])) {
 		$id_user = $_SESSION['id_user'];
-  	} else if (isset($_COOKIE['ID'])) {
-  		$id_user = $_COOKIE['ID'];
+  	} else if (isset($_COOKIE['ID_USER'])) {
+  		$id_user = $_COOKIE['ID_USER'];
   	}
 
 	if (isset($_POST['updateProfile'])) {
@@ -219,12 +219,14 @@ function boking($conn){
 		$barberman = $_POST['barberman'];
 		$bayar = $_POST['pembayaran'];
 		date_default_timezone_set('Asia/Jakarta'); 
-		$insert = mysqli_query($conn,"INSERT INTO boking VALUES('','".getIdOrder()."',
-			'$id_paket','$waktu','$hari','$barberman','".getIdUser()."','".date('F j, Y H:i:s')."', '".$bayar."' ,'pending') ");
+		$insert = mysqli_query($conn,"INSERT INTO boking VALUES(NULL,'".getIdOrder()."',
+			'".(int) $id_paket."','".(int) $waktu."','$hari','".(int) $barberman."','".(int) getIdUser()."','".date('F j, Y H:i:s')."', '".$bayar."' ,'pending') ");
 		if ($insert) {
 			getAlert("Berhasil Memesan Tempat!","Silahkan lanjutkan untuk pembayaran","success","../dashboard.php?page=list-order");
+			session_start();
 			unset($_SESSION['cart']);
 		} else {
+//		  die(mysqli_error($conn));
 			getAlert("Maaf terjadi kesalahan!","","error","../dashboard.php?page=pilih-waktu");
 		}
 	} else {

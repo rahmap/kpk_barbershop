@@ -149,8 +149,8 @@ include '../../assets/config/koneksi.php';
             <?php
               if (isset($_SESSION['id_user'])) {
               $id_user = $_SESSION['id_user'];
-              } else if (isset($_COOKIE['ID'])) {
-                $id_user = $_COOKIE['ID'];
+              } else if (isset($_COOKIE['ID_USER'])) {
+                $id_user = $_COOKIE['ID_USER'];
               }
               $q = mysqli_query($conn,"SELECT foto FROM data_user WHERE id_user = '$id_user' ");
               $res = mysqli_fetch_assoc($q);

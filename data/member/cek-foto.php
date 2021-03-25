@@ -9,8 +9,8 @@ if (isset($_SESSION['id_user'])) {
     } else {
     	echo "ada";
     }
-} else if (isset($_COOKIE['ID'])) {
-	$q = mysqli_query($conn,"SELECT foto FROM data_user WHERE id_user = '".$_COOKIE['ID']."' ");
+} else if (isset($_COOKIE['ID_USER'])) {
+	$q = mysqli_query($conn,"SELECT foto FROM data_user WHERE id_user = '".$_COOKIE['ID_USER']."' ");
 	$res = mysqli_fetch_assoc($q);
     if (is_null($res['foto']) OR empty($res['foto'])) {
     	echo "kosong";
