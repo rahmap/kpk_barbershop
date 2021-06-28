@@ -24,7 +24,7 @@ function generateRandomString($length = 4) {
 function getIdOrder()  
 {   
 	$angka = sprintf("%03s",rand(999,1));
-	return 'KPK-'.generateRandomString(4).'-'.$angka;
+	return 'ALDYS-'.generateRandomString(4).'-'.$angka;
 } 
 
 function daftar($conn){
@@ -119,7 +119,10 @@ function switchPages(){
 				break;
 			case 'data-member':
 				include "pages/data-member.php";
-				break;			
+				break;
+				case 'data-kasir':
+				include "pages/data-kasir.php";
+				break;
 			case 'update-status':
 				include "pages/update-status-order.php";
 				break;
@@ -391,14 +394,16 @@ function inputManual($conn){
 		$hargaFinal = 0;
 		$nama = $_POST['nama_pelanggan'];
 		$id_paket = $_POST['paket'];
+		$kasir_id = $_POST['kasir_id'];
 		$barberman = $_POST['barberman'];
 		$bayar = $_POST['pembayaran'];
 		$id_pesan = getIdOrder();
+		$idKasir = getIdUser();
 		date_default_timezone_set('Asia/Jakarta');
 		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
 		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100);  
 		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES(NULL,'".$id_pesan."',
-			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success') ");
+			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success','$kasir_id') ");
 		if ($insert) {
 			// getAlert("Berhasil Input Data Transaksi!","",
 			// 	"success","../dashboard.php?page=input-data-manual");

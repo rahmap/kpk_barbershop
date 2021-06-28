@@ -82,6 +82,9 @@
               <th>
                   Nama Paket
               </th>
+						<th>
+                  Nama Pelanggan
+              </th>
               <th>
                   Waktu Pemesanan
               </th>

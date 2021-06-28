@@ -23,7 +23,7 @@ function generateRandomString($length = 4) {
 function getIdOrder()  
 {   
 	$angka = sprintf("%03s",rand(999,1));
-	return 'KPK-'.generateRandomString(4).'-'.$angka;
+	return 'ALDYS-'.generateRandomString(4).'-'.$angka;
 }   
 
 function getAlert($title ="",$text ="",$type="",$href = ""){
@@ -223,7 +223,7 @@ function boking($conn){
 			'".(int) $id_paket."','".(int) $waktu."','$hari','".(int) $barberman."','".(int) getIdUser()."','".date('F j, Y H:i:s')."', '".$bayar."' ,'pending') ");
 		if ($insert) {
 			getAlert("Berhasil Memesan Tempat!","Silahkan lanjutkan untuk pembayaran","success","../dashboard.php?page=list-order");
-			session_start();
+//			session_start();
 			unset($_SESSION['cart']);
 		} else {
 //		  die(mysqli_error($conn));
@@ -235,13 +235,18 @@ function boking($conn){
 }
 
 function getCart(){
-	if (isset($_POST['pesan'])) {
-		session_start();
-		$_SESSION['cart'] = $_POST['id_paket'];
-		getAlert("Berhasil memasukkan keranjang!","Silahkan lanjutkan untuk prosses boking","success","../dashboard.php?page=pilih-waktu");
-	} else {
-		header('location:../');
-	}
+  session_start();
+  if($_SESSION['level'] != 'member'){
+    getAlert("Maaf!","Hanya member yang dapat memesan tempat.","error","../../../");
+  } else {
+    if (isset($_POST['pesan'])) {
+      $_SESSION['cart'] = $_POST['id_paket'];
+      getAlert("Berhasil memasukkan keranjang!","Silahkan lanjutkan untuk prosses boking","success","../dashboard.php?page=pilih-waktu");
+    } else {
+      header('location:../');
+    }
+  }
+
 }
 
 function hapusCart(){

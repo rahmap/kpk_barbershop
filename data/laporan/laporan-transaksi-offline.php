@@ -20,7 +20,7 @@ if (getIdUser() == '1') {
 	$tableHeaderLeftFillColour = array( 184, 207, 229 );
 	$tableBorderColour = array( 50, 50, 50 );
 	$tableRowFillColour = array( 213, 170, 170 );
-	$reportName = "Laporan Transaksi Offline KPK BarberShop";
+	$reportName = "Laporan Transaksi Offline ALDYS BarberShop";
 	$columnLabels = array( "Tanggal", "Jumlah Transaksi" );
 
 	$pdf = new FPDF( 'P', 'mm', 'A4' );
@@ -32,7 +32,7 @@ if (getIdUser() == '1') {
 	$pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 	$pdf->Ln( 16 );
 	$pdf->SetFont( 'Arial', '', 12 );
-	$pdf->Write( 6, "Laporan jumlah transaksi Offline KPK BarberShop berdasarkan hari, yang terjadi mulai tanggal "
+	$pdf->Write( 6, "Laporan jumlah transaksi Offline ALDYS BarberShop berdasarkan hari, yang terjadi mulai tanggal "
 		.date('01 F, Y')." sampai ".date('d F, Y').'.' );
 
 
@@ -85,7 +85,7 @@ if (getIdUser() == '1') {
 	  $pdf->Cell( 87, 10, $columnLabels1[$i], 1, 0, 'C', true );
 	}
 
-	$pdf->Output( "KPK Barbershop - Laporan Transaksi Offline.pdf", "I" );
+	$pdf->Output( "ALDYS Barbershop - Laporan Transaksi Offline.pdf", "I" );
 } else {
 	header("location:../../"); 
 }

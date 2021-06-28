@@ -1,7 +1,7 @@
 <?php
 include '../../assets/config/koneksi.php';
 if (isset($_GET['cvsx']) AND $_GET['cvsx'] != '') {
-  $id = 'KPK-'.$_GET['cvsx'];
+  $id = 'ALDYS-'.$_GET['cvsx'];
   $cekKode = mysqli_num_rows(mysqli_query($conn,"SELECT id_pesan FROM boking WHERE id_pesan = '".$id."' "));
   if ($cekKode) { //CEK BAWAH
   $query = 'SELECT d.fullname,ph.harga_paket,ph.detail_paket,ph.nama_paket,

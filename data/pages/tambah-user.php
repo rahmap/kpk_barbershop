@@ -56,7 +56,8 @@
                       <?php 
                         if (getIdUser() == 1) {
                           echo '<option value="admin">Admin</option>';
-                        } 
+                          echo '<option value="kasir">Kasir</option>';
+                        }
                       ?>
                       <option value="member">Member</option>
                     </select>

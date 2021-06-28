@@ -49,9 +49,12 @@
       <table ui-jp="dataTable" class="table table-striped b-t b-b">
         <thead>
           <tr>
-              <th>
+						<th>
                   Waktu Transaksi
-              </th>              
+              </th>
+						<th>
+								Nama Pelanggan
+						</th>
               <th>
                   Nama Paket
               </th>
@@ -67,8 +70,14 @@
               <th>
                 Pembayaran
               </th>
+						<th>
+							Total Bayar
+						</th>
               <th>
                   Status
+              </th>
+							<th class="text-center">
+                  Pelanggan
               </th>
               <th class="text-center">
                   Aksi

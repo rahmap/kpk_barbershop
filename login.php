@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- PAGE settings -->
   <link rel="icon" href="assets/img/favicon.ico">
-  <title>Home - KPK BarberShop</title>
+  <title>Home - ALDYS BarberShop</title>
   <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/colorful.css">
@@ -19,7 +19,7 @@
   <?php session_start(); include 'data/function.php'; cekLogin(); ?>
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.php"><b>KPK BarberShop</b></a>
+      <a class="navbar-brand" href="index.php"><b>ALDYS BarberShop</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">

@@ -34,6 +34,16 @@ include '../assets/config/koneksi.php';
   <form class="p-x-xs" method="post" action="prosses/prosses-input-manual.php" id="form-input">
     <div class="p-y-lg clearfix">
     </div>
+		<?php
+//		var_dump($_SESSION);die();
+			$id_user = '';
+			if (isset($_SESSION['id_user'])) {
+				$id_user = $_SESSION['id_user'];
+			} else if (isset($_COOKIE['ID_USER'])) {
+				$id_user = $_COOKIE['ID_USER'];
+			}
+		?>
+		<input type="hidden" value="<?= $id_user ?>" name="kasir_id" required>
     <div class="m-b-lg row">
       <div class="col-sm-6">
         <div class="row justify-content-md-center">
@@ -89,6 +99,14 @@ include '../assets/config/koneksi.php';
                 </span>
             </div>
           </div>
+					<div class="form-group col-md-8">
+						<h6>Status Pelanggan</h6>
+						<select required="" name="status_pelanggan" id="status_pelanggan" class="form-control">
+							<option value=""> -</option>
+							<option value="umum">Umum</option>
+							<option value="member">Member</option>
+						</select>
+					</div>
         </div>
       </div>
     </div>

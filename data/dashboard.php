@@ -12,8 +12,13 @@
 		header('location:../');
 	}
 ?>
-
-<?php include 'pages/sidebar.php'; ?>
+<?php
+  if (isset($_SESSION['nama']) OR isset($_COOKIE['nama']) AND $_SESSION['level'] == 'kasir' OR $_COOKIE['level'] == 'kasir') {
+    include 'pages/sidebar-kasir.php';
+  } else {
+    include 'pages/sidebar.php';
+  }
+?>
   
 
 <?php switchPages(); ?>

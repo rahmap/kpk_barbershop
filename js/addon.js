@@ -4,20 +4,25 @@ function hideForm(){
 	    type: 'POST',
 	    success: function(result) {
 	        if (result == 'member'){
-				$('#regis').hide();
-				$('#getRegis').html('Pesan Sekarang!');
-				$('#getRegis').attr('href','#boking');
-				$('#btnLogin').html('Member Area').attr('href','data/member/');
+            $('#regis').hide();
+            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').attr('href','#boking');
+            $('#btnLogin').html('Member Area').attr('href','data/member/');
 	        } else if (result == 'admin'){
-				$('#regis').hide();
-				$('#getRegis').html('Pesan Sekarang!');
-				$('#getRegis').attr('href','#boking');
-				$('#btnLogin').html('Dasbor').attr('href','data/');
-	        } else if (result == 'owner'){
-				$('#regis').hide();
-				$('#getRegis').html('Pesan Sekarang!');
-				$('#getRegis').attr('href','#boking');
-				$('#btnLogin').html('Dasbor').attr('href','data/');
+            $('#regis').hide();
+            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').attr('href','#boking');
+            $('#btnLogin').html('Dasbor').attr('href','data/');
+        } else if (result == 'kasir'){
+            $('#regis').hide();
+            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').attr('href','#boking');
+            $('#btnLogin').html('Dasbor').attr('href','data/');
+        } else if (result == 'owner'){
+            $('#regis').hide();
+            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').attr('href','#boking');
+            $('#btnLogin').html('Dasbor').attr('href','data/');
 	        } else {
 	        	$('#btnLogout').hide();
 	        }
@@ -35,7 +40,7 @@ function editBtnBoking(){
 				type : 'POST',
 				success : function(jml){
 					for(var i=1;i<=jml;i++){
-						if (res == 'member' || res == 'admin' || res == 'owner') {
+						if (res == 'member' || res == 'admin' || res == 'owner' || res == 'kasir') {
 							$('#formBoking'+i).submit(function(e){
 								$('#modalBoking').hide();
 							})

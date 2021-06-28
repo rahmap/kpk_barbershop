@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 	$fileread = fread($fileloc, filesize("vendor/pesan.html"));
 
 	$mg->messages()->send('mail.rahmatvv.co', [
-	  'from'    => 'KPK-BarberShop@smvll.co',
+	  'from'    => 'ALDYS-BarberShop@smvll.co',
 	  'to'      => "$email1",
 	  'subject' => "Halo $nama1 😎",
 	  // 'text'    => 'It is so simple to send a message.',

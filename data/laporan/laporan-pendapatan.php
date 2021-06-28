@@ -18,7 +18,7 @@ $tableHeaderLeftTextColour = array( 99, 42, 57 );
 $tableHeaderLeftFillColour = array( 184, 207, 229 );
 $tableBorderColour = array( 50, 50, 50 );
 $tableRowFillColour = array( 213, 170, 170 );
-$reportName = "Laporan Pendapatan KPK BarberShop";
+$reportName = "Laporan Pendapatan ALDYS BarberShop";
 $columnLabels = array( "Tanggal", "Pendapatan" );
 
 $pdf = new FPDF( 'P', 'mm', 'A4' );
@@ -30,7 +30,7 @@ $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 $pdf->Ln( 16 );
 $pdf->SetFont( 'Arial', '', 12 );
-$pdf->Write( 6, "Laporan pendapatan KPK BarberShop berdasarkan hari, yang terjadi mulai tanggal "
+$pdf->Write( 6, "Laporan pendapatan ALDYS BarberShop berdasarkan hari, yang terjadi mulai tanggal "
 	.date('01 F, Y')." sampai ".date('d F, Y').'.' );
 
 
@@ -83,5 +83,5 @@ for ( $i=0; $i<count($columnLabels); $i++ ) {
   $pdf->Cell( 87, 10, $columnLabels1[$i], 1, 0, 'C', true );
 }
 
-$pdf->Output( "KPK Barbershop - Laporan Pendapatan.pdf", "I" );
+$pdf->Output( "ALDYS Barbershop - Laporan Pendapatan.pdf", "I" );
 ?>

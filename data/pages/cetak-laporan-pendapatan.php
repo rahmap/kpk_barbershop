@@ -11,7 +11,7 @@ date_default_timezone_set('Asia/Jakarta');
         <div class="box-body">
           <div class="text-center">
             <p class="m-0">
-              <?= "Laporan jumlah pendapatan pada KPK BarberShop berdasarkan hari, <br>yang terjadi mulai tanggal <b class='text-blue'>"
+              <?= "Laporan jumlah pendapatan pada ALDYS BarberShop berdasarkan hari, <br>yang terjadi mulai tanggal <b class='text-blue'>"
                 .date('01 F, Y')."</b> sampai <b class='text-danger'>".date('d F, Y').'</b>.' 
               ?>
             </p>

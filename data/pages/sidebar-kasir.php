@@ -75,44 +75,6 @@
                     <i class="fa fa-caret-down"></i>
                   </span>
                   <span class="nav-label">
-                    <b class="label rounded label-sm primary">1</b>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe5c3;
-                      <span ui-include="'../assets/images/i_1.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Layanan</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="dashboard.php?page=data-paket" >
-                      <span class="nav-text">Data Paket Harga</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-barberman" >
-                      <span class="nav-text">Data Barberman</span>
-                    </a>
-                  </li>
-                  <!-- <li>
-                    <a href="contact.html" >
-                      <span class="nav-text">Update Harga</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="calendar.html" >
-                      <span class="nav-text">Hapus Harga</span>
-                    </a>
-                  </li> -->
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-label">
                     <b class="label rounded label-sm primary">3</b>
                   </span>
                   <span class="nav-icon">
@@ -136,74 +98,6 @@
                   <li>
                     <a href="dashboard.php?page=list-pesanan" >
                       <span class="nav-text">Daftar Pemesanan Online</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-label">
-                    <b class="label rounded label-sm primary">3</b>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe8f0;
-                      <span ui-include="'../assets/images/i_2.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Data Pengguna</span>
-                </a>
-                <ul class="nav">
-                  <li>
-                    <a href="dashboard.php?page=tambah-user" >
-                      <span class="nav-text">Tambah Pengguna</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-admin" >
-                      <span class="nav-text">Daftar Admin</span>
-                    </a>
-                  </li>
-									<li>
-                    <a href="dashboard.php?page=data-kasir" >
-                      <span class="nav-text">Daftar Kasir</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-member" >
-                      <span class="nav-text">Daftar Member</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                  <span class="nav-label">
-                    <b class="label rounded label-sm primary">3</b>
-                  </span>
-                  <span class="nav-icon">
-                    <i class="material-icons">&#xe5c3;
-                      <span ui-include="'../assets/images/i_1.svg'"></span>
-                    </i>
-                  </span>
-                  <span class="nav-text">Laporan</span>
-                </a>
-                <ul class="nav-sub">
-                  <li>
-                    <a href="dashboard.php?page=laporan-pendapatan" >
-                      <span class="nav-text">Pendapatan</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=laporan-transaksi" >
-                      <span class="nav-text">Transaksi</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="dashboard.php?page=data-transaksi" >
-                      <span class="nav-text">Data Transaksi</span>
                     </a>
                   </li>
                 </ul>

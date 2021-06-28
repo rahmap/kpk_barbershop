@@ -123,7 +123,7 @@
                     <td>'.$key["pembayaran"].'</td>
                     <td><span class="label '.$statusLbl.' " title="Active">'.$key['status'].'</span></td>
                     <td class="text-center"><button id="btnDetail" class="md-btn md-raised m-b-sm w-xs blue" data-toggle="modal" data-target="#m-a-a" ui-toggle-class="flip-y" ui-target="#animate" data-harga="'.str_replace('+', '', money_format('%i',$fullUnik)).'" data-id="'.$key['id_boking'].'" data-unik="'.$key['id_pesan'].'" data-bank="'.$key['pembayaran'].'">Detail</button>
-                      <a href="dashboard.php?page=cetak-nota&id_pesanan='.password_hash($key['id_pesan'], PASSWORD_DEFAULT).'&cvsx='.str_replace('KPK-', '', $key['id_pesan']).' " target="_blank"><button id="btnDetail" class="md-btn md-raised pink">Cetak Nota</button></a> 
+                      <a href="dashboard.php?page=cetak-nota&id_pesanan='.password_hash($key['id_pesan'], PASSWORD_DEFAULT).'&cvsx='.str_replace('ALDYS-', '', $key['id_pesan']).' " target="_blank"><button id="btnDetail" class="md-btn md-raised pink">Cetak Nota</button></a> 
                     </td>
                   </tr>';
           } 

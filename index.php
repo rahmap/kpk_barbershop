@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- PAGE settings -->
   <link rel="icon" href="assets/img/favicon.ico">
-  <title>Home - KPK BarberShop</title>
+  <title>Home - ALDYS BarberShop</title>
   <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/colorful.css">
@@ -20,7 +21,7 @@
   <div id="homekpk"></div>
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#"><b>KPK BarberShop</b></a>
+      <a class="navbar-brand" href="#"><b>ALDYS BarberShop</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar3SupportedContent">
         <ul class="navbar-nav">
@@ -39,7 +40,7 @@
     <div class="container my-auto">
       <div class="row">
         <div class="mx-auto col-lg-6 col-md-8">
-          <h1 class="display-1 mb-0 mt-5 big-title">KPK</h1>
+          <h1 class="display-1 mb-0 mt-5 big-title">ALDYS</h1>
           <h3 class="mb-4"><b>Kulo Pengen Keren BarberShop</b></h3>
           <!-- <h4> "Enak Tur Keras" </h4> -->
           <p>“Heroes don’t always wear capes, badges, or uniforms. Ganteng itu pilihan.”</p><br><br>
@@ -113,6 +114,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 p-4">
+
           <h1>Jadi member sekarang!</h1>
           <p>Setelah registrasi selesai, anda akan mendapatkan berbagai kemudahan.</p>
         </div>
@@ -164,7 +166,7 @@
     <div class="container">
       <div class="row">
         <!-- <div class="p-5 col-md-6">
-          <h3><b>KPK Barber</b></h3>
+          <h3><b>ALDYS Barber</b></h3>
           <p class="">
             <a href="#" target="_blank">Jalan Turi - Pakem <br>Km 3 Sleman DIY</a>
           </p>
@@ -191,7 +193,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 mt-3">
-          <p class="text-center text-muted">© Copyright 2019 KPK BarberShop - All rights reserved. </p>
+          <p class="text-center text-muted">© Copyright 2019 ALDYS BarberShop - All rights reserved. </p>
         </div>
       </div>
     </div>

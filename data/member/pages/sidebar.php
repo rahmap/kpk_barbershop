@@ -6,7 +6,7 @@ include '../../assets/config/koneksi.php';
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="../../assets/img/favicon.ico">
-  <title>Beranda Member - KPK BarberShop</title>
+  <title>Beranda Member - ALDYS BarberShop</title>
   <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +49,7 @@ include '../../assets/config/koneksi.php';
         <a class="navbar-brand" href="../../">
           <!-- <div ui-include="'../../assets/images/logo.svg'"></div> -->
           <img src="../../assets/images/newlogo.png" alt=".">
-          <span class="hidden-folded inline">KPK Barber</span>
+          <span class="hidden-folded inline">ALDYS Barber</span>
         </a>
         <!-- / brand -->
       </div>
@@ -181,7 +181,7 @@ include '../../assets/config/koneksi.php';
     <div class="app-footer">
       <div class="p-2 text-xs">
         <div class="pull-right text-muted py-1">
-          &copy; Copyright <strong>KPKBarberShop</strong> <span class="hidden-xs-down">- Made with Love </span>
+          &copy; Copyright <strong>ALDYSBarberShop</strong> <span class="hidden-xs-down">- Made with Love </span>
           <a ui-scroll-to="content"><i class="fa fa-long-arrow-up p-x-sm"></i></a>
         </div>
         <div class="nav">
