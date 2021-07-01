@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 01 Jul 2021 pada 21.57
+-- Waktu pembuatan: 01 Jul 2021 pada 22.44
 -- Versi server: 8.0.25
 -- Versi PHP: 7.2.19
 
@@ -111,7 +111,7 @@ CREATE TABLE `data_user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `jenkel` char(1) NOT NULL,
-  `no_hp` varchar(16) DEFAULT NULL,
+  `no_hp` varchar(16) CHARACTER SET utf32 COLLATE utf32_general_ci NOT NULL,
   `level` varchar(10) NOT NULL,
   `foto` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
@@ -121,13 +121,13 @@ CREATE TABLE `data_user` (
 --
 
 INSERT INTO `data_user` (`id_user`, `fullname`, `email`, `password`, `jenkel`, `no_hp`, `level`, `foto`) VALUES
-(1, 'Owner Aldys Barbershop', 'owner@owner.com', 'abc', 'L', '089669413260', 'owner', '5cff29c370079.jpg'),
+(1, 'Owner Aldys Barbershop', 'owner@owner.com', 'abc', 'L', '089283434', 'owner', '5cff29c370079.jpg'),
 (143, 'Rahma Purnama', 'tes@tes', 'tes', 'L', '089669413260', 'member', '5cf375e3b82ce.jpg'),
-(149, 'Aku Admin', 'admin@admin', 'tes', 'L', '978987978', 'admin', '605c8ecf14fd7.png'),
-(150, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'asdasdasd', 'L', '08982002040', 'member', '605c88587ae9b.png'),
+(149, 'Admin Old', 'admin@admin', 'asdasd', 'L', '97897452', 'admin', '605c8ecf14fd7.png'),
+(150, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'asdasdasd', 'L', '0765934', 'member', '605c88587ae9b.png'),
 (152, 'Kamu Member', 'member@member', 'abc12345', 'L', '978987978', 'member', ''),
-(154, 'Kasir Satu', 'cobavoba17@gmail.com', 'abc12345', 'L', '089669413260', 'kasir', '60da0f4719d42.png'),
-(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '08982002040', 'member', '60de0934b4081.png');
+(154, 'Kasir Satu', 'cobavoba17@gmail.com', 'abc12345', 'L', '08493423', 'kasir', '60da0f4719d42.png'),
+(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '09984372', 'member', '60de0934b4081.png');
 
 -- --------------------------------------------------------
 
@@ -253,7 +253,9 @@ ALTER TABLE `boking_manual`
 -- Indeks untuk tabel `data_user`
 --
 ALTER TABLE `data_user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `no_hp` (`no_hp`);
 
 --
 -- Indeks untuk tabel `laporan`
@@ -299,7 +301,7 @@ ALTER TABLE `boking_manual`
 -- AUTO_INCREMENT untuk tabel `data_user`
 --
 ALTER TABLE `data_user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT untuk tabel `paket_harga`
