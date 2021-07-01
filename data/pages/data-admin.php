@@ -34,72 +34,72 @@
 </div>
 <!-- large modal -->
 <div id="m-md" class="modal fade animate" data-backdrop="true">
-  <div class="modal-dialog modal-lg" id="animate">
-    <div class="modal-content dark">
-      <div class="modal-header">
-        <h5 class="modal-title">Update Data Admin</h5>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-        <form  action="prosses/prosses-edit-user.php" method="post" id="editYuk" >
-          <div class="box">
-            <div class="box-body">
-              <input type="text" hidden="" id="id_user" name="id_user">
-              <p class="text-muted">Perbaruhi data admin yang sudah ada!</p>
-              <div class="form-group">
-                <label>Nama Lengkap</label>
-                <input type="text" id="fn" name="nama" class="form-control" required>           
-              </div>
-              <div class="row m-b">
-                <div class="col-sm-6">
-                  <label>Email</label>
-                  <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Jenis Kelamin</label>
-                      <select required="" id="jenkel" name="jenkel" 
-                      class="form-control c-select">
-                        <option selected="" value="X"> - Pilih -</option>
-                        <option value="L">Pria</option>
-                        <option value="P">Wanita</option>
-                      </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row m-b">
-                <div class="col-sm-6">
-                  <label>Enter password</label>
-                  <input type="password" id="pass" class="form-control" name="pass" required id="pwd">   
-                </div>
-                <div class="col-sm-6">
-                  <label>Confirm password</label>
-                  <input type="password" id="pass-fix" class="form-control" name="pass-fix" required>      
-                </div>   
-              </div>
-              <div class="row m-b">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Phone</label>
-                    <input type="number" name="nohp" id="nohp" class="form-control" placeholder="XXX XXXX XXX" required>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <label>Level</label>
-                  <input type="text" disabled="" class="form-control" value="member" required>
-                </div>   
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn danger p-x-md" data-dismiss="modal">Batal</button>
-            <button type="submit" name="submit" id="btnModalEdit" class="btn info p-x-md" data-d>Perbarui</button>
-        </div>
-        </div></div>
-      </form></div></div></div></div></div>
-      </form>
-    </div><!-- /.modal-content -->
-  </div>
+	<div class="modal-dialog modal-lg" id="animate">
+		<div class="modal-content dark">
+			<div class="modal-header">
+				<h5 class="modal-title">Update Data Admin</h5>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<form  action="prosses/prosses-edit-user.php" method="post" id="editYuk" >
+						<div class="box">
+							<div class="box-body">
+								<input type="text" hidden="" id="id_user" name="id_user">
+								<p class="text-muted">Perbaruhi data Admin yang sudah ada!</p>
+								<div class="form-group">
+									<label>Nama Lengkap</label>
+									<input type="text" id="fn" name="nama" class="form-control" required>
+								</div>
+								<div class="row m-b">
+									<div class="col-sm-6">
+										<label>Email <small>(tidak bisa diubah)</small></label>
+										<input type="email" readonly id="email" name="email" class="form-control" required>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Jenis Kelamin</label>
+											<select required="" id="jenkel" name="jenkel"
+															class="form-control c-select">
+												<option selected="" value="X"> - Pilih -</option>
+												<option value="L">Pria</option>
+												<option value="P">Wanita</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row m-b">
+									<div class="col-sm-6">
+										<label>Enter password</label>
+										<input type="password" id="pass" class="form-control" name="pass" required id="pwd">
+									</div>
+									<div class="col-sm-6">
+										<label>Confirm password</label>
+										<input type="password" id="pass-fix" class="form-control" name="pass-fix" required>
+									</div>
+								</div>
+								<div class="row m-b">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Phone <small>(tidak bisa diubah)</small></label>
+											<input type="number" readonly name="nohp" id="nohp" class="form-control" placeholder="XXX XXXX XXX" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<label>Level <small>(tidak bisa diubah)</small></label>
+										<input type="text" disabled="" class="form-control" value="admin" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn danger p-x-md" data-dismiss="modal">Batal</button>
+							<button type="submit" name="submit" id="btnModalEdit" class="btn info p-x-md" data-d>Perbarui</button>
+						</div>
+				</div></div>
+			</form></div></div></div></div></div>
+</form>
+</div><!-- /.modal-content -->
+</div>
 <!-- / .modal -->
 <!-- small modal -->
 <div id="confirm-delete" class="modal fade animate" data-backdrop="true">
@@ -175,7 +175,7 @@ function editModal(){
           200 : function(e){
             $('#btnModalEdit').attr('data-dismiss','modal');
             $('#btnModalEdit').click();
-            Swal.fire('Berhasil Mengupdate Data Users');
+            Swal.fire('Berhasil Mengupdate Data Admin');
           },
           422 : function(e,f,g){
             $('#btnModalEdit').attr('data-dismiss','modal');

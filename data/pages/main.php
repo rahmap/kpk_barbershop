@@ -202,7 +202,7 @@ $ofLaporan = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(pendapatan) as jm
 	        <div class="box light lt">
 	            <div class="box-header">
 	              <span class="label success pull-right">5</span>
-	              <h3>Member Baru</h3>
+	              <h3>Pelanggan Baru</h3>
 	            </div>
 	            <ul class="list no-border p-b">
 	           	<?php $warna = ['success','warn','info','orange','green']; $i=0;

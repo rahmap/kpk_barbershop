@@ -31,7 +31,7 @@ function tambahUser(){
 							$('#loading').hide();
 							resetForm();
 							status(isi);
-						}, 3000)
+						}, 1000)
 					},
 					200 : function(){
 						setTimeout(function(){
@@ -39,7 +39,7 @@ function tambahUser(){
 							$('#loading').hide();
 							resetForm();
 							status(isi);
-						}, 3000)
+						}, 1000)
 					},
 				},
 			});

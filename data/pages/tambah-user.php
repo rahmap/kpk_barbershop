@@ -13,18 +13,18 @@
             <p class="text-muted">Masukan data admin yang akan dibuat!</p>
             <div class="form-group">
               <label>Nama Lengkap</label>
-              <input type="text" name="nama" class="form-control" >                        
+              <input type="text" name="nama"  required="" minlength="4" class="form-control" >
             </div>
             <div class="row m-b">
               <div class="col-sm-6">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" >                        
+                <input type="email" required name="email" class="form-control" >
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Jenis Kelamin</label>
-                    <select name="jenkel" class="form-control c-select">
-                      <option selected=""> - Pilih -</option>
+                    <select name="jenkel" required class="form-control c-select">
+                      <option value=""> - Pilih -</option>
                       <option value="L">Pria</option>
                       <option value="P">Wanita</option>
                     </select>
@@ -34,25 +34,25 @@
             <div class="row m-b">
               <div class="col-sm-6">
                 <label>Enter password</label>
-                <input type="text" class="form-control" name="pass" id="pwd">   
+                <input type="text" class="form-control" required minlength="8" name="pass" id="pwd">
               </div>
               <div class="col-sm-6">
                 <label>Confirm password</label>
-                <input type="text" class="form-control" name="pass-fix" >      
+                <input type="text" class="form-control" required minlength="8" name="pass-fix" >
               </div>   
             </div>
             <div class="row m-b">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>No HP</label>
-                  <input type="number" name="nohp" class="form-control" placeholder="XXX XXXX XXX" >
+                  <input type="number" name="nohp" required class="form-control" placeholder='628.. atau 089..' >
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Level</label>
-                    <select name="level" class="form-control">
-                      <option selected=""> - Pilih -</option>
+                    <select name="level" required class="form-control">
+                      <option value=""> - Pilih -</option>
                       <?php 
                         if (getIdUser() == 1) {
                           echo '<option value="admin">Admin</option>';

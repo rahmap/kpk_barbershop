@@ -40,14 +40,21 @@ function daftar($conn){
 
 		$cek_data = mysqli_query($conn,"SELECT email FROM data_user WHERE email = '$email' ");
 		$cek_row = mysqli_num_rows($cek_data);
+
+    $cek_data1 = mysqli_query($conn,"SELECT no_hp FROM data_user WHERE no_hp = '$nohp' ");
+    $cek_row1 = mysqli_num_rows($cek_data1);
+
+
 		if ($pass != $_POST['pass-fix']) {
 			getAlert("Gagal!","Kata sandi Konfirmasi Tidak Sama","error","../index.php#regis");
 		} else if (strlen($pass) < 6) {
 			getAlert("Gagal!","Kata sandi Harus Lebih Dari 6 Karakter","error","../index.php#regis");
 		} else if (!preg_match ("/^[a-zA-Z\s]+$/",$nama)) {
 			getAlert("Gagal!","Nama Hanya Boleh Alphabet","error","../index.php#regis");
-		} else if ($cek_row) {
-			getAlert("Gagal!","Email Sudah Ada","error","../index.php#regis");
+		} else if ($cek_row1) {
+      getAlert("Gagal!","Nomor HP Sudah Digunakan, gunakan Nomor HP yang lain.","error","../index.php#regis");
+    } else if ($cek_row) {
+			getAlert("Gagal!","Email Sudah Digunakan","error","../index.php#regis");
 		} else {
 			$insert = "INSERT INTO data_user SET fullname = '$nama', email = '$email', no_hp = '$nohp', jenkel = '$jenkel', password = '$pass', level = 'member' ";
 				mysqli_query($conn, $insert);
@@ -189,6 +196,9 @@ function tambahUser($conn){
 		$pass = $_POST['pass'];
 		$level = $_POST['level'];
 
+    $cek_data1 = mysqli_query($conn,"SELECT no_hp FROM data_user WHERE no_hp = '$nohp' ");
+    $cek_row1 = mysqli_num_rows($cek_data1);
+
 		$cek_data = mysqli_query($conn,"SELECT email FROM data_user WHERE email = '$email' ");
 		$cek_row = mysqli_num_rows($cek_data);
 		if (empty($nama) OR empty($email) OR empty($jenkel) OR empty($nohp) OR empty($pass) OR empty($level)) {
@@ -199,9 +209,11 @@ function tambahUser($conn){
 			die(header("HTTP/1.0 422 Kata sandi Harus Lebih Dari 6 Karakter"));
 		} else if (!preg_match ("/^[a-zA-Z\s]+$/",$nama)) {
 			die(header("HTTP/1.0 422 Nama Hanya Boleh Alphabet"));
-		} else if ($cek_row) {
-			die(header("HTTP/1.0 422 Email Sudah Ada"));
-		} else {
+		} else if ($cek_row1) {
+			die(header("HTTP/1.0 422 Nomor HP Sudah Digunakan, gunakan Nomor HP yang lain."));
+    } else if ($cek_row) {
+			die(header("HTTP/1.0 422 Email Sudah Digunakan"));
+    } else {
 			$insert = "INSERT INTO data_user SET fullname = '$nama', email = '$email', no_hp = '$nohp', jenkel = '$jenkel', password = '$pass', level = '$level' ";
 				mysqli_query($conn, $insert);
 			if ($insert) {

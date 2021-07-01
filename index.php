@@ -45,7 +45,7 @@
           <!-- <h4> "Enak Tur Keras" </h4> -->
           <p>“Heroes don’t always wear capes, badges, or uniforms. Ganteng itu pilihan.”</p><br><br>
           <div class="col-md-12">
-            <a class="btn btn-outline-secondary" id="getRegis" href="#regis"> Jadi Member Sekarang!</a>
+            <a class="btn btn-outline-secondary" id="getRegis" href="#regis"> Buat Akun Sekarang!</a>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@
       <div class="row">
         <div class="col-md-8 p-4">
 
-          <h1>Jadi member sekarang!</h1>
+          <h1>Buat akun sekarang!</h1>
           <p>Setelah registrasi selesai, anda akan mendapatkan berbagai kemudahan.</p>
         </div>
       </div>
@@ -136,15 +136,15 @@
           <h3 class="mb-3">Formulir Pendaftaran</h3>
           <form action="data/prosses-daftar.php" method="POST">
             <div class="form-row">
-              <div class="form-group col-md-6"> <input required="" name="fnama" type="text" class="form-control" id="form36" placeholder="Nama Depan"> </div>
-              <div class="form-group col-md-6"> <input  required="" name="lnama" type="text" class="form-control" id="form37" placeholder="Nama Belakang"> </div>
+              <div class="form-group col-md-6"> <input required="" minlength="3" name="fnama" type="text" class="form-control" id="form36" placeholder="Nama Depan"> </div>
+              <div class="form-group col-md-6"> <input  required="" name="lnama" minlength="3" type="text" class="form-control" id="form37" placeholder="Nama Belakang"> </div>
             </div>
             <div class="form-group">
               <input required="" type="email" name="email" class="form-control" id="form39" placeholder="Email">
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input name="nohp" type="number" class="form-control" id="form40" placeholder="No HP (tidak wajib)">
+                <input name="nohp" type="number" required class="form-control" id="form40" placeholder="628.. atau 089..">
               </div>
               <div class="form-group col-md-6">
                 <select required="" name="jenkel" id="inputState" class="form-control">
@@ -154,8 +154,8 @@
                 </select>
               </div>
             </div>
-            <div class="form-group"> <input required="" type="password" name="pass" class="form-control mb-2"  placeholder="Kata Sandi"> </div>
-            <div class="form-group"> <input required="" type="password" name="pass-fix" class="form-control mb-2" placeholder="Konfirmasi Kata Sandi"> </div>
+            <div class="form-group"> <input required="" minlength="8" type="password" name="pass" class="form-control mb-2"  placeholder="Kata Sandi"> </div>
+            <div class="form-group"> <input required="" minlength="8" type="password" name="pass-fix" class="form-control mb-2" placeholder="Konfirmasi Kata Sandi"> </div>
             <button type="submit" name="submit" class="btn btn-primary">Daftar!</button>
           </form>
         </div>
@@ -205,7 +205,7 @@
           <h5 class="modal-title">Halo!</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
         </div>
         <div class="modal-body">
-          <p>Silahkan login dulu untuk melanjutkan prosses boking!<br>Belum jadi member? 
+          <p>Silahkan login dulu untuk melanjutkan prosses boking!<br>Belum punya Akun?
             <a class="text-info" href="#regis" data-dismiss="modal" > Daftar</a> sekarang. Gratis!</p>
         </div>
         <div class="modal-footer"> 

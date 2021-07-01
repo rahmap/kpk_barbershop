@@ -47,15 +47,15 @@
           <div class="box">
             <div class="box-body">
               <input type="text" hidden="" id="id_user" name="id_user">
-              <p class="text-muted">Perbaruhi data member yang sudah ada!</p>
+              <p class="text-muted">Perbaruhi data pelanggan yang sudah ada!</p>
               <div class="form-group">
                 <label>Nama Lengkap</label>
                 <input type="text" id="fn" name="nama" class="form-control" required>           
               </div>
               <div class="row m-b">
                 <div class="col-sm-6">
-                  <label>Email</label>
-                  <input type="email" id="email" name="email" class="form-control" required>
+									<label>Email <small>(tidak bisa diubah)</small></label>
+                  <input type="email" readonly id="email" name="email" class="form-control" required>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
@@ -82,12 +82,12 @@
               <div class="row m-b">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Phone</label>
-                    <input type="number" name="nohp" id="nohp" class="form-control" placeholder="XXX XXXX XXX" required>
+										<label>Phone <small>(tidak bisa diubah)</small></label>
+                    <input type="number" readonly name="nohp" id="nohp" class="form-control" placeholder="XXX XXXX XXX" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
-                  <label>Level</label>
+									<label>Level <small>(tidak bisa diubah)</small></label>
                   <input type="text" disabled="" class="form-control" value="member" required>
                 </div>   
               </div>
@@ -176,7 +176,7 @@ function editModal(){
           200 : function(e){
             $('#btnModalEdit').attr('data-dismiss','modal');
             $('#btnModalEdit').click();
-            Swal.fire('Berhasil Mengupdate Data Users');
+            Swal.fire('Berhasil Mengupdate Data Pelanggan');
           },
           422 : function(e,f,g){
             $('#btnModalEdit').attr('data-dismiss','modal');
