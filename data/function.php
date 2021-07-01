@@ -11,7 +11,8 @@ function getAlert($title ="",$text ="",$type="",$href = ""){
 		</script>";
 }
 
-function generateRandomString($length = 4) {
+function generateRandomString($length = 4): string
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -87,7 +88,7 @@ function login($conn){
 	}
 }
 
-function cekLogin(){
+function cekLogin() {
 	if (isset($_SESSION['nama']) OR isset($_COOKIE['nama'])) {
 		die(getAlert('Upps..','Anda sudah masuk','error','index.php'));
 	}
@@ -133,8 +134,12 @@ function switchPages(){
 				include "pages/tambah-user.php";
 				break;
 			case 'input-data-manual':
-				include "pages/input-manual.php";
-				break;				
+			  if($_SESSION['level'] == 'kasir'){
+				  include "pages/input-manual.php";
+        } else {
+          echo "<center><h3>Maaf. Halaman hanya bisa di akses Kasir !</h3></center>";
+        }
+				break;
 			case 'list-pesanan-manual':
 				include "pages/data-pesanan-manual.php";
 				break;
@@ -224,13 +229,14 @@ function tambahPaket($conn){
 	if (isset($_POST['nama-paket'])) {
 		$nama = $_POST['nama-paket'];
 		$harga = $_POST['harga-paket'];
+		$hargaMember = $_POST['harga_paket_member'];
 		$ket = $_POST['ket-paket'];
 		$detail = $_POST['detail-paket'];
 		$diskon = $_POST['diskon'];
 		if (isset($detail)) {
 			$detail = implode(',', $detail);
 		}
-		$query = mysqli_query($conn,"INSERT INTO paket_harga VALUES(NULL,'$nama','$harga','$ket','$detail','$diskon')");
+		$query = mysqli_query($conn,"INSERT INTO paket_harga VALUES(NULL,'$nama','$harga','$hargaMember','$ket','$detail','$diskon')");
 		if($query){
 			getAlert("Berhasil Menambahkan Paket","","","../dashboard.php?page=data-paket");
 		} else {
@@ -397,13 +403,18 @@ function inputManual($conn){
 		$kasir_id = $_POST['kasir_id'];
 		$barberman = $_POST['barberman'];
 		$bayar = $_POST['pembayaran'];
+		$statusMember = $_POST['member'];
 		$id_pesan = getIdOrder();
-		$idKasir = getIdUser();
 		date_default_timezone_set('Asia/Jakarta');
-		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
-		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100);  
+		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,harga_paket_member,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
+		if($statusMember == 'member'){
+		  $hargaFinal = $uang['harga_paket_member'] - ($uang['harga_paket_member']*$uang['diskon_harga']/100);
+    } else {
+		  $hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100);
+    }
 		$insert = mysqli_query($conn,"INSERT INTO boking_manual VALUES(NULL,'".$id_pesan."',
-			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success','$kasir_id') ");
+			'$id_paket','".date('M j, Y H:i')."','$barberman','$nama', '$bayar' ,'success','$kasir_id','$statusMember','$hargaFinal') ");
+//		var_dump(mysqli_error($conn)); die();
 		if ($insert) {
 			// getAlert("Berhasil Input Data Transaksi!","",
 			// 	"success","../dashboard.php?page=input-data-manual");
@@ -454,7 +465,7 @@ function updatePesanan($conn){
 function tambahBarberman($conn){
 	if (isset($_POST['submit'])) {
 		$nama = $_POST['nama'];
-		$q = mysqli_query($conn, "INSERT INTO barberman VALUES(NULL,'".$nama."') ");
+		$q = mysqli_query($conn, "INSERT INTO barberman VALUES(NULL,'".$nama."',NULL) ");
 		if ($q) {
 			getAlert("Berhasil Menambahkan Barberman","","success","../dashboard.php?page=data-barberman");
 		} else {
@@ -464,3 +475,12 @@ function tambahBarberman($conn){
 		getAlert("Upsss","","","../dashboard.php?page=data-barberman");
 	}
 }
+
+ function hapusBarberman($conn, $idbarber){
+   $query = mysqli_query($conn, "UPDATE barberman SET barberman_deleted_at = '".date('Y-m-d H:i:s')."' WHERE id_barberman = '".$idbarber."' ");
+   if ($query) {
+     getAlert("Berhasil menghapus Barberman","","success","../dashboard.php?page=data-barberman");
+   } else {
+     getAlert("Gagal menghapus Barberman","","error","../dashboard.php?page=data-barberman");
+   }
+ }

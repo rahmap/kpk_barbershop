@@ -5,7 +5,7 @@
   $q = mysqli_query($conn, "SELECT * FROM paket_harga ph 
   JOIN boking b ON b.id_paket = ph.id_paket 
   JOIN data_user ON b.id_user = data_user.id_user 
-  JOIN barberman bar ON bar.id_barberman = b.id_barberman
+  LEFT JOIN barberman bar ON bar.id_barberman = b.id_barberman
   JOIN waktu_boking wb ON wb.id_waktu = b.id_waktu 
   ORDER BY b.id_boking DESC ");
 

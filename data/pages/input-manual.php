@@ -1,6 +1,6 @@
 <?php
 include '../assets/config/koneksi.php';
-  $barberman = mysqli_query($conn, "SELECT * FROM barberman");
+  $barberman = mysqli_query($conn, "SELECT * FROM barberman WHERE barberman_deleted_at IS NULL");
   $paket = mysqli_query($conn, "SELECT * FROM paket_harga");
 ?>
 <!--<style type="text/css">-->
@@ -24,9 +24,16 @@ include '../assets/config/koneksi.php';
       </div>
       <div class="row row-col no-gutter b-t warn">
       <div class="col-xs-4 b-r">
-        <a class="p-y block text-center" ui-toggle-class id="showValOp">
-
-        </a>
+				<h1 id="paketTitle"></h1>
+				<div class="row justify-content-center">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<span class="block" id="showValOpUmum"></span>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<span class="block" id="showValOpMember"></span>
+					</div>
+<!--        <span class="p-y block" ></span>-->
+				</div>
       </div>
      </div>
     </div>
@@ -101,7 +108,7 @@ include '../assets/config/koneksi.php';
           </div>
 					<div class="form-group col-md-8">
 						<h6>Status Pelanggan</h6>
-						<select required="" name="status_pelanggan" id="status_pelanggan" class="form-control">
+						<select required="" name="member" id="member" class="form-control">
 							<option value=""> -</option>
 							<option value="umum">Umum</option>
 							<option value="member">Member</option>
@@ -123,16 +130,48 @@ include '../assets/config/koneksi.php';
     }
   </style> 
 <script type="text/javascript">
+
+	function getValUmum()
+	{
+    let value = $('#paket option:selected').val();
+    $.ajax({
+      type: 'POST',
+      url: 'pages/tampung-value-js.php',
+      data: { ov: value },
+      success : function(data){
+        $('#showValOpUmum').html(data);
+      }
+    })
+	}
+
+	function getValMember()
+	{
+    let value = $('#paket option:selected').val();
+    $.ajax({
+      type: 'POST',
+      url: 'pages/tampung-value-js-member.php',
+      data: { ov: value },
+      success : function(data){
+        $('#showValOpMember').html(data);
+      }
+    })
+	}
+	function getValTitle()
+	{
+    let value = $('#paket option:selected').val();
+    $.ajax({
+      type: 'POST',
+      url: 'pages/tampung-value-js-title.php',
+      data: { ov: value },
+      success : function(data){
+        $('#paketTitle').html(data);
+      }
+    })
+	}
 function loadOptionValue(){
- var value = $("#paket option:selected" ).val();
- $.ajax({
-  type: 'POST',
-  url: 'pages/tampung-value-js.php',
-  data: { ov: value },
-  success : function(data){
-    $("#showValOp").html(data);
-  }
- })
+	getValTitle()
+	getValUmum()
+	getValMember()
 }
 
 function resetForm(){
@@ -140,6 +179,7 @@ function resetForm(){
   $('#pembayaran').prop('selectedIndex',0);
   $('#barberman').prop('selectedIndex',0);
   $('#paket').prop('selectedIndex',0);
+  $('#member').prop('selectedIndex',0);
 }
 
 $('#form-input').submit(function (e) {

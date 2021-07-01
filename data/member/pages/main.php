@@ -20,7 +20,7 @@ if (isset($_SESSION['id_user'])) {
   $resAll = mysqli_fetch_assoc($all);
     $q = mysqli_query($conn, "SELECT * FROM paket_harga ph 
     JOIN boking b ON b.id_paket = ph.id_paket 
-    JOIN barberman bar ON bar.id_barberman = b.id_barberman
+    LEFT JOIN barberman bar ON bar.id_barberman = b.id_barberman
     JOIN waktu_boking wb ON wb.id_waktu = b.id_waktu 
     WHERE b.id_user = '".getIdUser()."'  ORDER BY b.id_boking DESC LIMIT 0,5");
 ?>
@@ -251,7 +251,7 @@ if (isset($_SESSION['id_user'])) {
           <?php 
             $queryB = mysqli_query($conn, "SELECT * FROM boking b 
                       JOIN paket_harga ph ON b.id_paket = ph.id_paket
-                      JOIN barberman bb ON b.id_barberman = bb.id_barberman 
+                      LEFT JOIN barberman bb ON b.id_barberman = bb.id_barberman 
                       JOIN data_user du ON du.id_user = b.id_user
                       WHERE b.id_user = '".getIdUser()."' 
                       ORDER BY b.id_boking DESC LIMIT 0,4  ");

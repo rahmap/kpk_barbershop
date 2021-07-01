@@ -10,17 +10,17 @@ function hideForm(){
             $('#btnLogin').html('Member Area').attr('href','data/member/');
 	        } else if (result == 'admin'){
             $('#regis').hide();
-            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').html('Halo Admin!');
             $('#getRegis').attr('href','#boking');
             $('#btnLogin').html('Dasbor').attr('href','data/');
         } else if (result == 'kasir'){
             $('#regis').hide();
-            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').html('Halo Kasir!');
             $('#getRegis').attr('href','#boking');
-            $('#btnLogin').html('Dasbor').attr('href','data/');
+            $('#btnLogin').html('Dasbor Kasir').attr('href','data/');
         } else if (result == 'owner'){
             $('#regis').hide();
-            $('#getRegis').html('Pesan Sekarang!');
+            $('#getRegis').html('Halo Owner!');
             $('#getRegis').attr('href','#boking');
             $('#btnLogin').html('Dasbor').attr('href','data/');
 	        } else {

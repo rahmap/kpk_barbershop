@@ -11,6 +11,7 @@
             <th  style="width:10%">ID Paket</th>
             <th  style="width:15%">Nama Paket</th>
             <th  style="width:10%">Harga Paket</th>
+            <th  style="width:10%">Harga Paket (Member)</th>
             <th  style="width:20%">Keterangan Paket</th>
             <th  style="width:20%">Detail Paket</th>
             <th  style="width:5%">Diskon</th>
@@ -70,6 +71,12 @@
                     <input type="number" name="harga" id="harga" class="form-control" placeholder="Rp XXXX" required>
                   </div>
                 </div>
+								<div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Harga Member</label>
+                    <input type="number" name="harga_member" id="harga_member" class="form-control" placeholder="Rp XXXX" required>
+                  </div>
+                </div>
                 <div class="col-sm-6">
                   <label>Potongan Harga</label>
                   <input type="number" placeholder="XX %" name="diskon" id="diskon" class="form-control" required>
@@ -115,16 +122,18 @@ function loadData(){
 
 function editModal(){
   $(document).on('click', '#btnEdit', function(){
-    var id_paket = $(this).data('id');
-    var nama = $(this).data('nama');
-    var ket = $(this).data('ket');
-    var harga = $(this).data('harga');
-    var diskon = $(this).data('diskon');
-    var detail = $(this).data('detail');
+    let id_paket = $(this).data('id');
+    let nama = $(this).data('nama');
+    let ket = $(this).data('ket');
+    let harga = $(this).data('harga');
+    let harga_member = $(this).data('harga_member');
+    let diskon = $(this).data('diskon');
+    let detail = $(this).data('detail');
     $('#m-md #id_paket').val(id_paket);
     $('#m-md #nama_paket').val(nama);
     $('#m-md #ket_paket').val(ket);
     $('#m-md #harga').val(harga);
+    $('#m-md #harga_member').val(harga_member);
     $('#m-md #diskon').val(diskon);
     $('#m-md #detail_paket').val(detail);
   });

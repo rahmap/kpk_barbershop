@@ -10,7 +10,7 @@
 <div class="padding">
   <div class="box">
     <div class="box-header">
-      <h2>Data Member</h2>
+      <h2>Data Pelanggan</h2>
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" class="table table-striped b-t b-b">
@@ -39,7 +39,7 @@
   <div class="modal-dialog modal-lg" id="animate">
     <div class="modal-content dark">
       <div class="modal-header">
-        <h5 class="modal-title">Update Data Member</h5>
+        <h5 class="modal-title">Update Data Pelanggan</h5>
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -110,7 +110,7 @@
         <h5 class="modal-title">Peringatan!</h5>
       </div>
       <div class="modal-body text-center p-lg">
-        <p>Apakah anda ingin menghapus data member ini?</p>
+        <p>Apakah anda ingin menghapus data pelanggan ini?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button>

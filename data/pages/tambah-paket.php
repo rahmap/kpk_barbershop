@@ -18,13 +18,19 @@
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-2 form-control-label">Harga Paket</label>
               <div class="col-sm-10">
-                <input type="number" name="harga-paket" class="form-control" id="inputPassword3" required placeholder="Harga Paket">
+                <input type="number" name="harga-paket" class="form-control" id="" required placeholder="Harga Paket">
+              </div>
+            </div>
+						<div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 form-control-label">Harga Paket (Member)</label>
+              <div class="col-sm-10">
+                <input type="number" name="harga_paket_member" class="form-control" id="" required placeholder="Harga Paket Member">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-2 form-control-label">Potongan Harga</label>
               <div class="col-sm-10">
-                <input type="number" name="diskon" class="form-control" id="inputPassword3" required placeholder="Diskon Paket">
+                <input type="number" name="diskon" class="form-control" id="" required placeholder="Diskon Paket">
               </div>
             </div>
             <div class="form-group row">

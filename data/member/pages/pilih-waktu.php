@@ -9,7 +9,7 @@ if (isset($_SESSION['cart'])) {
   $qwaktu = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 0,7");
   $qwaktu1 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 7,7");
   $qwaktu2 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 14,7");
-  $barberman = mysqli_query($conn, "SELECT * FROM barberman");
+  $barberman = mysqli_query($conn, "SELECT * FROM barberman WHERE barberman_deleted_at IS NULL");
 } else {
   echo "<script> Swal.fire('Pilih paket dulu!','','').then(function(){
     window.location = '../../index.php#boking'

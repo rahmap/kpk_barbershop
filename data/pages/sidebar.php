@@ -17,7 +17,9 @@
   <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
-  
+  <?php if(isset($_GET['page']) AND $_GET['page'] == 'data-transaksi'): ?>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css"/>
+	<?php endif; ?>
   <!-- style -->
   <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
   <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
@@ -170,7 +172,7 @@
                   </li>
                   <li>
                     <a href="dashboard.php?page=data-member" >
-                      <span class="nav-text">Daftar Member</span>
+                      <span class="nav-text">Daftar Pelanggan</span>
                     </a>
                   </li>
                 </ul>

@@ -28,12 +28,12 @@ $newMember = mysqli_query($conn, "SELECT * FROM data_user WHERE level = 'member'
 //aktifitas offline
 $aktifitasOff = mysqli_query($conn,"SELECT * FROM boking_manual bm 
 				JOIN paket_harga ph ON bm.id_paket = ph.id_paket
-				JOIN barberman bb ON bm.id_barberman = bb.id_barberman 
+				LEFT JOIN barberman bb ON bm.id_barberman = bb.id_barberman 
 				ORDER BY bm.id_manual DESC LIMIT 0,5");
 //aktifitas online
 $aktifitasOn = mysqli_query($conn,"SELECT * FROM boking b 
 				JOIN paket_harga ph ON b.id_paket = ph.id_paket
-				JOIN barberman bb ON b.id_barberman = bb.id_barberman 
+				LEFT JOIN barberman bb ON b.id_barberman = bb.id_barberman 
 				JOIN data_user du ON du.id_user = b.id_user 
 				ORDER BY b.id_boking DESC LIMIT 0,5");
 

@@ -5,6 +5,7 @@ if (isset($_POST['nama_paket'])) {
 	$nama_paket = $_POST['nama_paket'];
 	$ket_paket = $_POST['ket_paket'];
 	$harga = $_POST['harga'];
+	$harga_member = $_POST['harga_member'];
 	$diskon = $_POST['diskon'];
 	$detail_paket = $_POST['detail_paket'];
 
@@ -13,6 +14,7 @@ if (isset($_POST['nama_paket'])) {
 		detail_paket = '$detail_paket' AND 
 		ket_paket = '$ket_paket' AND 
 		harga_paket = '$harga' AND 
+		harga_paket_member = '$harga_member' AND 
 		diskon_harga = '$diskon' AND 
 		id_paket = '$id_paket' ");
 	$cek_all_row = mysqli_num_rows($cek_all_data);
@@ -24,6 +26,7 @@ if (isset($_POST['nama_paket'])) {
 			nama_paket = '$nama_paket', 
 			detail_paket = '$detail_paket' , 
 			ket_paket = '$ket_paket' , 
+      harga_paket_member = '$harga_member',
 			harga_paket = '$harga', 
 			diskon_harga = '$diskon' 
 			WHERE id_paket = '$id_paket' ");

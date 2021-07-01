@@ -2,7 +2,7 @@
   include '../../assets/config/koneksi.php';
   $q = mysqli_query($conn, "SELECT * FROM paket_harga ph 
     JOIN boking b ON b.id_paket = ph.id_paket 
-    JOIN barberman bar ON bar.id_barberman = b.id_barberman
+    LEFT JOIN barberman bar ON bar.id_barberman = b.id_barberman
     JOIN waktu_boking wb ON wb.id_waktu = b.id_waktu 
     WHERE b.id_user = '".getIdUser()."'  ORDER BY b.id_boking ASC ");
 ?>

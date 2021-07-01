@@ -193,7 +193,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 mt-3">
-          <p class="text-center text-muted">© Copyright 2019 ALDYS BarberShop - All rights reserved. </p>
+          <p class="text-center text-muted">© Copyright 2021 ALDYS BarberShop - All rights reserved. </p>
         </div>
       </div>
     </div>

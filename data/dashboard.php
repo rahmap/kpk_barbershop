@@ -13,13 +13,18 @@
 	}
 ?>
 <?php
-  if (isset($_SESSION['nama']) OR isset($_COOKIE['nama']) AND $_SESSION['level'] == 'kasir' OR $_COOKIE['level'] == 'kasir') {
-    include 'pages/sidebar-kasir.php';
+  if (isset($_SESSION['nama'])) {
+    if($_SESSION['level'] == 'kasir'){
+      include 'pages/sidebar-kasir.php';
+    } else {
+      include 'pages/sidebar.php';
+    }
   } else {
-    include 'pages/sidebar.php';
+    header('location:../');
   }
 ?>
-  
+
+<?php cekExpireBoking($conn) ?>
 
 <?php switchPages(); ?>
 

@@ -4,7 +4,7 @@
 
   $q = mysqli_query($conn, "SELECT * FROM boking_manual b
   JOIN paket_harga ph  ON b.id_paket = ph.id_paket 
-  JOIN barberman bar ON bar.id_barberman = b.id_barberman
+  LEFT JOIN barberman bar ON bar.id_barberman = b.id_barberman
   ORDER BY b.id_manual DESC ");
 
   $statusLbl; 
@@ -23,8 +23,10 @@
     }
 
     if ($key['status_member'] == 'member') {
+      $hargaFix = $key['harga_paket_member'];
       $statusLbl1 = "warning";
     } else {
+      $hargaFix = $key['harga_paket'];
       $statusLbl1 = "secondary";
     }
     echo '<tr>
@@ -33,7 +35,7 @@
             <td>'.$key["nama_paket"].'</td>
             <td><b>'.$key["waktu_transaksi"].'<b></td>
             <td>'.$key["nama_barberman"].'</td>
-            <td data-value="'.$key["harga_paket"].'">Rp '.str_replace('+', '', money_format('%i', $key["harga_paket"]-$diskon)).'</td>
+            <td data-value="'.$hargaFix.'">Rp '.str_replace('+', '', money_format('%i', $hargaFix)).'</td>
             <td>'.$key["pembayaran"].'</td>
             <td>Rp '.str_replace('+', '', money_format('%i', $key["total_bayar"])).'</td>
             <td><span class="label '.$statusLbl.' " title="Active">'.$key['status'].'</span></td>
