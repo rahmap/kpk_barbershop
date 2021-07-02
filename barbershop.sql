@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 01 Jul 2021 pada 22.44
+-- Waktu pembuatan: 02 Jul 2021 pada 10.51
 -- Versi server: 8.0.25
 -- Versi PHP: 7.2.19
 
@@ -69,7 +69,9 @@ CREATE TABLE `boking` (
 --
 
 INSERT INTO `boking` (`id_boking`, `id_pesan`, `id_paket`, `id_waktu`, `hari`, `id_barberman`, `id_user`, `waktu_order`, `pembayaran`, `status`) VALUES
-(74, 'ALDYS-NM2B-379', 48, 12, 'Jul 03, 2021', 3, 155, 'July 2, 2021 01:28:25', 'Uang Cash', 'success');
+(74, 'ALDYS-NM2B-379', 48, 12, 'Jul 03, 2021', 3, 155, 'July 2, 2021 01:28:25', 'Uang Cash', 'success'),
+(75, 'ALDYS-c0F8-699', 24, 2, 'Jul 03, 2021', 1, 152, 'July 2, 2021 17:37:56', 'Uang Cash', 'success'),
+(76, 'ALDYS-d5Hu-393', 48, 19, 'Jul 04, 2021', 1, 157, 'July 2, 2021 17:43:19', 'Uang Cash', 'success');
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,8 @@ CREATE TABLE `boking_manual` (
 
 INSERT INTO `boking_manual` (`id_manual`, `id_pesan`, `id_paket`, `waktu_transaksi`, `id_barberman`, `nama_pelanggan`, `pembayaran`, `status`, `id_kasir`, `status_member`, `total_bayar`) VALUES
 (41, 'ALDYS-Ovqw-440', 44, 'Jul 2, 2021 01:23', 1, 'Putri Wahyu', 'BRI', 'success', 154, 'member', 12000),
-(42, 'ALDYS-kawM-191', 48, 'Jul 2, 2021 01:24', 4, 'Dipay', 'Uang Cash', 'success', 154, 'umum', 37050);
+(42, 'ALDYS-kawM-191', 48, 'Jul 2, 2021 01:24', 4, 'Dipay', 'Uang Cash', 'success', 154, 'umum', 37050),
+(43, 'ALDYS-4VaP-915', 28, 'Jul 2, 2021 17:40', 2, 'Test Lagi', 'BRI', 'success', 154, 'member', 9000);
 
 -- --------------------------------------------------------
 
@@ -125,9 +128,10 @@ INSERT INTO `data_user` (`id_user`, `fullname`, `email`, `password`, `jenkel`, `
 (143, 'Rahma Purnama', 'tes@tes', 'tes', 'L', '089669413260', 'member', '5cf375e3b82ce.jpg'),
 (149, 'Admin Old', 'admin@admin', 'asdasd', 'L', '97897452', 'admin', '605c8ecf14fd7.png'),
 (150, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'asdasdasd', 'L', '0765934', 'member', '605c88587ae9b.png'),
-(152, 'Kamu Member', 'member@member', 'abc12345', 'L', '978987978', 'member', ''),
+(152, 'Kamu Member', 'member@member', 'abc12345', 'L', '978987978', 'member', '60deec779b0b0.png'),
 (154, 'Kasir Satu', 'cobavoba17@gmail.com', 'abc12345', 'L', '08493423', 'kasir', '60da0f4719d42.png'),
-(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '09984372', 'member', '60de0934b4081.png');
+(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '08982002040', 'member', '60de0934b4081.png'),
+(157, 'Cristo Setiawan', 'cristi@demo.com', 'asdasdasd', 'P', '081229305522', 'member', '60deedb7b2b53.png');
 
 -- --------------------------------------------------------
 
@@ -289,19 +293,19 @@ ALTER TABLE `barberman`
 -- AUTO_INCREMENT untuk tabel `boking`
 --
 ALTER TABLE `boking`
-  MODIFY `id_boking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_boking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT untuk tabel `boking_manual`
 --
 ALTER TABLE `boking_manual`
-  MODIFY `id_manual` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_manual` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_user`
 --
 ALTER TABLE `data_user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT untuk tabel `paket_harga`

@@ -144,7 +144,7 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input name="nohp" type="number" required class="form-control" id="form40" placeholder="628.. atau 089..">
+                <input name="nohp" type="number" required class="form-control" id="form40" placeholder="08982543854..">
               </div>
               <div class="form-group col-md-6">
                 <select required="" name="jenkel" id="inputState" class="form-control">

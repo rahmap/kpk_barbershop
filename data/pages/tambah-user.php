@@ -45,7 +45,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>No HP</label>
-                  <input type="number" name="nohp" required class="form-control" placeholder='628.. atau 089..' >
+                  <input type="number" name="nohp" required class="form-control" placeholder='08982543854' >
                 </div>
               </div>
               <div class="col-sm-6">

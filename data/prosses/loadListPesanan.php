@@ -42,6 +42,9 @@
               echo '<button data-href="prosses/prosses-hapus-pesanan.php?id_boking='.$key['id_boking'].'" class="md-btn md-raised m-b-sm w-xs pink btnHapus" data-toggle="modal" data-target="#confirm-delete" ui-toggle-class="zoom" ui-target="#animate">Hapus</button>
               <a href="dashboard.php?page=update-status&id_boking='.$key['id_pesan'].' "><button class="md-btn md-raised m-b-sm w-xs primary btnUpdate">Update</button></a></td>';
             }
+//            if($status == 'success'){
+//              echo '<a href="prosses/kirimNotifAntrian.php?nomor_hp='.$key['no_hp'].'"><button class="md-btn md-raised m-b-sm w-xs primary btnNotif">Kirim Notif</button></a></td>';
+//            }
               
           echo '</tr>';
   } 
