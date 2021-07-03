@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 02 Jul 2021 pada 10.51
+-- Waktu pembuatan: 03 Jul 2021 pada 16.55
 -- Versi server: 8.0.25
 -- Versi PHP: 7.2.19
 
@@ -60,7 +60,7 @@ CREATE TABLE `boking` (
   `id_barberman` int DEFAULT NULL,
   `id_user` int NOT NULL,
   `waktu_order` varchar(50) NOT NULL,
-  `pembayaran` varchar(20) NOT NULL,
+  `pembayaran` varchar(50) CHARACTER SET utf32 COLLATE utf32_general_ci NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
@@ -71,7 +71,13 @@ CREATE TABLE `boking` (
 INSERT INTO `boking` (`id_boking`, `id_pesan`, `id_paket`, `id_waktu`, `hari`, `id_barberman`, `id_user`, `waktu_order`, `pembayaran`, `status`) VALUES
 (74, 'ALDYS-NM2B-379', 48, 12, 'Jul 03, 2021', 3, 155, 'July 2, 2021 01:28:25', 'Uang Cash', 'success'),
 (75, 'ALDYS-c0F8-699', 24, 2, 'Jul 03, 2021', 1, 152, 'July 2, 2021 17:37:56', 'Uang Cash', 'success'),
-(76, 'ALDYS-d5Hu-393', 48, 19, 'Jul 04, 2021', 1, 157, 'July 2, 2021 17:43:19', 'Uang Cash', 'success');
+(76, 'ALDYS-d5Hu-393', 48, 19, 'Jul 04, 2021', 1, 157, 'July 2, 2021 17:43:19', 'Uang Cash', 'success'),
+(77, 'ALDYS-cPPt-225', 27, 6, 'Jul 04, 2021', 1, 152, 'July 3, 2021 21:35:18', 'BRI', 'success'),
+(78, 'ALDYS-mOtP-178', 28, 21, 'Jul 08, 2021', 4, 152, 'July 3, 2021 21:57:41', 'BRI', 'success'),
+(79, 'ALDYS-JMw5-486', 27, 22, 'Jul 15, 2021', 6, 152, 'July 3, 2021 23:02:04', 'Uang Cash', 'success'),
+(80, 'ALDYS-pbMK-931', 47, 22, 'Jul 05, 2021', 1, 157, 'July 3, 2021 23:11:39', 'BRI - 150684898792', 'success'),
+(81, 'ALDYS-moGm-183', 45, 20, 'Jul 04, 2021', 1, 157, 'July 3, 2021 23:28:08', 'BRI - 150684898792', 'success'),
+(82, 'ALDYS-965N-923', 28, 2, 'Jul 04, 2021', 1, 157, 'July 3, 2021 23:32:25', 'MANDIRI - 176584859003', 'expired');
 
 -- --------------------------------------------------------
 
@@ -86,7 +92,7 @@ CREATE TABLE `boking_manual` (
   `waktu_transaksi` varchar(20) NOT NULL,
   `id_barberman` int DEFAULT NULL,
   `nama_pelanggan` varchar(50) NOT NULL,
-  `pembayaran` varchar(20) NOT NULL,
+  `pembayaran` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_kasir` int DEFAULT NULL,
   `status_member` varchar(10) DEFAULT NULL,
@@ -100,7 +106,10 @@ CREATE TABLE `boking_manual` (
 INSERT INTO `boking_manual` (`id_manual`, `id_pesan`, `id_paket`, `waktu_transaksi`, `id_barberman`, `nama_pelanggan`, `pembayaran`, `status`, `id_kasir`, `status_member`, `total_bayar`) VALUES
 (41, 'ALDYS-Ovqw-440', 44, 'Jul 2, 2021 01:23', 1, 'Putri Wahyu', 'BRI', 'success', 154, 'member', 12000),
 (42, 'ALDYS-kawM-191', 48, 'Jul 2, 2021 01:24', 4, 'Dipay', 'Uang Cash', 'success', 154, 'umum', 37050),
-(43, 'ALDYS-4VaP-915', 28, 'Jul 2, 2021 17:40', 2, 'Test Lagi', 'BRI', 'success', 154, 'member', 9000);
+(43, 'ALDYS-4VaP-915', 28, 'Jul 2, 2021 17:40', 2, 'Test Lagi', 'BRI', 'success', 154, 'member', 9000),
+(44, 'ALDYS-MqZv-405', 46, 'Jul 3, 2021 23:26', 1, 'Test After Revision', 'BRI - 150684898792', 'success', 154, 'member', 5000),
+(45, 'ALDYS-ARm1-019', 28, 'Jul 3, 2021 23:52', 2, 'Test Umum', 'Uang Cash', 'success', 154, 'umum', 10800),
+(46, 'ALDYS-zGKA-795', 24, 'Jul 3, 2021 23:53', 1, 'Test Member', 'Uang Cash', 'success', 154, 'member', 8500);
 
 -- --------------------------------------------------------
 
@@ -116,22 +125,23 @@ CREATE TABLE `data_user` (
   `jenkel` char(1) NOT NULL,
   `no_hp` varchar(16) CHARACTER SET utf32 COLLATE utf32_general_ci NOT NULL,
   `level` varchar(10) NOT NULL,
-  `foto` varchar(50) DEFAULT NULL
+  `foto` varchar(50) DEFAULT NULL,
+  `count_notif` int DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
 --
 -- Dumping data untuk tabel `data_user`
 --
 
-INSERT INTO `data_user` (`id_user`, `fullname`, `email`, `password`, `jenkel`, `no_hp`, `level`, `foto`) VALUES
-(1, 'Owner Aldys Barbershop', 'owner@owner.com', 'abc', 'L', '089283434', 'owner', '5cff29c370079.jpg'),
-(143, 'Rahma Purnama', 'tes@tes', 'tes', 'L', '089669413260', 'member', '5cf375e3b82ce.jpg'),
-(149, 'Admin Old', 'admin@admin', 'asdasd', 'L', '97897452', 'admin', '605c8ecf14fd7.png'),
-(150, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'asdasdasd', 'L', '0765934', 'member', '605c88587ae9b.png'),
-(152, 'Kamu Member', 'member@member', 'abc12345', 'L', '978987978', 'member', '60deec779b0b0.png'),
-(154, 'Kasir Satu', 'cobavoba17@gmail.com', 'abc12345', 'L', '08493423', 'kasir', '60da0f4719d42.png'),
-(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '08982002040', 'member', '60de0934b4081.png'),
-(157, 'Cristo Setiawan', 'cristi@demo.com', 'asdasdasd', 'P', '081229305522', 'member', '60deedb7b2b53.png');
+INSERT INTO `data_user` (`id_user`, `fullname`, `email`, `password`, `jenkel`, `no_hp`, `level`, `foto`, `count_notif`) VALUES
+(1, 'Owner Aldys Barbershop', 'owner@owner.com', 'abc', 'L', '089283434', 'owner', '5cff29c370079.jpg', 0),
+(143, 'Rahma Purnama', 'tes@tes', 'tes', 'L', '089669413260', 'member', '5cf375e3b82ce.jpg', 0),
+(149, 'Admin Old', 'admin@admin', 'asdasd', 'L', '97897452', 'admin', '605c8ecf14fd7.png', 0),
+(150, 'Rahma Purnama', 'purwantiibuku@gmail.com', 'asdasdasd', 'L', '0765934', 'member', '605c88587ae9b.png', 0),
+(152, 'Kamu Member', 'member@member', 'abc12345', 'L', '978987978', 'member', '60deec779b0b0.png', 0),
+(154, 'Kasir Satu', 'cobavoba17@gmail.com', 'abc12345', 'L', '08493423', 'kasir', '60da0f4719d42.png', 0),
+(155, 'Tohomas Refaldy', 'thomas@demo.com', 'asdasdasd', 'L', '08982002040', 'member', '60de0934b4081.png', 2),
+(157, 'Cristo Setiawan', 'cristi@demo.com', 'asdasdasd', 'P', '081229305522', 'member', '60deedb7b2b53.png', 0);
 
 -- --------------------------------------------------------
 
@@ -153,9 +163,14 @@ CREATE TABLE `laporan` (
 --
 
 INSERT INTO `laporan` (`id_pesan`, `jenis_transaksi`, `admin`, `tgl_acc`, `pendapatan`, `laporan_created_at`) VALUES
+('ALDYS-ARm1-019', 'Offline', 'Kasir Satu', '03 July, 2021', 10800, '2021-07-03 23:52:30'),
 ('ALDYS-kawM-191', 'Offline', 'Kasir Satu', '02 July, 2021', 37050, '2021-07-02 00:21:15'),
+('ALDYS-moGm-183', 'Online', 'Kasir Satu', '03 July, 2021', 16000, '2021-07-03 23:28:17'),
+('ALDYS-MqZv-405', 'Offline', 'Kasir Satu', '03 July, 2021', 5000, '2021-07-03 23:26:20'),
 ('ALDYS-NM2B-379', 'Online', 'Owner Aldys Barbershop', '02 July, 2021', 37050, '2021-07-02 01:31:14'),
-('ALDYS-Ovqw-440', 'Offline', 'Kasir Satu', '02 July, 2021', 12000, '2021-07-02 01:32:40');
+('ALDYS-Ovqw-440', 'Offline', 'Kasir Satu', '02 July, 2021', 12000, '2021-07-02 01:32:40'),
+('ALDYS-pbMK-931', 'Online', 'Owner Aldys Barbershop', '03 July, 2021', 7200, '2021-07-03 23:24:44'),
+('ALDYS-zGKA-795', 'Offline', 'Kasir Satu', '03 July, 2021', 8500, '2021-07-03 23:53:01');
 
 -- --------------------------------------------------------
 
@@ -293,13 +308,13 @@ ALTER TABLE `barberman`
 -- AUTO_INCREMENT untuk tabel `boking`
 --
 ALTER TABLE `boking`
-  MODIFY `id_boking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_boking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT untuk tabel `boking_manual`
 --
 ALTER TABLE `boking_manual`
-  MODIFY `id_manual` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_manual` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_user`
