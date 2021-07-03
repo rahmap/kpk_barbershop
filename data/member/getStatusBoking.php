@@ -3,19 +3,20 @@
   include 'myFunMember.php';
   session_start();
 
-  $query = mysqli_query($conn, "SELECT waktu_order FROM boking WHERE id_boking = '".$_SESSION['IDBO']."' ");
+  $query = mysqli_query($conn, "SELECT waktu_order, status FROM boking WHERE id_boking = '".$_SESSION['IDBO']."' ");
   $res = mysqli_fetch_assoc($query);
+	if($res['status'] == 'pending'){
+    $dt = new DateTime($res['waktu_order'], new DateTimeZone("Asia/Jakarta"));
+    $dt->format("F j, Y H:i:s");
+    $dt->modify("+1 day");
+    $dt->format("F j, Y H:i:s");
+    $triger = false;
+    date_default_timezone_set('Asia/Jakarta');
+    if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
+      mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' AND status = 'pending' ");
+      $triger = true;
+    }
 
-  $dt = new DateTime($res['waktu_order'], new DateTimeZone("Asia/Jakarta"));
-  $dt->format("F j, Y H:i:s");
-  $dt->modify("+1 day");
-  $dt->format("F j, Y H:i:s");
-  $triger = false;
-  date_default_timezone_set('Asia/Jakarta'); 
-  if (strtotime($dt->format("F j, Y H:i:s")) < strtotime(date("F j, Y H:i:s"))) {
-    mysqli_query($conn, "UPDATE boking SET status = 'expired' WHERE id_boking = '".$_SESSION['IDBO']."' AND status = 'pending' ");
-    $triger = true;
-  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,3 +49,6 @@
 </script>
 </body>
 </html>
+<?php } else {
+		echo '<h1>-</h1>';
+	} ?>

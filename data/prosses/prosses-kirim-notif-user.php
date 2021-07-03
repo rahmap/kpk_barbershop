@@ -38,6 +38,10 @@ try{
   $response = curl_exec($curl);
   curl_close($curl);
 //  echo $response;
+	$query = mysqli_query($conn, "SELECT count_notif FROM data_user WHERE id_user= '".$_GET['id_user']."' ");
+	$pecah = mysqli_fetch_assoc($query);
+	$new =  $pecah['count_notif'] + 1;
+	$update = mysqli_query($conn, "UPDATE data_user SET count_notif = '".$new."' WHERE id_user= '".$_GET['id_user']."'");
   getAlert("Berhasil Mengirim Notifikasi Kangen","","success","../dashboard.php?page=data-member");
 } catch (Exception $e){
   getAlert("Gagal Mengirim Notifikasi Kangen",$e,"error","../dashboard.php?page=data-member");

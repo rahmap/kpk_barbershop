@@ -10,19 +10,21 @@
 <div class="padding">
   <div class="box">
     <div class="box-header">
-      <h2>Data Pelanggan</h2>
+      <h2>Data Member</h2>
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" class="table table-striped b-t b-b">
         <thead>
           <tr>
-            <th  style="width:10%">ID User</th>
-            <th  style="width:25%">Nama Lengkap</th>
-            <th  style="width:20%">Email</th>
-            <th  style="width:10%">Password</th>
-            <th  style="width:5%">Jenkel</th>
-            <th  style="width:15%">No Telp</th>
-            <th  style="width:15%" class="text-center">Aksi</th>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Email</th>
+<!--            <th>Password</th>-->
+            <th>Jenkel</th>
+            <th>No Telp</th>
+            <th>Terkahir Berkunjung</th>
+            <th>Notif</th>
+            <th class="text-center">Aksi</th>
           </tr>
         </thead>
         <tbody id="loadDataMember">
@@ -39,7 +41,7 @@
   <div class="modal-dialog modal-lg" id="animate">
     <div class="modal-content dark">
       <div class="modal-header">
-        <h5 class="modal-title">Update Data Pelanggan</h5>
+        <h5 class="modal-title">Update Data Member</h5>
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -176,7 +178,7 @@ function editModal(){
           200 : function(e){
             $('#btnModalEdit').attr('data-dismiss','modal');
             $('#btnModalEdit').click();
-            Swal.fire('Berhasil Mengupdate Data Pelanggan');
+            Swal.fire('Berhasil Mengupdate Data Member');
           },
           422 : function(e,f,g){
             $('#btnModalEdit').attr('data-dismiss','modal');

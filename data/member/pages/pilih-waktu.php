@@ -5,7 +5,7 @@ if (isset($_SESSION['cart'])) {
   
   $que = mysqli_query($conn, "SELECT * FROM paket_harga WHERE id_paket = '".$_SESSION['cart']."' ");
   $data = mysqli_fetch_assoc($que);
-  $diskon = $data['harga_paket']*$data['diskon_harga'] /100;
+  $diskon = $data['harga_paket_member']*$data['diskon_harga'] /100;
   $qwaktu = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 0,7");
   $qwaktu1 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 7,7");
   $qwaktu2 = mysqli_query($conn, "SELECT * FROM waktu_boking ORDER BY `waktu_boking`.`jam` ASC LIMIT 14,7");
@@ -42,7 +42,7 @@ if (isset($_SESSION['cart'])) {
       <div class="col-xs-4 b-r">
         <a class="p-y block text-center" ui-toggle-class>
           <?php if (isset($_SESSION['cart'])): ?>
-            <h5 class="block"><?= 'Rp '.str_replace('+', '', money_format('%i', $data['harga_paket'] -= $diskon))?></h5>
+            <h5 class="block"><?= 'Rp '.str_replace('+', '', money_format('%i', $data['harga_paket_member'] -= $diskon))?></h5>
           <?php endif ?>
         </a>
       </div>
@@ -110,9 +110,9 @@ if (isset($_SESSION['cart'])) {
             <h6>Metode Pembayaran</h6>
             <select required="" name="pembayaran" id="pembayaran" class="form-control">
               <option value=""> -</option>
-              <option value="BRI">BRI</option>
-              <option value="BCA">BCA</option>
-              <option value="MANDIRI">MANDIRI</option>
+              <option value="BRI - 150684898792">BRI - 150684898792</option>
+              <option value="BCA - 19878485321">BCA - 19878485321</option>
+              <option value="MANDIRI - 176584859003">MANDIRI - 176584859003</option>
               <option value="Uang Cash">Bayar Cash</option>
             </select>
           </div>

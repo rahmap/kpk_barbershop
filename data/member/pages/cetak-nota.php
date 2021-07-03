@@ -4,20 +4,20 @@ if (isset($_GET['cvsx']) AND $_GET['cvsx'] != '') {
   $id = 'ALDYS-'.$_GET['cvsx'];
   $cekKode = mysqli_num_rows(mysqli_query($conn,"SELECT id_pesan FROM boking WHERE id_pesan = '".$id."' "));
   if ($cekKode) { //CEK BAWAH
-  $query = 'SELECT d.fullname,ph.harga_paket,ph.detail_paket,ph.nama_paket,
+  $query = 'SELECT d.fullname,ph.harga_paket, ph.harga_paket_member,ph.detail_paket,ph.nama_paket,
             b.pembayaran,b.status,b.waktu_order,b.id_pesan,ph.diskon_harga 
             FROM boking b 
             JOIN paket_harga ph ON b.id_paket = ph.id_paket
             JOIN data_user d ON d.id_user = b.id_user WHERE b.id_pesan = "'.$id.'" ';
   $res = mysqli_fetch_assoc(mysqli_query($conn,$query));
   if ($res['diskon_harga'] != 0) {
-    $diskon = $res['harga_paket']*$res['diskon_harga'] /100;
+    $diskon = $res['harga_paket_member']*$res['diskon_harga'] /100;
   } else {
     $diskon = 0;
   }
   $fullUnik = explode('-', $res['id_pesan']);
   $fullUnik = end($fullUnik);
-  $totalHarga = $fullUnik + $res['harga_paket'] - $diskon;
+  $totalHarga = $fullUnik + $res['harga_paket_member'] - $diskon;
   if ($res['status'] == 'success') {
     $lbl = "success";
   } else if ($res['status'] == 'pending') {
@@ -89,7 +89,7 @@ if (isset($_GET['cvsx']) AND $_GET['cvsx'] != '') {
           <tr>
             <td><?= $res['nama_paket'] ?></td>
             <td><?= str_replace(',', ', ',$res['detail_paket']) ?></td>
-            <td>Rp <?= str_replace('+', '', money_format('%i',$res['harga_paket']- $diskon)) ?></td>
+            <td>Rp <?= str_replace('+', '', money_format('%i',$res['harga_paket_member']- $diskon)) ?></td>
             <td><?= $fullUnik ?></td>
           </tr>
           <tr>

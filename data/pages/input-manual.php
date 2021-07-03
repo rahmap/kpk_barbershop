@@ -58,6 +58,10 @@ include '../assets/config/koneksi.php';
             <h6>Nama Pelanggan</h6>
             <input required="" name="nama_pelanggan" type="text" class="form-control" placeholder="nama pelanggan">
           </div>
+					<div class="form-group col-md-8">
+            <h6>Nomer HP <i><small>(untuk verifikasi member)</small></i> </h6>
+            <input required="" name="no_hp" type="number" class="form-control" placeholder="0898337432">
+          </div>
         </div>
         <div class="row justify-content-md-center">
           <div class="form-group col-md-8">
@@ -71,17 +75,6 @@ include '../assets/config/koneksi.php';
             </select>
           </div>
         </div>
-        <div class="row justify-content-md-center">
-          <div class="form-group col-md-8">
-            <h6>Pilih Barberman</h6>
-            <select required="" name="barberman" id="barberman" class="form-control">
-              <option value=""> -</option>
-              <?php foreach ($barberman as $key) { ?>
-                <option value="<?= $key['id_barberman'] ?>"><?= $key['nama_barberman'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
       </div>
       <div class="col-sm-6">
         <div class="row justify-content-md-center">
@@ -89,9 +82,9 @@ include '../assets/config/koneksi.php';
             <h6>Metode Pembayaran</h6>
             <select required="" name="pembayaran" id="pembayaran" class="form-control">
               <option value=""> -</option>
-              <option value="BRI">BRI</option>
-              <option value="BCA">BCA</option>
-              <option value="MANDIRI">MANDIRI</option>
+<!--							<option value="BRI - 150684898792">BRI - 150684898792</option>-->
+<!--							<option value="BCA - 19878485321">BCA - 19878485321</option>-->
+<!--							<option value="MANDIRI - 176584859003">MANDIRI - 176584859003</option>-->
               <option value="Uang Cash">Bayar Cash</option>
             </select>
           </div>
@@ -106,14 +99,23 @@ include '../assets/config/koneksi.php';
                 </span>
             </div>
           </div>
-					<div class="form-group col-md-8">
-						<h6>Status Pelanggan</h6>
-						<select required="" name="member" id="member" class="form-control">
-							<option value=""> -</option>
-							<option value="umum">Umum</option>
-							<option value="member">Member</option>
-						</select>
-					</div>
+						<div class="form-group col-md-8">
+							<h6>Pilih Barberman</h6>
+							<select required="" name="barberman" id="barberman" class="form-control">
+								<option value=""> -</option>
+                <?php foreach ($barberman as $key) { ?>
+									<option value="<?= $key['id_barberman'] ?>"><?= $key['nama_barberman'] ?></option>
+                <?php } ?>
+							</select>
+						</div>
+<!--					<div class="form-group col-md-8">-->
+<!--						<h6>Status Pelanggan</h6>-->
+<!--						<select required="" name="member" id="member" class="form-control">-->
+<!--							<option value=""> -</option>-->
+<!--							<option value="umum">Umum</option>-->
+<!--							<option value="member">Member</option>-->
+<!--						</select>-->
+<!--					</div>-->
         </div>
       </div>
     </div>

@@ -1,0 +1,3 @@
+Booking online otomatis Member
+Ada Column untuk menampilkan terakhir Berkunjung
+Ada Field di Kasir (Nomer Hp) untuk di cocokkan di Tabel data_user supaya verifikasi dia Member

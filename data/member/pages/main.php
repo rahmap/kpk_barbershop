@@ -182,13 +182,13 @@ if (isset($_SESSION['id_user'])) {
                     $statusLbl; 
                     foreach ($q as $key) {
                       if ($key['diskon_harga'] != 0) {
-                        $diskon = $key['harga_paket']*$key['diskon_harga'] /100;
+                        $diskon = $key['harga_paket_member']*$key['diskon_harga'] /100;
                       } else {
                         $diskon = 0;
                       }
                       $fullUnik = explode('-', $key['id_pesan']);
                       $fullUnik = end($fullUnik);
-                      $fullUnik = $fullUnik + $key['harga_paket']-$diskon;
+                      $fullUnik = $fullUnik + $key['harga_paket_member']-$diskon;
                       if ($key['status'] == 'success') {
                         $statusLbl = "success";
                       } else if ($key['status'] == 'pending') {
@@ -200,7 +200,7 @@ if (isset($_SESSION['id_user'])) {
                               <td>'.$key["nama_paket"].'</td>
                               <td><b>'.$key["jam"].' - '.$key["hari"].'<b></td>
                               <td>'.$key["nama_barberman"].'</td>
-                              <td data-value="'.$key["harga_paket"].'">Rp '.str_replace('+', '', money_format('%i', $key["harga_paket"]-$diskon)).'</td>
+                              <td data-value="'.$key["harga_paket_member"].'">Rp '.str_replace('+', '', money_format('%i', $key["harga_paket_member"]-$diskon)).'</td>
                               <td>'.$key["pembayaran"].'</td>
                               <td><span class="label '.$statusLbl.' " title="Active">'.$key['status'].'</span>
                               </td>
@@ -222,7 +222,7 @@ if (isset($_SESSION['id_user'])) {
         </div>
       </div>
       <?php
-        $totUang = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(ph.harga_paket-(ph.harga_paket*ph.diskon_harga/100)) AS uang FROM paket_harga ph 
+        $totUang = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(ph.harga_paket_member-(ph.harga_paket_member*ph.diskon_harga/100)) AS uang FROM paket_harga ph 
                              JOIN boking b ON b.id_paket = ph.id_paket WHERE status = 'success' 
                              AND b.id_user = '".getIdUser()."' "));
       ?>

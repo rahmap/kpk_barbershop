@@ -415,7 +415,12 @@ function inputManual($conn){
 		$kasir_id = $_POST['kasir_id'];
 		$barberman = $_POST['barberman'];
 		$bayar = $_POST['pembayaran'];
-		$statusMember = $_POST['member'];
+		$checkMember = mysqli_query($conn, "SELECT no_hp FROM data_user WHERE no_hp = '".$_POST['no_hp']."' ");
+		if(mysqli_num_rows($checkMember) > 0){
+		  $statusMember = 'member';
+    } else {
+		  $statusMember = 'umum';
+    }
 		$id_pesan = getIdOrder();
 		date_default_timezone_set('Asia/Jakarta');
 		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,harga_paket_member,diskon_harga FROM paket_harga WHERE id_paket = '".$id_paket."' "));
@@ -432,7 +437,7 @@ function inputManual($conn){
 			// 	"success","../dashboard.php?page=input-data-manual");
 			session_start();
 			mysqli_query($conn,"INSERT INTO laporan VALUES('".$id_pesan."','Offline',
-			'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."') ");
+			'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."','".date('Y-m-d H:i:s')."') ");
 			header("HTTP/1.0 200 Berhasil");
 		} else {
 			// getAlert("Maaf terjadi kesalahan!","","error","../dashboard.php?page=input-data-manual");
@@ -451,23 +456,19 @@ function updatePesanan($conn){
 		$id = $_POST['id_pesan'];
 		$getPaket = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id_paket FROM boking 
 			WHERE id_pesan = '".$id ."' "));
-		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,diskon_harga FROM paket_harga 
+		$uang = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga_paket,harga_paket_member,diskon_harga FROM paket_harga 
 			WHERE id_paket = '".$getPaket['id_paket']."' "));
-		$hargaFinal = $uang['harga_paket'] - ($uang['harga_paket']*$uang['diskon_harga']/100); 
-		if (mysqli_query($conn, "UPDATE boking SET status = '$new' WHERE id_pesan = '$id' ")) {
-			if (mysqli_affected_rows($conn)) {
+		$hargaFinal = $uang['harga_paket_member'] - ($uang['harga_paket_member']*$uang['diskon_harga']/100);
+		  mysqli_query($conn, "UPDATE boking SET status = '$new' WHERE id_pesan = '$id' ");
+
 				if ($new == 'success') {
 					session_start();
 					mysqli_query($conn,"INSERT INTO laporan VALUES('".$id."','Online',
-					'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."') ");
+					'".getNamaAdmin()."','".date('d F, Y')."','".$hargaFinal."','".date('Y-m-d H:i:s')."') ");
 				}
 				getAlert("Berhasil Memperbaruai Status Pesanan","","success","../dashboard.php?page=list-pesanan");
-			}else {
-				getAlert("Gagal Memperbaruai Status Pesanan","","error","../dashboard.php?page=list-pesanan");
-			}
-		} else {
-			getAlert("Gagal Memperbaruai","","error","../dashboard.php?page=list-pesanan");
-		}
+
+
 	} else {
 		header('location:../../');
 	}

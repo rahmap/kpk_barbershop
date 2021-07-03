@@ -23,16 +23,16 @@
                   <?php
                   if ($key['diskon_harga'] == 0) { ?>
                   <?php } else { ?>
-                  <h5 class="mb-0 text-danger"> <b><?= 'Rp '.'<del>'.str_replace('+', '', money_format('%i',$key['harga_paket'])) ?></b></del></b> </h5>
+                  <h5 class="mb-0 text-danger"> <b><?= 'Rp '.'<del>'.str_replace('+', '', money_format('%i',$key['harga_paket_member'])) ?></b></del></b> </h5>
                 <?php  }
                   ?>
                 </div>
                 <div class="col-6">
                   <?php
                   if ($key['diskon_harga'] == 0) { ?>
-                    <h5 class="mb-0"> <b><?= 'Rp '.str_replace('+', '', money_format('%i',$key['harga_paket'])) ?></b> </h5>
-                  <?php } else {  $diskon = $key['harga_paket']*$key['diskon_harga'] /100; ?>
-                  <h5 class="mb-0"> <b><?= 'Rp '.str_replace('+', '', money_format('%i',$key['harga_paket'] - $diskon)) ?></b></b> </h5>
+                    <h5 class="mb-0"> <b><?= 'Rp '.str_replace('+', '', money_format('%i',$key['harga_paket_member'])) ?></b> </h5>
+                  <?php } else {  $diskon = $key['harga_paket_member']*$key['diskon_harga'] /100; ?>
+                  <h5 class="mb-0"> <b><?= 'Rp '.str_replace('+', '', money_format('%i',$key['harga_paket_member'] - $diskon)) ?></b></b> </h5>
                 <?php  }
                   ?>
                 </div>

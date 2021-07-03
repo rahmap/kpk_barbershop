@@ -172,7 +172,7 @@
                   </li>
                   <li>
                     <a href="dashboard.php?page=data-member" >
-                      <span class="nav-text">Daftar Pelanggan</span>
+                      <span class="nav-text">Daftar Member</span>
                     </a>
                   </li>
                 </ul>

@@ -101,13 +101,13 @@
           $statusLbl; 
           foreach ($q as $key) {
             if ($key['diskon_harga'] != 0) {
-              $diskon = $key['harga_paket']*$key['diskon_harga'] /100;
+              $diskon = $key['harga_paket_member']*$key['diskon_harga'] /100;
             } else {
               $diskon = 0;
             }
             $fullUnik = explode('-', $key['id_pesan']);
             $fullUnik = end($fullUnik);
-            $fullUnik = $fullUnik + $key['harga_paket']-$diskon;
+            $fullUnik = $fullUnik + $key['harga_paket_member']-$diskon;
             if ($key['status'] == 'success') {
               $statusLbl = "success";
             } else if ($key['status'] == 'pending') {
@@ -119,7 +119,7 @@
                     <td>'.$key["nama_paket"].'</td>
                     <td><b>'.$key["jam"].' - '.$key["hari"].'<b></td>
                     <td>'.$key["nama_barberman"].'</td>
-                    <td>Rp '.str_replace('+', '', money_format('%i', $key["harga_paket"]-$diskon)).'</td>
+                    <td>Rp '.str_replace('+', '', money_format('%i', $key["harga_paket_member"]-$diskon)).'</td>
                     <td>'.$key["pembayaran"].'</td>
                     <td><span class="label '.$statusLbl.' " title="Active">'.$key['status'].'</span></td>
                     <td class="text-center"><button id="btnDetail" class="md-btn md-raised m-b-sm w-xs blue" data-toggle="modal" data-target="#m-a-a" ui-toggle-class="flip-y" ui-target="#animate" data-harga="'.str_replace('+', '', money_format('%i',$fullUnik)).'" data-id="'.$key['id_boking'].'" data-unik="'.$key['id_pesan'].'" data-bank="'.$key['pembayaran'].'">Detail</button>

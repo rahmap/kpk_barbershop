@@ -233,7 +233,7 @@ $ofLaporan = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(pendapatan) as jm
 	              <li class="list-item">
 	                <div class="list-body">   
 	                <?php foreach ($paket as $key) { ?>
-	                	<p><a href="#paketHrg" class="text-info"><?= $key['nama_paket'] ?></a><br> <?= $key['ket_paket'] ?>. Rp <?= $key['harga_paket']. ' .Potongan harga '.$key['diskon_harga'].'%' ?>
+	                	<p><a href="#paketHrg" class="text-info"><?= $key['nama_paket'] ?></a><br> <?= $key['ket_paket'] ?>. Rp <?= $key['harga_paket_member']. ' .Potongan harga '.$key['diskon_harga'].'%' ?>
 	                	</p>
 	               <?php } ?>                
 	                </div>
